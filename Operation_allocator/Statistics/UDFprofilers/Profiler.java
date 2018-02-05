@@ -1,4 +1,4 @@
-import java.lang.*;
+package Statistics.UDFprofilers;
 
 public abstract class Profiler{
 
