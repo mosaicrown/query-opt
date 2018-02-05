@@ -1,6 +1,6 @@
 package Statistics.UDFprofilers;
 
-public abstract class Profiler{
+public interface Profiler{
 
     /**
      * A function that predicts the number of CPU operations performed by UDF or algorithm
