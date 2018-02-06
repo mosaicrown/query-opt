@@ -1,5 +1,6 @@
 package Trees;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class TreeNode<E> {
@@ -11,12 +12,14 @@ public class TreeNode<E> {
     private E element;
 
     public TreeNode() {
-
+        parent = null;
+        sons = new LinkedList<>();
+        element = null;
     }
 
     public TreeNode(E elem) {
         parent = null;
-        sons = null;
+        sons = new LinkedList<>();
         element = elem;
     }
 

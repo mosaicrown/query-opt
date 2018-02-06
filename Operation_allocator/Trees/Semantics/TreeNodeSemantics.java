@@ -26,6 +26,7 @@ public class TreeNodeSemantics {
 
         //apply cost formula
         cm.Ce = op.getOp_metric().CPU_time * exec.getMetrics().Kcpu + op.getOp_metric().IO_time * exec.getMetrics().Kio;
+        cm.Ct = cm.Ce;
 
         //synthetizing cost
         if (tn.isLeaf())
@@ -37,6 +38,11 @@ public class TreeNodeSemantics {
             }
         //hook the cost
         op.setCost(cm);
+        /**
+         * Debug info
+         */
+        System.out.print(tn.getElement().toString());
+        System.out.println("\t Ce: \t" + tn.getElement().getCost().Ce + "\t Ct: \t" + tn.getElement().getCost().Ct);
     }
 
 }

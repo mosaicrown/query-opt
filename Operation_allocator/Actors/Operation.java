@@ -11,8 +11,22 @@ public class Operation implements Serializable{
     private Provider executor;
     private CostMetric cost;
 
+    private String name;
+
     public Operation (){
 
+    }
+
+    public Operation(String n){
+        name=n;
+    }
+
+    public String toString() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setOp_metric(BasicMetric op_metric) {

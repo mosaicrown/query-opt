@@ -24,4 +24,14 @@ public class ProviderMetric implements Serializable {
         Kc1 = m4;
         Kc2 = m5;
     }
+
+    public String toString() {
+        return
+                "Km:\t" + Km +
+                        "\t Kcpu:\t" + Kcpu +
+                        "\t Kio:\t" + Kio +
+                        "\t Kc1:\t" + Kc1 +
+                        "\t Kc2:\t" + Kc2;
+
+    }
 }

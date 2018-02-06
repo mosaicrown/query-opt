@@ -25,5 +25,12 @@ public class CostMetric implements Serializable {
         this.Ct = 0;
     }
 
+    public String toString() {
+        return "\t Ct:" + Ct +
+                "\t Cm:" + Cm +
+                "\t Ce:" + Ce +
+                "\t Cc:" + Cc;
+    }
+
 
 }

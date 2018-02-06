@@ -32,4 +32,14 @@ public class BasicMetric implements Serializable {
         IO_time = m6;
     }
 
+    public String toString() {
+        return
+                "InputSize:\t" + inputSize +
+                        "\t InputTupleSize:\t" + inputTupleSize +
+                        "\t OutputSize:\t" + outputSize +
+                        "\t OutputTupleSize:\t" + outputTupleSize +
+                        "\t CPU_time:\t" + CPU_time +
+                        "\t IO_time:\t" + IO_time;
+    }
+
 }

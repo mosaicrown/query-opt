@@ -22,7 +22,7 @@ public class CostEngine {
     }
 
     public double addHomomorphicCost(Operation op) {
-        return op.getOp_metric().outputSize * op.getExecutor().getMetrics().Kc1;
+        return op.getOp_metric().outputSize * op.getExecutor().getMetrics().Kc2;
     }
 
     public double addAsymmetricCost(Operation op) {

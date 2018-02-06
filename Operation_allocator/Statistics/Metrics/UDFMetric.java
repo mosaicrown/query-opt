@@ -46,5 +46,12 @@ public class UDFMetric<T extends Profiler> extends BasicMetric implements Serial
         super.IO_time = profiler.ioComplexityProfile(Not) / IOPS;
     }
 
+    public String toString() {
+        return super.toString() +
+                "\t CPI:\t" + CPI +
+                "\t CT:\t" + CT +
+                "\t IOPS:\t" + IOPS +
+                "\t Not:\t" + Not;
+    }
 
 }
