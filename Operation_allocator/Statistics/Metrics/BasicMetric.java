@@ -1,6 +1,8 @@
 package Statistics.Metrics;
 
-public class BasicMetric {
+import java.io.Serializable;
+
+public class BasicMetric implements Serializable {
     /**
      * Input data metrics
      */

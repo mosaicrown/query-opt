@@ -1,6 +1,8 @@
 package Statistics.UDFprofilers;
 
-public class UDF_typ1 implements Profiler {
+import java.io.Serializable;
+
+public class UDF_typ1 implements Profiler, Serializable {
 
     @Override
     public double cpuComplexityProfile(double inputSize) {

@@ -2,7 +2,9 @@ package Statistics.Metrics;
 
 import Statistics.UDFprofilers.Profiler;
 
-public class UDFMetric<T extends Profiler> extends BasicMetric {
+import java.io.Serializable;
+
+public class UDFMetric<T extends Profiler> extends BasicMetric implements Serializable {
 
     /**
      * Machine architecture metrics

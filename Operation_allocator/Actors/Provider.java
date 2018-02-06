@@ -2,7 +2,9 @@ package Actors;
 
 import Statistics.Metrics.ProviderMetric;
 
-public class Provider {
+import java.io.Serializable;
+
+public class Provider implements Serializable{
 
     private String name;
 

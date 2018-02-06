@@ -3,7 +3,9 @@ package Actors;
 import Statistics.Metrics.BasicMetric;
 import Statistics.Metrics.CostMetric;
 
-public class Operation {
+import java.io.Serializable;
+
+public class Operation implements Serializable{
 
     private BasicMetric op_metric;
     private Provider executor;

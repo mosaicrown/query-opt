@@ -1,6 +1,8 @@
 package Statistics.Metrics;
 
-public class ProviderMetric {
+import java.io.Serializable;
+
+public class ProviderMetric implements Serializable {
 
     //motion
     public double Km;                       //provider inbound/outbound specific cost of motion as dollars per KB
