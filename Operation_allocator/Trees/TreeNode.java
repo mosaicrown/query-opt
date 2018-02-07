@@ -1,6 +1,9 @@
 package Trees;
 
 import Actors.Operation;
+import Trees.Semantics.Features;
+import Trees.Semantics.MetaChoke;
+import Trees.Semantics.MetaDecorator;
 
 import java.io.*;
 import java.util.LinkedList;
@@ -14,16 +17,30 @@ public class TreeNode<E extends Operation> implements Serializable {
 
     private E element;
 
+    private MetaChoke info;
+
     public TreeNode() {
         parent = null;
         sons = new LinkedList<>();
         element = null;
+        info = new MetaChoke<Object>();
     }
 
     public TreeNode(E elem) {
         parent = null;
         sons = new LinkedList<>();
         element = elem;
+        info = new MetaChoke<Object>();
+        ;
+
+    }
+
+    public MetaChoke getInfo() {
+        return info;
+    }
+
+    public void setInfo(MetaChoke info) {
+        this.info = info;
     }
 
     public TreeNode<E> getParent() {
@@ -90,13 +107,19 @@ public class TreeNode<E extends Operation> implements Serializable {
                 + "\t Ct:" + this.getElement().getCost().Ct
                 + "\t Ce:" + this.getElement().getCost().Ce
                 + "\t Cm:" + this.getElement().getCost().Cm
-                + "\t Cc:" + this.getElement().getCost().Cc
-                + "\n";;
+                + "\t Cc:" + this.getElement().getCost().Cc;
+        s += "\tFeatures:";
+        for (Object f : this.getInfo().getFeatures()
+                ) {
+            s += "\t" + f.toString();
+        }
+        s += "\n";
+
         for (TreeNode<E> tns : this.getSons()
                 ) {
             for (int i = 0; i < j; i++)
                 s += "\t";
-            s += "|__" + tns.printTreeWithLevel(j+1);
+            s += "|__" + tns.printTreeWithLevel(j + 1);
         }
         return s;
     }

@@ -141,11 +141,21 @@ public class ComputeUDFTest {
         TreeNode<Operation> query = new TreeNode<>(o4);
         query.setSons(opsons4);
 
+        ProviderMetric economicMetric = pm1.deepClone();
+        economicMetric.Kcpu/=4;
+        economicMetric.Kio/=3;
+        economicMetric.Kc1/=2;
+        economicMetric.Kc2/=2;
+        economicMetric.Km/=2;
+
+        Provider cheapProvider = new Provider("cheap", economicMetric);
+
         /**
          * Semantics
          */
         System.out.println("\nPrinting query plan");
         TreeNodeSemantics.computeUDFProfiles(query);
+        TreeNodeSemantics.deriveCostBarriers(query, cheapProvider);
         TreeNodeSemantics.synthetizeExecutionCost(query);
         System.out.println(query.printTree());
 

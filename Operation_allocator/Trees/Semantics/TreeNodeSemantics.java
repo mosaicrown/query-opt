@@ -2,6 +2,7 @@ package Trees.Semantics;
 
 import Actors.Operation;
 import Actors.Provider;
+import Actors.SimpleCostEngine;
 import Statistics.Metrics.BasicMetric;
 import Statistics.Metrics.CostMetric;
 import Statistics.Metrics.UDFMetric;
@@ -9,13 +10,35 @@ import Trees.TreeNode;
 
 public class TreeNodeSemantics {
 
-    public static <T extends Operation> void computeUDFProfiles(TreeNode<T> tn){
-        for (TreeNode<T> tns: tn.getSons()
-             ) {
+    public static <T extends Operation> void deriveCostBarriers(TreeNode<T> tn, Provider p) {
+        CostMetric m = SimpleCostEngine.computeExecutionVsMotionCost(tn.getElement(), p);
+        if (m.Ce > 3 * m.Cm)
+            deriveCostBarriersComplement(tn, Features.EXPCPUDOMCOST);
+        else {
+            tn.getInfo().addFeature(Features.EXPDATADOMCOST);
+            for (TreeNode<T> tns : tn.getSons()
+                    ) {
+                deriveCostBarriers(tns, p);
+            }
+        }
+    }
+
+    private static <T extends Operation> void deriveCostBarriersComplement(TreeNode<T> tn, Features f) {
+        tn.getInfo().addFeature(f);
+        for (TreeNode<T> tns : tn.getSons()
+                ) {
+            deriveCostBarriersComplement(tns, f);
+        }
+
+    }
+
+    public static <T extends Operation> void computeUDFProfiles(TreeNode<T> tn) {
+        for (TreeNode<T> tns : tn.getSons()
+                ) {
             computeUDFProfiles(tns);
         }
         BasicMetric bm = tn.getElement().getOp_metric();
-        if(bm instanceof UDFMetric)
+        if (bm instanceof UDFMetric)
             ((UDFMetric) bm).computeMetrics();
 
     }
