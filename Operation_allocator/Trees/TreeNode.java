@@ -1,6 +1,8 @@
 package Trees;
 
-import java.io.Serializable;
+import Actors.Operation;
+
+import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -62,5 +64,20 @@ public class TreeNode<E extends Serializable> implements Serializable{
         if(parent == null)
             return true;
         return false;
+    }
+
+    public TreeNode<E> deepClone() {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(this);
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            return (TreeNode<E>) ois.readObject();
+        } catch (IOException e) {
+            return null;
+        } catch (ClassNotFoundException e) {
+            return null;
+        }
     }
 }
