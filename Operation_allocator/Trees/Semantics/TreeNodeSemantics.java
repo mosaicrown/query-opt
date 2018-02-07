@@ -2,10 +2,23 @@ package Trees.Semantics;
 
 import Actors.Operation;
 import Actors.Provider;
+import Statistics.Metrics.BasicMetric;
 import Statistics.Metrics.CostMetric;
+import Statistics.Metrics.UDFMetric;
 import Trees.TreeNode;
 
 public class TreeNodeSemantics {
+
+    public static <T extends Operation> void computeUDFProfiles(TreeNode<T> tn){
+        for (TreeNode<T> tns: tn.getSons()
+             ) {
+            computeUDFProfiles(tns);
+        }
+        BasicMetric bm = tn.getElement().getOp_metric();
+        if(bm instanceof UDFMetric)
+            ((UDFMetric) bm).computeMetrics();
+
+    }
 
     public static <T extends Operation> void synthetizeExecutionCost(TreeNode<T> tn) {
 
@@ -38,11 +51,6 @@ public class TreeNodeSemantics {
             }
         //hook the cost
         op.setCost(cm);
-        /**
-         * Debug info
-         */
-        System.out.print(tn.getElement().toString());
-        System.out.println("\t Ce: \t" + tn.getElement().getCost().Ce + "\t Ct: \t" + tn.getElement().getCost().Ct);
     }
 
 }

@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TreeNode<E extends Serializable> implements Serializable{
+public class TreeNode<E extends Operation> implements Serializable {
 
     private TreeNode<E> parent;
 
@@ -40,8 +40,8 @@ public class TreeNode<E extends Serializable> implements Serializable{
 
     public void setSons(List<TreeNode<E>> sons) {
         this.sons = sons;
-        for (TreeNode<E> tn:sons
-             ) {
+        for (TreeNode<E> tn : sons
+                ) {
             tn.setParent(this);
         }
     }
@@ -60,8 +60,8 @@ public class TreeNode<E extends Serializable> implements Serializable{
         return false;
     }
 
-    public boolean isRoot(){
-        if(parent == null)
+    public boolean isRoot() {
+        if (parent == null)
             return true;
         return false;
     }
@@ -79,5 +79,25 @@ public class TreeNode<E extends Serializable> implements Serializable{
         } catch (ClassNotFoundException e) {
             return null;
         }
+    }
+
+    public String printTree() {
+        return printTreeWithLevel(1);
+    }
+
+    public String printTreeWithLevel(int j) {
+        String s = this.getElement().toString()
+                + "\t Ct:" + this.getElement().getCost().Ct
+                + "\t Ce:" + this.getElement().getCost().Ce
+                + "\t Cm:" + this.getElement().getCost().Cm
+                + "\t Cc:" + this.getElement().getCost().Cc
+                + "\n";;
+        for (TreeNode<E> tns : this.getSons()
+                ) {
+            for (int i = 0; i < j; i++)
+                s += "\t";
+            s += "|__" + tns.printTreeWithLevel(j+1);
+        }
+        return s;
     }
 }
