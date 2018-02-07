@@ -5,7 +5,7 @@ import Actors.Provider;
 import Statistics.Metrics.CostMetric;
 import Trees.Semantics.Features;
 
-public class QueryCostEngine {
+public class TreeNodeCostEngine {
 
 
     /**
