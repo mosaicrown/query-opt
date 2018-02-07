@@ -1,6 +1,6 @@
 package Statistics.Metrics;
 
-import java.io.Serializable;
+import java.io.*;
 
 public class BasicMetric implements Serializable {
     /**
@@ -40,6 +40,21 @@ public class BasicMetric implements Serializable {
                         "\t OutputTupleSize:\t" + outputTupleSize +
                         "\t CPU_time:\t" + CPU_time +
                         "\t IO_time:\t" + IO_time;
+    }
+
+    public BasicMetric deepClone() {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(this);
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            return (BasicMetric) ois.readObject();
+        } catch (IOException e) {
+            return null;
+        } catch (ClassNotFoundException e) {
+            return null;
+        }
     }
 
 }

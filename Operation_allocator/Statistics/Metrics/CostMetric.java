@@ -1,6 +1,6 @@
 package Statistics.Metrics;
 
-import java.io.Serializable;
+import java.io.*;
 
 /**
  * Economic cost metrics
@@ -30,6 +30,21 @@ public class CostMetric implements Serializable {
                 "\t Cm:" + Cm +
                 "\t Ce:" + Ce +
                 "\t Cc:" + Cc;
+    }
+
+    public CostMetric deepClone() {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(this);
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            return (CostMetric) ois.readObject();
+        } catch (IOException e) {
+            return null;
+        } catch (ClassNotFoundException e) {
+            return null;
+        }
     }
 
 

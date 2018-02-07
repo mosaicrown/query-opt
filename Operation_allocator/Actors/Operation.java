@@ -3,7 +3,7 @@ package Actors;
 import Statistics.Metrics.BasicMetric;
 import Statistics.Metrics.CostMetric;
 
-import java.io.Serializable;
+import java.io.*;
 
 public class Operation implements Serializable{
 
@@ -51,5 +51,20 @@ public class Operation implements Serializable{
 
     public CostMetric getCost() {
         return cost;
+    }
+
+    public Operation deepClone() {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(this);
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            return (Operation) ois.readObject();
+        } catch (IOException e) {
+            return null;
+        } catch (ClassNotFoundException e) {
+            return null;
+        }
     }
 }

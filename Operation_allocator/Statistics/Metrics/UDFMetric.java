@@ -2,7 +2,7 @@ package Statistics.Metrics;
 
 import Statistics.UDFprofilers.Profiler;
 
-import java.io.Serializable;
+import java.io.*;
 
 public class UDFMetric<T extends Profiler> extends BasicMetric implements Serializable {
 
@@ -52,6 +52,29 @@ public class UDFMetric<T extends Profiler> extends BasicMetric implements Serial
                 "\t CT:\t" + CT +
                 "\t IOPS:\t" + IOPS +
                 "\t Not:\t" + Not;
+    }
+
+    public T getProfiler() {
+        return profiler;
+    }
+
+    public UDFMetric<T> deepClone() {
+        /**
+         * NB profiler is not cloned
+
+         */
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(this);
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            return (UDFMetric<T>) ois.readObject();
+        } catch (IOException e) {
+            return null;
+        } catch (ClassNotFoundException e) {
+            return null;
+        }
     }
 
 }

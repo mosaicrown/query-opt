@@ -1,6 +1,6 @@
 package Statistics.Metrics;
 
-import java.io.Serializable;
+import java.io.*;
 
 public class ProviderMetric implements Serializable {
 
@@ -33,5 +33,20 @@ public class ProviderMetric implements Serializable {
                         "\t Kc1:\t" + Kc1 +
                         "\t Kc2:\t" + Kc2;
 
+    }
+
+    public ProviderMetric deepClone() {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(this);
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            return (ProviderMetric) ois.readObject();
+        } catch (IOException e) {
+            return null;
+        } catch (ClassNotFoundException e) {
+            return null;
+        }
     }
 }
