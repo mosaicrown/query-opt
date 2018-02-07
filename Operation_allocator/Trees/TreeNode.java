@@ -1,9 +1,10 @@
 package Trees;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TreeNode<E> {
+public class TreeNode<E extends Serializable> implements Serializable{
 
     private TreeNode<E> parent;
 
@@ -37,6 +38,10 @@ public class TreeNode<E> {
 
     public void setSons(List<TreeNode<E>> sons) {
         this.sons = sons;
+        for (TreeNode<E> tn:sons
+             ) {
+            tn.setParent(this);
+        }
     }
 
     public E getElement() {

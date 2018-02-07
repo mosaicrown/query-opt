@@ -24,7 +24,7 @@ public class SynthetizeTest {
         /**
          * Operation Metrics
          */
-        BasicMetric m1 = new BasicMetric(0, 0, 120000.0, 4.0, 0.09, 0.002);
+        BasicMetric m1 = new BasicMetric(0, 0, 12000.0, 4.0, 0.09, 0.002);
         BasicMetric m2 = new BasicMetric(0, 0, 9870.0, 22.0, 0.07, 0.028);
         UDFMetric m3 = new UDFMetric<UDF_typ1>(18, 2.5e-8, 40e3, (m1.outputSize + m2.outputSize),
                 (m1.outputTupleSize + m2.outputTupleSize) / 2, 2800, 10);
