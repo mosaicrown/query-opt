@@ -72,7 +72,7 @@ public class SimplePolicyGenerator extends PolicyGenerator {
      * @param f
      */
     private <T extends Operation>void generateVisibilityLevels(TreeNode <T>tn) {
-        Policy opp =tn.getElement().getPolicy();
+        Policy opp = new Policy();
         MetaChoke f = tn.getInfo();
         if (f.hasFeature(Features.PUBLIC)) {
             opp = applyPublicVF();
@@ -82,6 +82,10 @@ public class SimplePolicyGenerator extends PolicyGenerator {
             opp = applyConfidentialVF();
         } else if (f.hasFeature(Features.SECRET)) {
             opp = applySecretVF();
+        }
+        else{
+            //IN CASE NO FEATURE WAS PROVIDED TO LEAF SET IT TO PUBLIC
+            f.addFeature(Features.PUBLIC);
         }
         tn.getElement().setPolicy(opp);
     }

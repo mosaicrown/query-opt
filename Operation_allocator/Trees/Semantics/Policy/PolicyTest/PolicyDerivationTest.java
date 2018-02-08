@@ -188,6 +188,9 @@ public class PolicyDerivationTest {
          * Semantics
          */
         TreeNodeSemantics.computeUDFProfiles(query);
+        TreeNodeSemantics.deriveCostBarriers(query, cheapProvider);
+        //Not considered encryption
+        TreeNodeSemantics.synthetizeExecutionCost(query);
 
         System.out.println("\nPrinting query plan before policy generation");
         System.out.println(query.printTree());

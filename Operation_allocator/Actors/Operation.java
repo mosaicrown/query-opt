@@ -20,6 +20,7 @@ public class Operation implements Serializable {
 
 
     public Operation() {
+        policy = new Policy();
     }
 
     public Policy getPolicy() {
