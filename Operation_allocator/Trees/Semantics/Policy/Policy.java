@@ -1,6 +1,8 @@
 package Trees.Semantics.Policy;
 
-public class Policy {
+import java.io.Serializable;
+
+public class Policy implements Serializable{
 
     /**
      * Provider Visibility levels

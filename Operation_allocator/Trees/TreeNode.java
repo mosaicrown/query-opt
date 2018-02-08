@@ -18,11 +18,14 @@ public class TreeNode<E extends Operation> implements Serializable {
 
     private MetaChoke info;
 
+    private TreeNode<E> oracle;
+
     public TreeNode() {
         parent = null;
         sons = new LinkedList<>();
         element = null;
         info = new MetaChoke<Object>();
+        oracle = null;
     }
 
     public TreeNode(E elem) {
@@ -30,6 +33,15 @@ public class TreeNode<E extends Operation> implements Serializable {
         sons = new LinkedList<>();
         element = elem;
         info = new MetaChoke<Object>();
+        oracle = null;
+    }
+
+    public TreeNode<E> getOracle() {
+        return oracle;
+    }
+
+    public void setOracle(TreeNode<E> oracle) {
+        this.oracle = oracle;
     }
 
     public MetaChoke getInfo() {
@@ -120,5 +132,40 @@ public class TreeNode<E extends Operation> implements Serializable {
             s += "|__" + tns.printTreeWithLevel(j + 1);
         }
         return s;
+    }
+
+    public String printTreeReferences() {
+        return printTreeReferencesWithLevel(1);
+    }
+
+    public String printTreeReferencesWithLevel(int j) {
+        String s = "" + this.hashCode();
+        if (oracle != null)
+            s += "-->" + oracle.hashCode();
+        s += "\n";
+
+        for (TreeNode<E> tns : this.getSons()
+                ) {
+            for (int i = 0; i < j; i++)
+                s += "\t";
+            s += "|__" + tns.printTreeReferencesWithLevel(j + 1);
+        }
+        return s;
+    }
+
+    /**
+     * Bind equal TreeNodes
+     *
+     * @param qo
+     */
+    public static <Z extends Operation> void bindOracle(TreeNode<Z> q, TreeNode<Z> qo) {
+        q.setOracle(qo);
+        int i = 0;
+        List sons = q.getSons();
+        if (sons != null)
+            while (i < sons.size()) {
+                bindOracle(q.getSons().get(i), qo.getSons().get(i));
+                i++;
+            }
     }
 }

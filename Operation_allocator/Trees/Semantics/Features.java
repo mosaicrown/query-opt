@@ -1,6 +1,8 @@
 package Trees.Semantics;
 
-public enum Features {
+import java.io.Serializable;
+
+public enum Features implements Serializable{
 
     /**
      * Cost features
