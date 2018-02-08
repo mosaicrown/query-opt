@@ -40,16 +40,7 @@ public class MetaChoke<E> extends MetaDecorator implements Serializable {
     }
 
     public void removeFeature(Features f) {
-        int i = 0;
-        int size = features.size();
-        while (size - i >= 0) {
-            if (features.get(i) == f) {
-                features.remove(i);
-                size--;
-                continue;
-            }
-            i++;
-        }
+        features.remove(f);
     }
 
     public List<Features> holds() {

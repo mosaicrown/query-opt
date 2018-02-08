@@ -2,23 +2,36 @@ package Actors;
 
 import Statistics.Metrics.BasicMetric;
 import Statistics.Metrics.CostMetric;
+import Trees.Semantics.Policy.Policy;
 
 import java.io.*;
+import java.util.LinkedList;
+import java.util.List;
 
-public class Operation implements Serializable{
-
-    private BasicMetric op_metric;
-    private Provider executor;
-    private CostMetric cost;
+public class Operation implements Serializable {
 
     private String name;
 
-    public Operation (){
+    private CostMetric cost;
+    private BasicMetric op_metric;
 
+    private Provider executor;
+    private Policy policy;
+
+
+    public Operation() {
     }
 
-    public Operation(String n){
-        name=n;
+    public Policy getPolicy() {
+        return policy;
+    }
+
+    public void setPolicy(Policy policy) {
+        this.policy = policy;
+    }
+
+    public Operation(String n) {
+        name = n;
     }
 
     public String toString() {
@@ -28,6 +41,7 @@ public class Operation implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
+
 
     public void setOp_metric(BasicMetric op_metric) {
         this.op_metric = op_metric;

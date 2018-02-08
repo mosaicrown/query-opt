@@ -14,6 +14,13 @@ public enum Features {
     ENCRYPTEDSYM,       //data is ciphered symmetric
     NOTENCRYPTED,       //data is readable
     /**
+     * Data confidentiality feature
+     */
+    PUBLIC,             //data visible to everyone
+    RESERVED,           //data visible to trusted provider
+    CONFIDENTIAL,       //data visible if encrypted to trusted provider
+    SECRET,             //data visible only to data owner
+    /**
      * No specific
      */
     NOACTION

@@ -3,7 +3,6 @@ package Trees;
 import Actors.Operation;
 import Trees.Semantics.Features;
 import Trees.Semantics.MetaChoke;
-import Trees.Semantics.MetaDecorator;
 
 import java.io.*;
 import java.util.LinkedList;
@@ -31,8 +30,6 @@ public class TreeNode<E extends Operation> implements Serializable {
         sons = new LinkedList<>();
         element = elem;
         info = new MetaChoke<Object>();
-        ;
-
     }
 
     public MetaChoke getInfo() {
@@ -72,7 +69,7 @@ public class TreeNode<E extends Operation> implements Serializable {
     }
 
     public boolean isLeaf() {
-        if (sons == null)
+        if (sons.isEmpty())
             return true;
         return false;
     }
@@ -111,8 +108,9 @@ public class TreeNode<E extends Operation> implements Serializable {
         s += "\tFeatures:";
         for (Object f : this.getInfo().getFeatures()
                 ) {
-            s += "\t" + f.toString();
+            s += " " + f.toString();
         }
+        s += "\tPolicy: " + this.getElement().getPolicy().printPolicy();
         s += "\n";
 
         for (TreeNode<E> tns : this.getSons()
