@@ -1,7 +1,8 @@
-package Trees.Semantics.Policy.PolicyTest;
+package Allocator.AllocatorTest;
 
 import Actors.Operation;
 import Actors.Provider;
+import Allocator.OperationAllocator;
 import Statistics.Metrics.BasicMetric;
 import Statistics.Metrics.CostMetric;
 import Statistics.Metrics.ProviderMetric;
@@ -13,20 +14,21 @@ import Trees.Semantics.Policy.Policy;
 import Trees.Semantics.Policy.SimplePolicyGenerator;
 import Trees.Semantics.TreeNodeSemantics;
 import Trees.TreeNode;
+import Trees.TreeNodeCostEngine;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class PolicyDerivationTest {
+public class AllocationTest {
 
     public static void main(String[] args) {
         /**
          * Operation Metrics
          */
-        BasicMetric m1 = new BasicMetric(0, 0, 12000.0, 4.0, 0.09, 0.002);
-        BasicMetric m2 = new BasicMetric(0, 0, 9870.0, 22.0, 0.07, 0.028);
-        BasicMetric m3 = new BasicMetric(0, 0, 30000.0, 2.0, 0.09, 0.1);
-        BasicMetric m4 = new BasicMetric(0, 0, 1000.0, 40.0, 0.004, 0.007);
+        BasicMetric m1 = new BasicMetric(230000, 4, 12000.0, 4.0, 0.09, 0.002);
+        BasicMetric m2 = new BasicMetric(4500, 22, 9870.0, 22.0, 0.07, 0.028);
+        BasicMetric m3 = new BasicMetric(60000, 2, 30000.0, 2.0, 0.09, 0.1);
+        BasicMetric m4 = new BasicMetric(350, 40, 1000.0, 40.0, 0.004, 0.007);
 
         UDFMetric udfm1 = new UDFMetric<UDF_typ1>(18, 2.5e-8, 40e3, (m1.outputSize + m2.outputSize),
                 (m1.outputTupleSize + m2.outputTupleSize) / 2, 2800, 10);
@@ -55,17 +57,17 @@ public class PolicyDerivationTest {
         /**
          * Provider metrics
          */
-        ProviderMetric pm1 = new ProviderMetric(0.04e-6, 0.37, 0.98, 0.37 * (10e-3 / 5), 0.37 * (10e-3 / 4));
+        ProviderMetric pm1 = new ProviderMetric(0, 0.37, 0.98, 0.37 * (10e-3 / 5), 0.37 * (10e-3 / 4));
         /**
          * Provider
          */
-        Provider provider1 = new Provider("EC2", pm1);
+        Provider provider1 = new Provider("Proprietary", pm1);
         System.out.println("Provider" + provider1.selfDescription());
         System.out.println(provider1.getMetrics().toString());
         /**
          * Operations
          */
-        Operation o1 = new Operation("scan");
+        Operation o1 = new Operation("scan1");
         Operation o2 = new Operation("scan");
         Operation o3 = new Operation("mergescan");
         Operation o4 = new Operation("merge");
@@ -146,7 +148,7 @@ public class PolicyDerivationTest {
         List<TreeNode<Operation>> opsons1 = new LinkedList<>();
         TreeNode tn1 = new TreeNode<Operation>(o1);
         opsons1.add(tn1);
-        TreeNode tn2=new TreeNode<Operation>(o2);
+        TreeNode tn2 = new TreeNode<Operation>(o2);
         opsons1.add(tn2);
 
         TreeNode<Operation> query1 = new TreeNode<>(udfo1);
@@ -175,39 +177,69 @@ public class PolicyDerivationTest {
         TreeNode<Operation> query = new TreeNode<>(o4);
         query.setSons(opsons4);
 
-        ProviderMetric economicMetric = pm1.deepClone();
-        economicMetric.Kcpu/=4;
-        economicMetric.Kio/=3;
-        economicMetric.Kc1/=2;
-        economicMetric.Kc2/=2;
-        economicMetric.Km/=2;
-
-        Provider cheapProvider = new Provider("cheap", economicMetric);
-
+        /**
+         * Provider for semantics
+         */
+        ProviderMetric pms = new ProviderMetric(0.04e-6, 0.2, 0.61, 0.2 * (10e-3 / 5), 0.2 * (10e-3 / 4));
+        Provider providers = new Provider("Provider for semantics", pms);
         /**
          * Semantics
          */
+        TreeNodeCostEngine.setHome(provider1);
         TreeNodeSemantics.computeUDFProfiles(query);
-        TreeNodeSemantics.deriveCostBarriers(query, cheapProvider);
+        TreeNodeSemantics.deriveCostBarriers(query, providers);
+        System.out.println("\nPrinting query after semantic barriers computed:");
+        System.out.println(query.printTree());
         //Not considered encryption
         TreeNodeSemantics.synthetizeExecutionCost(query);
 
         System.out.println("\nPrinting query plan before policy generation");
         System.out.println(query.printTree());
         /**
-         * POLICY GENERATION
+         * Policy generation
          */
         SimplePolicyGenerator policyGenerator = new SimplePolicyGenerator();
         policyGenerator.generateCandidates(query);
 
         System.out.println("\nPrinting query plan after policy generation");
         System.out.println(query.printTree());
-
-
+        /**
+         * Oracle creation and referencing
+         */
+        TreeNode oracle = query.deepClone();
+        TreeNode.bindOracle(query, oracle);
+        /**
+         * New provider creation
+         */
+        double k = 0.1;
+        ProviderMetric pm2 = new ProviderMetric(0.04e-6, 0.31, 0.61, 0.02 * k * (10e-4), 0.016 * k * (10e-4));
+        Provider provider2 = new Provider("EC2", pm2);
+        ProviderMetric pm3 = new ProviderMetric(0.037e-6, 0.27, 0.42, 0.001 * k * (10e-4), 0.0023 * k * (10e-4));
+        Provider provider3 = new Provider("Cheap", pm3);
+        /**
+         * Operation allocator allocation and configuration
+         */
+        OperationAllocator engine = new OperationAllocator();
+        //set providers
+        engine.setP1(provider1);
+        engine.setP2(provider2);
+        engine.setP3(provider3);
+        //set query and oracle
+        engine.setOracle(oracle);
+        engine.setQuery(query);
+        /**
+         * ALLOCATION TEST
+         */
+        System.out.println("\nPrinting allocation algorithm decisions");
+        engine.computeAllocation();
+        /**
+         * Print results
+         */
+        System.out.println("\nPrinting query plan on single provider");
+        System.out.println(oracle.printTree());
+        System.out.println("\nPrinting query plan after allocation");
+        System.out.println(query.printTree());
 
     }
 
-
-
 }
-

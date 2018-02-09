@@ -13,6 +13,16 @@ public class TreeNodeCostEngine {
     /**
      * NB the cost engine does not apply/correct operations features status
      */
+    public static Provider home;
+
+    public static Provider getHome() {
+        return home;
+    }
+
+    public static void setHome(Provider home) {
+        TreeNodeCostEngine.home = home;
+    }
+
     public static <T extends Operation> CostMetric computeCost(TreeNode<T> tn, Provider candidate, Features f) {
         CostMetric m = new CostMetric();
         m.setAllZero();
@@ -64,6 +74,27 @@ public class TreeNodeCostEngine {
 
         }//end foreach son
 
+        /**
+         * Compute leaf motion cost
+         */
+        if(tn.isLeaf()){
+            if(!candidate.selfDescription().equals(home.selfDescription())){
+                m.Cm += tn.getElement().getOp_metric().inputSize * (tn.getElement().getExecutor().getMetrics().Km + candidate.getMetrics().Km);
+            }
+        }
+        /**
+         * Compute leaf encryption cost
+         */
+        if(tn.isLeaf()){
+            //case symmetric
+            if (f == Features.ENCRYPTEDSYM) {
+                m.Cc += tn.getElement().getOp_metric().outputSize * home.getMetrics().Kc1;
+            }
+            //case homomorphic
+            else if (f == Features.ENCRYPTEDHOM) {
+                m.Cc += tn.getElement().getOp_metric().outputSize * home.getMetrics().Kc2;
+            }
+        }
         /**
          * Compute execution cost
          */

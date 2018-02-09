@@ -57,7 +57,7 @@ public class OperationAllocator<T extends Operation> {
     }
 
     private void compute(TreeNode<T> tn) {
-        for (TreeNode<T> tns : query.getSons()
+        for (TreeNode<T> tns : tn.getSons()
                 ) {
             //move down to the leafs
             compute(tns);
@@ -98,12 +98,12 @@ public class OperationAllocator<T extends Operation> {
                 cmbestp3 = TreeNodeCostEngine.computeCost(tn, p3pairs.get(0).provider, p3pairs.get(0).feature);
                 bestp3 = p3pairs.get(0);
                 while (p3pairs.size() - jj > 0) {
-                    temp3 = TreeNodeCostEngine.computeCost(tn, p3pairs.get(ii).provider, p3pairs.get(ii).feature);
+                    temp3 = TreeNodeCostEngine.computeCost(tn, p3pairs.get(jj).provider, p3pairs.get(jj).feature);
                     if (temp3.Ct < cmbestp2.Ct) {
                         cmbestp3 = temp3;
                         bestp3 = p3pairs.get(jj);
                     }
-                    ii++;
+                    jj++;
                 }
                 //select the best alternative between provider 2 nd 3 (case exists alternative on both providers)
                 if (cmbestp2.Ct < cmbestp3.Ct) {
@@ -143,7 +143,12 @@ public class OperationAllocator<T extends Operation> {
                 tn.getInfo().addFeature(bestpExt.feature);
                 //set new executor
                 tn.getElement().setExecutor(bestpExt.provider);
-            } else if ((cmbestExt.getIncrCost() < cmp1.getIncrCost()) && tn.getInfo().hasFeature(Features.EXPDATADOMCOST)) {
+                /**
+                 * Debug info
+                 */
+                System.out.print("CASE 1 Allocating of:"+tn.getElement().toString()+"\tto:"+bestpExt.provider.selfDescription());
+                System.out.println("\t"+tn.getElement().getCost().toString());
+            } else if ((cmbestExt.getIncrCost() < cmp1.getIncrCost()) && tn.getInfo().hasFeature(Features.EXPCPUDOMCOST)) {
                 //assign operation to external provider
                 //set new cost metric
                 tn.getElement().setCost(cmbestExt);
@@ -155,6 +160,9 @@ public class OperationAllocator<T extends Operation> {
                 tn.getInfo().addFeature(bestpExt.feature);
                 //set new executor
                 tn.getElement().setExecutor(bestpExt.provider);
+                System.out.print("CASE 2 Allocating of:"+tn.getElement().toString()+"\tto:"+bestpExt.provider.selfDescription());
+                System.out.println("\t"+tn.getElement().getCost().toString());
+
             } else {
                 //assign operation to proprietary provider and launch validation/correction algorithm
                 //set new cost metric
@@ -167,16 +175,21 @@ public class OperationAllocator<T extends Operation> {
                 //set new executor
                 tn.getElement().setExecutor(p1);
                 /**
-                 * *************************************
+                 * Validation step
                  */
+                /**
+                 * Debug info
+                 */
+                System.out.print("CASE 3 Allocating of:"+tn.getElement().toString()+"\tto:"+p1.selfDescription());
+                System.out.println("\t"+tn.getElement().getCost().toString());
                 //launch validation/correction algorithm
                 validateDecision(tn);
                 //need to correct synthesized cost (may have been corrections)
                 correctCost(tn);
             }
-        } else { //implies no execution alternative to provider 1
+        } else { //implies no execution alternative to provider 1 found
             /**
-             * Allocate the operation to proprietary provider removing encryption and launch cost control mechanism
+             * Allocate the operation to proprietary provider removing encryption and launching cost control mechanism
              */
             //set new cost metric
             tn.getElement().setCost(cmp1);
@@ -188,11 +201,16 @@ public class OperationAllocator<T extends Operation> {
             //set new executor
             tn.getElement().setExecutor(p1);
             /**
+             * Debug info
+             */
+            System.out.print("CASE 4 Allocating of:"+tn.getElement().toString()+"\tto:"+p1.selfDescription());
+            System.out.println("\t"+tn.getElement().getCost().toString());
+            /**
              * Check the total incremental cost and if it is greater than oracle cost launch validation/correction algorithm
              */
             if (tn.getElement().getCost().Ct > tn.getOracle().getElement().getCost().Ct) {
                 /**
-                 * **************************************
+                 * Validation step
                  */
                 //launch validation/correction algorithm, else continue
                 validateDecision(tn);
@@ -204,15 +222,25 @@ public class OperationAllocator<T extends Operation> {
     }
 
     private void validateDecision(TreeNode<T> tn) {
+        /**
+         * TODO
+         * When the validation/correction algorithm is thrown on a TreeNode tn only his offspring is validated
+         * tn is forced to provider 1 without check to alternatives
+         */
         for (TreeNode<T> tns : tn.getSons()
                 ) {
             if (!TreeNodeCostEngine.validateCost(tns)) {
                 //launch correction function
                 correctDecision(tns);
-                //at this point there has certainly been a correction, need to update tree synthesized cost
-                correctCost(tns);
             }
         }
+        //at this point there may have been a correction, need to update tree synthesized cost
+        System.out.println("\tBefore correction: "+tn.getElement().getCost().toString());
+        correctCost(tn);
+        /**
+         * Debug info
+         */
+        System.out.println("\tAfter correction: "+tn.getElement().getCost().toString());
     }
 
     private void correctDecision(TreeNode<T> tn) {
@@ -229,6 +257,11 @@ public class OperationAllocator<T extends Operation> {
         tn.getElement().setExecutor(p1);
         //validate assignment
         validateDecision(tn);
+        /**
+         * Debug info
+         */
+        System.out.print("Correction of:"+tn.getElement().toString()+"\tto:"+p1.selfDescription());
+        System.out.println("\t"+tn.getElement().getCost().toString());
 
     }
 
@@ -242,6 +275,7 @@ public class OperationAllocator<T extends Operation> {
         else
             f = Features.NOTENCRYPTED;
         CostMetric cm = TreeNodeCostEngine.computeCost(tn, tn.getElement().getExecutor(), f);
+        tn.getElement().setCost(cm);
     }
 
     public Provider getP1() {
@@ -249,6 +283,7 @@ public class OperationAllocator<T extends Operation> {
     }
 
     public void setP1(Provider p1) {
+        TreeNodeCostEngine.setHome(p1);
         this.p1 = p1;
     }
 

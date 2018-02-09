@@ -117,13 +117,15 @@ public class TreeNode<E extends Operation> implements Serializable {
                 + "\t Ce:" + this.getElement().getCost().Ce
                 + "\t Cm:" + this.getElement().getCost().Cm
                 + "\t Cc:" + this.getElement().getCost().Cc;
-        s += "\tFeatures:";
+        if(this.getElement().getExecutor()!=null)
+            s+="\t-/-Executor:"+this.getElement().getExecutor().selfDescription();
+        if (this.getElement().getPolicy() != null)
+            s += "-/-Policy:" + this.getElement().getPolicy().printPolicy();
+        s += "-/-Features:";
         for (Object f : this.getInfo().getFeatures()
                 ) {
             s += " " + f.toString();
         }
-        if (this.getElement().getPolicy() != null)
-            s += "\tPolicy: " + this.getElement().getPolicy().printPolicy();
         s += "\n";
 
         for (TreeNode<E> tns : this.getSons()
