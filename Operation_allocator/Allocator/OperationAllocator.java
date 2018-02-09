@@ -225,7 +225,7 @@ public class OperationAllocator<T extends Operation> {
         /**
          * TODO
          * When the validation/correction algorithm is thrown on a TreeNode tn only his offspring is validated
-         * tn is forced to provider 1 without check to alternatives
+         * tn is forced to provider 1 without check of alternatives
          */
         for (TreeNode<T> tns : tn.getSons()
                 ) {

@@ -124,7 +124,7 @@ public class TreeNode<E extends Operation> implements Serializable {
         s += "-/-Features:";
         for (Object f : this.getInfo().getFeatures()
                 ) {
-            s += " " + f.toString();
+            s += "*" + f.toString();
         }
         s += "\n";
 
