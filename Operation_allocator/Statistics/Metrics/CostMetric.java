@@ -32,6 +32,10 @@ public class CostMetric implements Serializable {
                 "\t Cc:" + Cc;
     }
 
+    public double getIncrCost(){
+        return this.Ce + this.Cc + this.Cm;
+    }
+
     public CostMetric deepClone() {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
