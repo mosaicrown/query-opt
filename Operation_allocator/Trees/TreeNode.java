@@ -122,7 +122,8 @@ public class TreeNode<E extends Operation> implements Serializable {
                 ) {
             s += " " + f.toString();
         }
-        s += "\tPolicy: " + this.getElement().getPolicy().printPolicy();
+        if (this.getElement().getPolicy() != null)
+            s += "\tPolicy: " + this.getElement().getPolicy().printPolicy();
         s += "\n";
 
         for (TreeNode<E> tns : this.getSons()

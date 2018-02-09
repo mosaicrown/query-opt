@@ -90,20 +90,32 @@ public class SynthetizeTest {
          */
         TreeNodeSemantics.synthetizeExecutionCost(query);
         /**
-         * cloning query + semantics
-         */
-        TreeNode<Operation> queryclone=query.deepClone();
-        for (TreeNode<Operation> opcs:queryclone.getSons()
-             ) {
-            System.out.println(opcs.getParent().toString());
-        }
-        /**
          * check instances
          */
+        System.out.println("\nPrinting original operations");
         for (TreeNode<Operation> ops:query.getSons()
                 ) {
             System.out.println(ops.getParent().toString());
         }
+        /**
+         * Printing the query
+         */
+        System.out.println("\nPrinting original query");
+        System.out.println(query.printTree());
+        /**
+         * cloning query + semantics
+         */
+        TreeNode<Operation> queryclone=query.deepClone();
+        System.out.println("\nPrinting clone operations");
+        for (TreeNode<Operation> opcs:queryclone.getSons()
+                ) {
+            System.out.println(opcs.getParent().toString());
+        }
+        /**
+         * Printing the clone
+         */
+        System.out.println("\nPrinting the query clone");
+        System.out.println(queryclone.printTree());
 
 
     }
