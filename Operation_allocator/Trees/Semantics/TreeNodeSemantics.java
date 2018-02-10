@@ -12,7 +12,7 @@ public class TreeNodeSemantics {
 
     public static <T extends Operation> void deriveCostBarriers(TreeNode<T> tn, Provider p) {
         CostMetric m = SimpleCostEngine.computeExecutionVsMotionCost(tn.getElement(), p);
-        if (m.Ce > 1000 * m.Cm)
+        if (m.Ce > 100 * m.Cm && !tn.isRoot())
             deriveCostBarriersComplement(tn, Features.EXPCPUDOMCOST);
         else {
             tn.getInfo().addFeature(Features.EXPDATADOMCOST);
