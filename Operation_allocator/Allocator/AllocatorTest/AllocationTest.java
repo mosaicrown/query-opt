@@ -57,7 +57,7 @@ public class AllocationTest {
         /**
          * Provider metrics
          */
-        ProviderMetric pm1 = new ProviderMetric(0, 0.37, 0.98, 0.37 * (10e-3 / 5), 0.37 * (10e-3 / 4));
+        ProviderMetric pm1 = new ProviderMetric(0, 0.37, 0.98, 1.5*0.06e-6, 1.9*0.06e-6);
         /**
          * Provider
          */
@@ -160,9 +160,9 @@ public class AllocationTest {
         /**
          * ADD THE VISIBILITY FEATURE TO THE LEAFS
          */
-        tn1.getInfo().addFeature(Features.PUBLIC);
+        tn1.getInfo().addFeature(Features.RESERVED);
         tn2.getInfo().addFeature(Features.RESERVED);
-        tn3.getInfo().addFeature(Features.RESERVED);
+        tn3.getInfo().addFeature(Features.CONFIDENTIAL);
         TreeNode<Operation> query2 = new TreeNode<>(udfo2);
         query2.setSons(opsons2);
 
@@ -180,7 +180,7 @@ public class AllocationTest {
         /**
          * Provider for semantics
          */
-        ProviderMetric pms = new ProviderMetric(0.04e-6, 0.2, 0.61, 0.2 * (10e-3 / 5), 0.2 * (10e-3 / 4));
+        ProviderMetric pms = new ProviderMetric(0.04e-6, 0.2, 0.61, 1.5*0.04e-6, 1.9*0.04e-6);
         Provider providers = new Provider("Provider for semantics", pms);
         /**
          * Semantics
@@ -211,10 +211,9 @@ public class AllocationTest {
         /**
          * New provider creation
          */
-        double k = 0.1;
-        ProviderMetric pm2 = new ProviderMetric(0.04e-6, 0.31, 0.61, 0.02 * k * (10e-4), 0.016 * k * (10e-4));
+        ProviderMetric pm2 = new ProviderMetric(0.04e-6, 0.29, 0.61, 1.5*0.04e-6, 1.9*0.04e-6);
         Provider provider2 = new Provider("EC2", pm2);
-        ProviderMetric pm3 = new ProviderMetric(0.037e-6, 0.27, 0.42, 0.001 * k * (10e-4), 0.0023 * k * (10e-4));
+        ProviderMetric pm3 = new ProviderMetric(0.037e-6, 0.24, 0.42, 1.5*0.037e-6, 1.9*0.037e-6);
         Provider provider3 = new Provider("Cheap", pm3);
         /**
          * Operation allocator allocation and configuration

@@ -68,8 +68,7 @@ public class SimplePolicyGenerator extends PolicyGenerator {
     /**
      * Generation of basic visibility levels
      *
-     * @param op
-     * @param f
+     * @param tn
      */
     private <T extends Operation>void generateVisibilityLevels(TreeNode <T>tn) {
         Policy opp = new Policy();

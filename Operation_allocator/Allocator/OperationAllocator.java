@@ -63,8 +63,8 @@ public class OperationAllocator<T extends Operation> {
             compute(tns);
         }
         //comeback
-        List<PolicyPair> p3pairs = validator.allowedTwistP3(tn.getElement().getPolicy());
-        List<PolicyPair> p2pairs = validator.allowedTwistP2(tn.getElement().getPolicy());
+        List<PolicyPair> p3pairs = validator.allowedTwistP3(tn.getElement().getPolicy(), tn.getInfo());
+        List<PolicyPair> p2pairs = validator.allowedTwistP2(tn.getElement().getPolicy(), tn.getInfo());
         int dimp3p = p3pairs.size();
         int dimp2p = p2pairs.size();
         //best alternatives
@@ -160,6 +160,9 @@ public class OperationAllocator<T extends Operation> {
                 tn.getInfo().addFeature(bestpExt.feature);
                 //set new executor
                 tn.getElement().setExecutor(bestpExt.provider);
+                /**
+                 * Debug info
+                 */
                 System.out.print("CASE 2 Allocating of:"+tn.getElement().toString()+"\tto:"+bestpExt.provider.selfDescription());
                 System.out.println("\t"+tn.getElement().getCost().toString());
 
@@ -235,6 +238,9 @@ public class OperationAllocator<T extends Operation> {
             }
         }
         //at this point there may have been a correction, need to update tree synthesized cost
+        /**
+         * Debug info
+         */
         System.out.println("\tBefore correction: "+tn.getElement().getCost().toString());
         correctCost(tn);
         /**

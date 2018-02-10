@@ -120,8 +120,8 @@ public class TreeNode<E extends Operation> implements Serializable {
         if(this.getElement().getExecutor()!=null)
             s+="\t-/-Executor:"+this.getElement().getExecutor().selfDescription();
         if (this.getElement().getPolicy() != null)
-            s += "-/-Policy:" + this.getElement().getPolicy().printPolicy();
-        s += "-/-Features:";
+            s += "  -/-Policy:" + this.getElement().getPolicy().printPolicy();
+        s += "  -/-Features:";
         for (Object f : this.getInfo().getFeatures()
                 ) {
             s += "*" + f.toString();
