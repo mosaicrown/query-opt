@@ -162,7 +162,7 @@ public class AllocationTest {
          */
         tn1.getInfo().addFeature(Features.PUBLIC);
         tn2.getInfo().addFeature(Features.RESERVED);
-        tn3.getInfo().addFeature(Features.CONFIDENTIAL);
+        tn3.getInfo().addFeature(Features.RESERVED);
         TreeNode<Operation> query2 = new TreeNode<>(udfo2);
         query2.setSons(opsons2);
 

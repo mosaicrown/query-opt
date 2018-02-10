@@ -77,15 +77,15 @@ public class TreeNodeCostEngine {
         /**
          * Compute leaf motion cost
          */
-        if(tn.isLeaf()){
-            if(!candidate.selfDescription().equals(home.selfDescription())){
+        if (tn.isLeaf()) {
+            if (!candidate.selfDescription().equals(home.selfDescription())) {
                 m.Cm += tn.getElement().getOp_metric().inputSize * (tn.getElement().getExecutor().getMetrics().Km + candidate.getMetrics().Km);
             }
         }
         /**
          * Compute leaf encryption cost
          */
-        if(tn.isLeaf()){
+        if (tn.isLeaf()) {
             //case symmetric
             if (f == Features.ENCRYPTEDSYM) {
                 m.Cc += tn.getElement().getOp_metric().outputSize * home.getMetrics().Kc1;
@@ -94,6 +94,21 @@ public class TreeNodeCostEngine {
             else if (f == Features.ENCRYPTEDHOM) {
                 m.Cc += tn.getElement().getOp_metric().outputSize * home.getMetrics().Kc2;
             }
+        }
+        /**
+         * Compute root motion cost
+         */
+        if (tn.isRoot() && !candidate.selfDescription().equals(home.selfDescription())) {
+            m.Cm += tn.getElement().getOp_metric().outputSize * (candidate.getMetrics().Km + home.getMetrics().Km);
+        }
+        /**
+         * Compute root decryption cost
+         */
+        if(tn.isRoot()){
+            if(f==Features.ENCRYPTEDSYM)
+                m.Cc += tn.getElement().getOp_metric().outputSize * tn.getElement().getExecutor().getMetrics().Kc1;
+            else if(f==Features.ENCRYPTEDHOM)
+                m.Cc += tn.getElement().getOp_metric().outputSize * tn.getElement().getExecutor().getMetrics().Kc2;
         }
         /**
          * Compute execution cost
