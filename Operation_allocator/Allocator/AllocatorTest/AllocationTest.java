@@ -57,7 +57,7 @@ public class AllocationTest {
         /**
          * Provider metrics
          */
-        ProviderMetric pm1 = new ProviderMetric(0, 0.37, 0.98, 1.5*0.06e-6, 1.9*0.06e-6);
+        ProviderMetric pm1 = new ProviderMetric(0, 0.41, 0.98, 1.5*0.06e-6, 1.9*0.06e-6);
         /**
          * Provider
          */
@@ -211,9 +211,9 @@ public class AllocationTest {
         /**
          * New provider creation
          */
-        ProviderMetric pm2 = new ProviderMetric(0.04e-6, 0.29, 0.61, 1.5*0.04e-6, 1.9*0.04e-6);
+        ProviderMetric pm2 = new ProviderMetric(0.04e-6, 0.37, 0.61, 1.5*0.04e-6, 1.9*0.04e-6);
         Provider provider2 = new Provider("EC2", pm2);
-        ProviderMetric pm3 = new ProviderMetric(0.037e-6, 0.24, 0.42, 1.5*0.037e-6, 1.9*0.037e-6);
+        ProviderMetric pm3 = new ProviderMetric(0.037e-6, 0.29, 0.42, 1.5*0.037e-6, 1.9*0.037e-6);
         Provider provider3 = new Provider("Cheap", pm3);
         /**
          * Operation allocator allocation and configuration
