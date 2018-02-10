@@ -94,8 +94,8 @@ public class UDFTest2 {
         Operation o8 = new Operation("ComputeScalar8");
         Operation o9 = new Operation("Select");
 
-        Operation udfo1 = new Operation("udf pseudolinear1");
-        Operation udfo2 = new Operation("udf pseudolinear2");
+        Operation udfo1 = new Operation("udf quadratic 1");
+        Operation udfo2 = new Operation("udf quadratic 2");
 
         //set operation metrics
         o1.setOp_metric(m1);
