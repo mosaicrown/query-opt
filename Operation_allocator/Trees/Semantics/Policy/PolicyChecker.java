@@ -1,8 +1,10 @@
 package Trees.Semantics.Policy;
 
+import Actors.Operation;
 import Actors.Provider;
 import Trees.Semantics.Features;
 import Trees.Semantics.MetaChoke;
+import Trees.TreeNode;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -41,7 +43,7 @@ public class PolicyChecker {
         this.p3 = p3;
     }
 
-    public List<PolicyPair> allowedTwistP3(Policy p, MetaChoke meta) {
+    public <T extends Operation> List<PolicyPair> allowedTwistP3(Policy p, TreeNode<T> tn) {
         List<PolicyPair> pp = new LinkedList<>();
         PolicyPair policyPair = null;
 
@@ -53,13 +55,13 @@ public class PolicyChecker {
                 pp.add(policyPair);
             }
             if (p.getP3() == VisibilityLevel.ENCRYPTED) {
-                if (!meta.hasFeature(Features.ENCRYPTEDSYM)) { //or public?
+                if (encryptionCompatible(tn, Features.ENCRYPTEDHOM)) {
                     policyPair = new PolicyPair();
                     policyPair.provider = p3;
                     policyPair.feature = Features.ENCRYPTEDHOM;
                     pp.add(policyPair);
                 }
-                if (meta.hasFeature(Features.ENCRYPTEDHOM)) {
+                if (encryptionCompatible(tn, Features.ENCRYPTEDSYM)) {
                     policyPair = new PolicyPair();
                     policyPair.provider = p3;
                     policyPair.feature = Features.ENCRYPTEDSYM;
@@ -71,7 +73,22 @@ public class PolicyChecker {
         return pp;
     }
 
-    public List<PolicyPair> allowedTwistP2(Policy p, MetaChoke meta) {
+    private <T extends Operation> boolean encryptionCompatible(TreeNode<T> tn, Features f) {
+        boolean flag = true;
+        Features lookedF = null;
+        if (f == Features.ENCRYPTEDSYM)
+            lookedF = Features.ENCRYPTEDHOM;
+        else
+            lookedF = Features.ENCRYPTEDSYM;
+        for (TreeNode<T> tns : tn.getSons()
+                ) {
+            if (tns.getInfo().hasFeature(lookedF))
+                return false;
+        }
+        return flag;
+    }
+
+    public<T extends Operation> List<PolicyPair> allowedTwistP2(Policy p, TreeNode<T> tn) {
         List<PolicyPair> pp = new LinkedList<>();
         PolicyPair policyPair = null;
 
@@ -83,13 +100,14 @@ public class PolicyChecker {
                 pp.add(policyPair);
             }
             if (p.getP2() == VisibilityLevel.ENCRYPTED) {
-                if (meta.hasFeature(Features.ENCRYPTEDSYM)) {
+                if (encryptionCompatible(tn, Features.ENCRYPTEDHOM)) {
                     policyPair = new PolicyPair();
                     policyPair.provider = p2;
                     policyPair.feature = Features.ENCRYPTEDHOM;
                     pp.add(policyPair);
                 }
-                if (meta.hasFeature(Features.ENCRYPTEDHOM)) {
+                if (encryptionCompatible(tn, Features.ENCRYPTEDSYM)) {
+
                     policyPair = new PolicyPair();
                     policyPair.provider = p2;
                     policyPair.feature = Features.ENCRYPTEDSYM;

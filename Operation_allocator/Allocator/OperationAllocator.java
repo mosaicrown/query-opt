@@ -63,8 +63,8 @@ public class OperationAllocator<T extends Operation> {
             compute(tns);
         }
         //comeback
-        List<PolicyPair> p3pairs = validator.allowedTwistP3(tn.getElement().getPolicy(), tn.getInfo());
-        List<PolicyPair> p2pairs = validator.allowedTwistP2(tn.getElement().getPolicy(), tn.getInfo());
+        List<PolicyPair> p3pairs = validator.allowedTwistP3(tn.getElement().getPolicy(), tn);
+        List<PolicyPair> p2pairs = validator.allowedTwistP2(tn.getElement().getPolicy(), tn);
         int dimp3p = p3pairs.size();
         int dimp2p = p2pairs.size();
         //best alternatives

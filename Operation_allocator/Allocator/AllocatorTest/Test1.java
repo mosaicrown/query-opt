@@ -176,8 +176,8 @@ public class Test1 {
         /**
          * ADD THE VISIBILITY FEATURE TO THE LEAFS
          */
-        q1.getInfo().addFeature(Features.RESERVED);
-        q3.getInfo().addFeature(Features.PUBLIC);
+        q1.getInfo().addFeature(Features.PUBLIC);
+        q3.getInfo().addFeature(Features.RESERVED);
         q5.getInfo().addFeature(Features.PUBLIC);
         /**
          * Provider for semantics
