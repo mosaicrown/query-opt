@@ -9,7 +9,6 @@ import Statistics.Metrics.ProviderMetric;
 import Statistics.Metrics.UDFMetric;
 import Statistics.UDFprofilers.CubicProfile;
 import Statistics.UDFprofilers.Profiler;
-import Statistics.UDFprofilers.PseudolinearProfile;
 import Trees.Semantics.Features;
 import Trees.Semantics.Policy.Policy;
 import Trees.Semantics.Policy.SimplePolicyGenerator;
@@ -23,7 +22,7 @@ import java.util.List;
 public class UDFTest3 {
     /**
      * This test allocates operations of complex hybrid query plan that uses 2 UDF special functions
-     * with pseudo-linear CPU & IO profile
+     * with cubic CPU & IO profile
      * NB Computational paradigm is still relational, UDF computation is done inside a VM
      * Average instruction complexity is used do describe code execution
      */

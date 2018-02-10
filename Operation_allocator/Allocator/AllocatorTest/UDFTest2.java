@@ -8,7 +8,6 @@ import Statistics.Metrics.CostMetric;
 import Statistics.Metrics.ProviderMetric;
 import Statistics.Metrics.UDFMetric;
 import Statistics.UDFprofilers.Profiler;
-import Statistics.UDFprofilers.PseudolinearProfile;
 import Statistics.UDFprofilers.QuadraticProfile;
 import Trees.Semantics.Features;
 import Trees.Semantics.Policy.Policy;
