@@ -50,9 +50,10 @@ public class Test1 {
         /**
          * Provider metrics
          */
-        ProviderMetric pm1 = new ProviderMetric(0, 0.41, 0.78, 1.5*0.06e-6, 1.9*0.06e-6);
-        ProviderMetric pm2 = new ProviderMetric(0.04e-6, 0.37, 0.61, 1.5*0.04e-6, 1.9*0.04e-6);
-        ProviderMetric pm3 = new ProviderMetric(0.037e-6, 0.29, 0.42, 1.5*0.037e-6, 1.9*0.037e-6);
+        double k = 1.4;
+        ProviderMetric pm1 = new ProviderMetric(0,          0.37, k*0.37, 1.5*0.06e-6, 45*0.06e-6);
+        ProviderMetric pm2 = new ProviderMetric(0.04e-6,    0.0528, k*0.0528, 1.5*0.04e-6, 45*0.04e-6);
+        ProviderMetric pm3 = new ProviderMetric(0.037e-6,   0.0336, k*0.0336, 1.5*0.037e-6, 45*0.037e-6);
         /**
          * Provider
          */
@@ -177,12 +178,12 @@ public class Test1 {
          * ADD THE VISIBILITY FEATURE TO THE LEAFS
          */
         q1.getInfo().addFeature(Features.PUBLIC);
-        q3.getInfo().addFeature(Features.RESERVED);
+        q3.getInfo().addFeature(Features.PUBLIC);
         q5.getInfo().addFeature(Features.PUBLIC);
         /**
          * Provider for semantics
          */
-        ProviderMetric pms = new ProviderMetric(0.04e-6, 0.2, 0.61, 1.5*0.04e-6, 1.9*0.04e-6);
+        ProviderMetric pms = new ProviderMetric(0.04e-6,    0.0528, k*0.0528, 1.5*0.04e-6, 45*0.04e-6);
         Provider providers = new Provider("Provider for semantics", pms);
         /**
          * Semantics

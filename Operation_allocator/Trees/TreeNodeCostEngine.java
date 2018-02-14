@@ -104,16 +104,16 @@ public class TreeNodeCostEngine {
         /**
          * Compute root decryption cost
          */
-        if(tn.isRoot()){
-            if(f==Features.ENCRYPTEDSYM)
+        if (tn.isRoot()) {
+            if (f == Features.ENCRYPTEDSYM)
                 m.Cc += tn.getElement().getOp_metric().outputSize * tn.getElement().getExecutor().getMetrics().Kc1;
-            else if(f==Features.ENCRYPTEDHOM)
+            else if (f == Features.ENCRYPTEDHOM)
                 m.Cc += tn.getElement().getOp_metric().outputSize * tn.getElement().getExecutor().getMetrics().Kc2;
         }
         /**
          * Compute execution cost
          */
-        m.Ce += tn.getElement().getOp_metric().CPU_time * candidate.getMetrics().Kcpu + tn.getElement().getOp_metric().IO_time * candidate.getMetrics().Kio;
+        m.Ce += tn.getElement().getOp_metric().CPU_time * candidate.getMetrics().Kcpu / 3600 + tn.getElement().getOp_metric().IO_time * candidate.getMetrics().Kio / 3600;
 
         /**
          * Cost summation
@@ -139,7 +139,7 @@ public class TreeNodeCostEngine {
             BasicMetric op = tn.getElement().getOp_metric();
             //compute new incremental metrics
             //execution cost
-            m2.Ce = op.CPU_time * pm.Kcpu + op.IO_time * pm.Kio;
+            m2.Ce = op.CPU_time * pm.Kcpu / 3600 + op.IO_time * pm.Kio / 3600;
             //motion cost
             if (!(tn.getOracle().getElement().getExecutor().selfDescription().equals(tn.getElement().getExecutor().selfDescription())))
                 m2.Cm = op.outputSize * pm.Km;

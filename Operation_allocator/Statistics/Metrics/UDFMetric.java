@@ -9,7 +9,7 @@ public class UDFMetric<T extends Profiler> extends BasicMetric implements Serial
     /**
      * Machine architecture metrics
      */
-    public double CPI;                  //average standard complexity adimensional
+    public double CPI;                  //average standard complexity, dimensionless
     public double CT;                   //average clock time in seconds
     public double IOPS;                 //average number of IO operations per second
 

@@ -30,16 +30,16 @@ public class AllocationTest {
         BasicMetric m3 = new BasicMetric(60000, 2, 30000.0, 2.0, 0.09, 0.1);
         BasicMetric m4 = new BasicMetric(350, 40, 1000.0, 40.0, 0.004, 0.007);
 
-        UDFMetric udfm1 = new UDFMetric<UDF_typ1>(18, 2.5e-8, 40e3, (m1.outputSize + m2.outputSize),
+        UDFMetric udfm1 = new UDFMetric<UDF_typ1>(18, 0.25e-9, 400e3, (m1.outputSize + m2.outputSize),
                 (m1.outputTupleSize + m2.outputTupleSize) / 2, 2800, 10);
         Profiler profiler = new UDF_typ1();
         udfm1.setProfiler(profiler);
 
-        UDFMetric udfm2 = new UDFMetric<UDF_typ1>(18, 2.5e-8, 40e3, (m3.outputSize + m4.outputSize),
+        UDFMetric udfm2 = new UDFMetric<UDF_typ1>(18, 0.25e-9, 400e3, (m3.outputSize + m4.outputSize),
                 (m3.outputTupleSize + m4.outputTupleSize) / 2, 2800, 10);
         udfm2.setProfiler(profiler);
 
-        UDFMetric udfm3 = new UDFMetric<UDF_typ1>(18, 2.5e-8, 40e3, (m1.outputSize + m4.outputSize),
+        UDFMetric udfm3 = new UDFMetric<UDF_typ1>(18, 0.25e-9, 400e3, (m1.outputSize + m4.outputSize),
                 (m1.outputTupleSize + m4.outputTupleSize) / 2, 2800, 10);
         udfm3.setProfiler(profiler);
 
@@ -57,7 +57,8 @@ public class AllocationTest {
         /**
          * Provider metrics
          */
-        ProviderMetric pm1 = new ProviderMetric(0, 0.41, 0.98, 1.5*0.06e-6, 1.9*0.06e-6);
+        double k = 1.4;
+        ProviderMetric pm1 = new ProviderMetric(0, 0.37, k*0.37, 1.5*0.06e-6, 45*0.06e-6);
         /**
          * Provider
          */
@@ -160,9 +161,9 @@ public class AllocationTest {
         /**
          * ADD THE VISIBILITY FEATURE TO THE LEAFS
          */
-        tn1.getInfo().addFeature(Features.RESERVED);
+        tn1.getInfo().addFeature(Features.PUBLIC);
         tn2.getInfo().addFeature(Features.PUBLIC);
-        tn3.getInfo().addFeature(Features.CONFIDENTIAL);
+        tn3.getInfo().addFeature(Features.PUBLIC);
         TreeNode<Operation> query2 = new TreeNode<>(udfo2);
         query2.setSons(opsons2);
 
@@ -180,7 +181,7 @@ public class AllocationTest {
         /**
          * Provider for semantics
          */
-        ProviderMetric pms = new ProviderMetric(0.04e-6, 0.2, 0.61, 1.5*0.04e-6, 1.9*0.04e-6);
+        ProviderMetric pms = new ProviderMetric(0.04e-6, 0.00008, 0.61, 1.5*0.04e-6, 1.9*0.04e-3);
         Provider providers = new Provider("Provider for semantics", pms);
         /**
          * Semantics
@@ -211,9 +212,9 @@ public class AllocationTest {
         /**
          * New provider creation
          */
-        ProviderMetric pm2 = new ProviderMetric(0.04e-6, 0.37, 0.61, 1.5*0.04e-6, 1.9*0.04e-6);
+        ProviderMetric pm2 = new ProviderMetric(0.04e-6, 0.000071, 0.61, 1.5*0.04e-6, 1.9*0.04e-3);
         Provider provider2 = new Provider("EC2", pm2);
-        ProviderMetric pm3 = new ProviderMetric(0.037e-6, 0.29, 0.42, 1.5*0.037e-6, 1.9*0.037e-6);
+        ProviderMetric pm3 = new ProviderMetric(0.037e-6, 0.000053, 0.42, 1.5*0.037e-6, 1.9*0.037e-3);
         Provider provider3 = new Provider("Cheap", pm3);
         /**
          * Operation allocator allocation and configuration

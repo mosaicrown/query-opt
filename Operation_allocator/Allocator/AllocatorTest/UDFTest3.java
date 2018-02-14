@@ -31,8 +31,8 @@ public class UDFTest3 {
          * Operation Metrics
          */
         BasicMetric m1 = new BasicMetric(2300, 0.04, 120.0, 0.04, 0.09, 0.35);
-        BasicMetric m2 = new BasicMetric(12, 0.04, 0.35, 0.04, 0.98, 0.0001);
-        BasicMetric m3 = new BasicMetric(60, 0.014, 30.0, 0.014, 0.06, 0.28);
+        BasicMetric m2 = new BasicMetric(120, 0.04, 35, 0.04, 0.98, 0.0001);
+        BasicMetric m3 = new BasicMetric(600, 0.014, 300.0, 0.014, 0.06, 0.28);
         BasicMetric m4 = new BasicMetric(3.5, 0.012, 3.5, 0.012, 0.00023, 0.007);
         BasicMetric m5 = new BasicMetric(230, 0.03, 230.0, 0.03, 0.079, 0.263);
         BasicMetric m6 = new BasicMetric(3.5, 0.012, 0.42, 0.12, 0.007, 0.0003);
@@ -40,13 +40,13 @@ public class UDFTest3 {
         BasicMetric m8 = new BasicMetric(94, 0.024, 8.9, 0.038, 0.34, 0.07);
         BasicMetric m9 = new BasicMetric(8.0, 0.038, 8.9, 0.038, 0.0004, 0.07);
 
-        UDFMetric udfm1 = new UDFMetric<CubicProfile>(18, 2.5e-8, 40e3, (m3.outputSize + m2.outputSize),
+        UDFMetric udfm1 = new UDFMetric<CubicProfile>(15, 0.25e-9, 400e3, (m3.outputSize + m2.outputSize),
                 (m3.outputTupleSize + m2.outputTupleSize) / 2, 2.8, 0.074);
 
-        Profiler profiler = new CubicProfile(100, 3.2, 4.5, 2.7);
+        Profiler profiler = new CubicProfile(100, 32, 4.5, 2.7);
         udfm1.setProfiler(profiler);
 
-        UDFMetric udfm2 = new UDFMetric<CubicProfile>(18, 2.5e-8, 40e3, udfm1.outputSize,
+        UDFMetric udfm2 = new UDFMetric<CubicProfile>(15, 0.25e-9, 400e3, udfm1.outputSize,
                 udfm1.outputTupleSize, 34, 0.074);
         udfm2.setProfiler(profiler);
 
@@ -67,11 +67,13 @@ public class UDFTest3 {
         /**
          * Provider
          */
-        ProviderMetric pm1 = new ProviderMetric(0, 0.41, 0.98, 1.5 * 0.06e-6, 1.9 * 0.06e-6);
+        double k = 1.4;
+        ProviderMetric pm1 = new ProviderMetric(0,          0.37, k*0.37, 1.5*0.06e-6, 45*0.06e-6);
+        ProviderMetric pm2 = new ProviderMetric(0.04e-6,    0.0528, k*0.0528, 1.5*0.04e-6, 45*0.04e-6);
+        ProviderMetric pm3 = new ProviderMetric(0.037e-6,   0.0336, k*0.0336, 1.5*0.037e-6, 45*0.037e-6);
+
         Provider provider1 = new Provider("Proprietary", pm1);
-        ProviderMetric pm2 = new ProviderMetric(0.04e-6, 0.37, 0.61, 1.5 * 0.04e-6, 1.9 * 0.04e-6);
         Provider provider2 = new Provider("EC2", pm2);
-        ProviderMetric pm3 = new ProviderMetric(0.037e-6, 0.29, 0.42, 1.5 * 0.037e-6, 1.9 * 0.037e-6);
         Provider provider3 = new Provider("Cheap", pm3);
 
         System.out.println("Provider" + provider1.selfDescription());
@@ -256,7 +258,7 @@ public class UDFTest3 {
         /**
          * Provider for semantics
          */
-        ProviderMetric pms = new ProviderMetric(0.04e-6, 0.2, 0.61, 1.5 * 0.04e-6, 1.9 * 0.04e-6);
+        ProviderMetric pms = new ProviderMetric(0.04e-6,    0.0528, k*0.0528, 1.5*0.04e-6, 45*0.04e-6);
         Provider providers = new Provider("Provider for semantics", pms);
         /**
          * Semantics

@@ -40,13 +40,13 @@ public class UDFTest1 {
         BasicMetric m8 = new BasicMetric(94, 0.024, 8.9, 0.038, 0.34, 0.07);
         BasicMetric m9 = new BasicMetric(8.0, 0.038, 8.9, 0.038, 0.0004, 0.07);
 
-        UDFMetric udfm1 = new UDFMetric<PseudolinearProfile>(18, 2.5e-8, 40e3, (m3.outputSize + m2.outputSize),
+        UDFMetric udfm1 = new UDFMetric<PseudolinearProfile>(15, 0.25e-9, 400e3, (m3.outputSize + m2.outputSize),
                 (m3.outputTupleSize + m2.outputTupleSize) / 2, 28, 0.074);
 
         Profiler profiler = new PseudolinearProfile(100, 3.2, 4.5);
         udfm1.setProfiler(profiler);
 
-        UDFMetric udfm2 = new UDFMetric<PseudolinearProfile>(18, 2.5e-8, 40e3, udfm1.outputSize,
+        UDFMetric udfm2 = new UDFMetric<PseudolinearProfile>(15, 0.25e-9, 400e3, udfm1.outputSize,
                 udfm1.outputTupleSize, 34, 0.074);
         udfm2.setProfiler(profiler);
 
@@ -67,11 +67,13 @@ public class UDFTest1 {
         /**
          * Provider
          */
-        ProviderMetric pm1 = new ProviderMetric(0, 0.41, 0.98, 1.5 * 0.06e-6, 1.9 * 0.06e-6);
+        double k = 1.4;
+        ProviderMetric pm1 = new ProviderMetric(0,          0.37, k*0.37, 1.5*0.06e-6, 45*0.06e-6);
+        ProviderMetric pm2 = new ProviderMetric(0.04e-6,    0.0528, k*0.0528, 1.5*0.04e-6, 45*0.04e-6);
+        ProviderMetric pm3 = new ProviderMetric(0.037e-6,   0.0336, k*0.0336, 1.5*0.037e-6, 45*0.037e-6);
+
         Provider provider1 = new Provider("Proprietary", pm1);
-        ProviderMetric pm2 = new ProviderMetric(0.04e-6, 0.37, 0.61, 1.5 * 0.04e-6, 1.9 * 0.04e-6);
         Provider provider2 = new Provider("EC2", pm2);
-        ProviderMetric pm3 = new ProviderMetric(0.037e-6, 0.29, 0.42, 1.5 * 0.037e-6, 1.9 * 0.037e-6);
         Provider provider3 = new Provider("Cheap", pm3);
 
         System.out.println("Provider" + provider1.selfDescription());
@@ -256,7 +258,7 @@ public class UDFTest1 {
         /**
          * Provider for semantics
          */
-        ProviderMetric pms = new ProviderMetric(0.04e-6, 0.2, 0.61, 1.5 * 0.04e-6, 1.9 * 0.04e-6);
+        ProviderMetric pms = new ProviderMetric(0.04e-6,    0.0528, k*0.0528, 1.5*0.04e-6, 45*0.04e-6);
         Provider providers = new Provider("Provider for semantics", pms);
         /**
          * Semantics

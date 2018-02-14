@@ -7,8 +7,8 @@ public class ProviderMetric implements Serializable {
     //motion
     public double Km;                       //provider inbound/outbound specific cost of motion as dollars per KB
     //execution
-    public double Kcpu;                     //provider specific cost of cpu execution as dollars per second
-    public double Kio;                      //provider specific cost of io execution as dollars per second
+    public double Kcpu;                     //provider specific cost of cpu execution as dollars per hour
+    public double Kio;                      //provider specific cost of io execution as dollars per hour
     //cipher
     public double Kc1;                      //provider specific cost of asymmetric cipher per KB
     public double Kc2;                      //provider specific cost of homomorphic cipher per KB
