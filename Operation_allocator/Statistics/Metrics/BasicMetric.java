@@ -6,13 +6,13 @@ public class BasicMetric implements Serializable {
     /**
      * Input data metrics
      */
-    public double inputSize;                //total size of input data in KBs
-    public double inputTupleSize;           //size of input tuple in KBs
+    public double inputSize;                //total size of input data in KB
+    public double inputTupleSize;           //size of input tuple in KB
     /**
      * Output data metrics
      */
-    public double outputSize;                //total size of output data in KBs
-    public double outputTupleSize;           //size of output tuple in KBs
+    public double outputSize;                //total size of output data in KB
+    public double outputTupleSize;           //size of output tuple in KB
     /**
      * Operation metrics
      */

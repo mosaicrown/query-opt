@@ -17,9 +17,6 @@ public class UDFMetric<T extends Profiler> extends BasicMetric implements Serial
      * Algorithm metrics
      */
     public double Not;                      //number of tuples
-    public double Nop_cpu;                  //estimated number of CPU operations
-    public double Nop_io;                   //estimated number of I/O operations
-
     /**
      * Complexity profiler
      */
