@@ -12,6 +12,10 @@ import java.util.List;
  * from                     DEFINITION 3.1
  * in article               An authorization model for multi-provider queries
  */
+
+/**
+ * USEFUL NOTE: The result of static functions is the left parameter
+ */
 public class RelationProfile implements Serializable {
 
     private List<Attribute> rvp;
