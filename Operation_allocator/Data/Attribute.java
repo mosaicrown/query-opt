@@ -6,14 +6,15 @@ import java.io.Serializable;
  * This class represents database table column
  * Attribute name has to be unique in database
  */
-public class Attribute implements Serializable, Comparable<Attribute>{
+public class Attribute implements Serializable, Comparable<Attribute> {
 
 
     private String name;
     private double dimension;
 
-    public Attribute(String n){
-        name=n;
+    public Attribute(String n, double dim) {
+        name = n;
+        dimension = dim;
     }
 
     public boolean equals(Attribute attr) {
@@ -38,5 +39,10 @@ public class Attribute implements Serializable, Comparable<Attribute>{
 
     public int compareTo(Attribute a) {
         return name.compareTo(a.getName());
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

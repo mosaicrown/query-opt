@@ -63,9 +63,12 @@ public class RelationProfile implements Serializable {
             base.clear();
             return;
         }
-        for (int i = 0; i < complement.size(); i++)
-            if (!RelationProfile.hasAttribute(base, complement.get(i)))
-                RelationProfile.removeAttribute(base, complement.get(i));
+        for (int i = 0; i < base.size(); i++)
+            if (!RelationProfile.hasAttribute(complement, base.get(i))) {
+                RelationProfile.removeAttribute(base, base.get(i));
+                i--;
+            }
+
     }
 
     public static void unionCE(List<List<Attribute>> eset, List<Attribute> la) {
@@ -80,15 +83,15 @@ public class RelationProfile implements Serializable {
                     f = false;
                     break;
                 }
-            if (f)
+            if (f && leset.size() == la.size())
                 return;
         }
         eset.add(la);
     }
 
     public static void unionCEsets(List<List<Attribute>> eset1, List<List<Attribute>> eset2) {
-       for(int i=0; i<eset2.size(); i++)
-           RelationProfile.unionCE(eset1, eset2.get(i));
+        for (int i = 0; i < eset2.size(); i++)
+            RelationProfile.unionCE(eset1, eset2.get(i));
     }
 
     public static void insertAttribute(List<Attribute> l, Attribute a) {
@@ -167,5 +170,67 @@ public class RelationProfile implements Serializable {
 
     public void setCes(List<List<Attribute>> ces) {
         this.ces = ces;
+    }
+
+    public String toString() {
+        String s = "";
+        s += "Rvp:\t";
+        int dim;
+        int i;
+        dim = rvp.size();
+        i = 0;
+        for (Attribute a : rvp
+                ) {
+            s += a.toString();
+            i++;
+            if (i < dim)
+                s += ",";
+        }
+        s += "\tRve:\t";
+        dim = rve.size();
+        i = 0;
+        for (Attribute a : rve
+                ) {
+            s += a.toString();
+            i++;
+            if (i < dim)
+                s += ",";
+        }
+        s += "\tRip:\t";
+        dim = rip.size();
+        i = 0;
+        for (Attribute a : rip
+                ) {
+            s += a.toString();
+            i++;
+            if (i < dim)
+                s += ",";
+        }
+        s += "\tRie:\t";
+        dim = rie.size();
+        i = 0;
+        for (Attribute a : rie
+                ) {
+            s += a.toString();
+            i++;
+            if (i < dim)
+                s += ",";
+        }
+        s += "\tRces:\t";
+        for (List<Attribute> l : ces
+                ) {
+            s += "(";
+            dim = l.size();
+            i = 0;
+            for (Attribute a : l
+                    ) {
+                s += a.toString();
+                i++;
+                if (i < dim)
+                    s += ",";
+            }
+            s += ")";
+        }
+        return s;
     }
 }
