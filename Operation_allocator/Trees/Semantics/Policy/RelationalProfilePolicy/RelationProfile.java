@@ -3,6 +3,7 @@ package Trees.Semantics.Policy.RelationalProfilePolicy;
 import Data.Attribute;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -54,13 +55,36 @@ public class RelationProfile implements Serializable {
     }
 
     public static void intersection(List<Attribute> base, List<Attribute> complement) {
-        if(complement.size()==0){
+        if (complement.size() == 0) {
             base.clear();
             return;
         }
         for (int i = 0; i < complement.size(); i++)
             if (!RelationProfile.hasAttribute(base, complement.get(i)))
                 RelationProfile.removeAttribute(base, complement.get(i));
+    }
+
+    public static void unionCE(List<List<Attribute>> eset, List<Attribute> la) {
+        boolean f;
+        Collections.sort(la);
+        for (int i = 0; i < eset.size(); i++) {
+            f = true;
+            List<Attribute> leset = eset.get(i);
+            Collections.sort(leset);
+            for (int j = 0; j < leset.size(); j++)
+                if (!leset.get(j).equals(la.get(j))) {
+                    f = false;
+                    break;
+                }
+            if (f)
+                return;
+        }
+        eset.add(la);
+    }
+
+    public static void unionCEsets(List<List<Attribute>> eset1, List<List<Attribute>> eset2) {
+       for(int i=0; i<eset2.size(); i++)
+           RelationProfile.unionCE(eset1, eset2.get(i));
     }
 
     public static void insertAttribute(List<Attribute> l, Attribute a) {
