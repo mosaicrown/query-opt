@@ -14,7 +14,8 @@ import java.util.List;
  */
 
 /**
- * USEFUL NOTE: The result of static functions is the left parameter
+ * USEFUL NOTE: 1) Every object passed to this class is copied as it were immutable
+ *              2) The result of static functions is the left parameter
  */
 public final class RelationProfile implements Serializable {
 
@@ -183,7 +184,7 @@ public final class RelationProfile implements Serializable {
     }
 
     public void setRvp(List<Attribute> rvp) {
-        this.rvp = rvp;
+        this.rvp = RelationProfile.copyLoA(rvp);
     }
 
     public List<Attribute> getRip() {
@@ -191,7 +192,7 @@ public final class RelationProfile implements Serializable {
     }
 
     public void setRip(List<Attribute> rip) {
-        this.rip = rip;
+        this.rip = RelationProfile.copyLoA(rip);
     }
 
     public List<Attribute> getRve() {
@@ -199,7 +200,7 @@ public final class RelationProfile implements Serializable {
     }
 
     public void setRve(List<Attribute> rve) {
-        this.rve = rve;
+        this.rve = RelationProfile.copyLoA(rve);
     }
 
     public List<Attribute> getRie() {
@@ -207,7 +208,7 @@ public final class RelationProfile implements Serializable {
     }
 
     public void setRie(List<Attribute> rie) {
-        this.rie = rie;
+        this.rie = RelationProfile.copyLoA(rie);
     }
 
     public List<List<Attribute>> getCes() {
@@ -215,7 +216,7 @@ public final class RelationProfile implements Serializable {
     }
 
     public void setCes(List<List<Attribute>> ces) {
-        this.ces = ces;
+        this.ces = RelationProfile.copyCE(ces);
     }
 
     public double getTotalDimension() {
@@ -234,23 +235,10 @@ public final class RelationProfile implements Serializable {
     public RelationProfile copyRelationProfile(){
         RelationProfile res=new RelationProfile();
 
-        for (Attribute a:rvp
-             ) {
-            RelationProfile.insertAttribute(rvp, a.copyAttribute());
-        }
-        for (Attribute a:rve
-                ) {
-            RelationProfile.insertAttribute(rve, a.copyAttribute());
-        }
-        for (Attribute a:rip
-                ) {
-            RelationProfile.insertAttribute(rip, a.copyAttribute());
-        }
-        for (Attribute a:rie
-                ) {
-            RelationProfile.insertAttribute(rie, a.copyAttribute());
-        }
-
+        res.setRvp(RelationProfile.copyLoA(rvp));
+        res.setRve(RelationProfile.copyLoA(rve));
+        res.setRip(RelationProfile.copyLoA(rip));
+        res.setRie(RelationProfile.copyLoA(rie));
         res.setCes(RelationProfile.copyCE(ces));
 
         return res;

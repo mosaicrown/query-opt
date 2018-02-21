@@ -36,11 +36,11 @@ public class RelProfTests {
         System.out.println(l1);
         List<Attribute> l2 = new LinkedList<>();
         l2.add(a3);
-        l2=RelationProfile.union(l1, l2);
+        l2 = RelationProfile.union(l1, l2);
         System.out.println(l1);
-        l2=RelationProfile.intersection(l2, l1);
+        l2 = RelationProfile.intersection(l2, l1);
         System.out.println(l2);
-        l2=RelationProfile.subtraction(l2, l1);
+        l2 = RelationProfile.subtraction(l2, l1);
         System.out.println(l2);
         /**
          * Insertion, deletion
