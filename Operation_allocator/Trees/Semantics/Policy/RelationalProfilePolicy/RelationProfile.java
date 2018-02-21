@@ -1,5 +1,6 @@
 package Trees.Semantics.Policy.RelationalProfilePolicy;
 
+import Actors.Provider;
 import Data.Attribute;
 
 import java.io.Serializable;
@@ -15,7 +16,7 @@ import java.util.List;
 
 /**
  * USEFUL NOTE: 1) Every object passed to this class is copied as it were immutable
- *              2) The result of static functions is the left parameter
+ * 2) The result of static functions is the left parameter
  */
 public final class RelationProfile implements Serializable {
 
@@ -104,6 +105,7 @@ public final class RelationProfile implements Serializable {
                 return res;
         }
         res.add(RelationProfile.copyLoA(la));
+        res = mergeSets(res);
         return res;
     }
 
@@ -129,8 +131,53 @@ public final class RelationProfile implements Serializable {
         List<List<Attribute>> res = RelationProfile.copyCE(eset1);
         for (int i = 0; i < eset2.size(); i++)
             RelationProfile.unionCElink(res, eset2.get(i));
+        res = mergeSets(res);
         return res;
     }
+
+    private static List<List<Attribute>> mergeSets(List<List<Attribute>> eset) {
+        boolean signal = false;
+        boolean present = false;
+        List<List<Attribute>> res = new LinkedList<>();
+        List<Attribute> l1;
+        List<List<Attribute>> temp = new LinkedList<>();
+        if (eset.size() > 0)
+            res.add(RelationProfile.copyLoA(eset.get(0)));
+        else
+            return temp;
+        List<Attribute> lres;
+        for (int i = 1; i < eset.size(); i++) {
+            if (signal)
+                res = mergeSets(res);
+            signal = false;
+            present = false;
+            l1 = eset.get(i);
+            for (Attribute a : l1
+                    ) {
+                for (int j = 0; j < res.size(); j++) {
+                    lres = res.get(j);
+                    if (RelationProfile.hasAttribute(lres, a)) {
+                        present=true;
+                        if (RelationProfile.subtraction(l1, lres).size() != 0) {
+                            res.remove(j);
+                            res.add(j, RelationProfile.union(lres, l1));
+                            signal = true;
+                            break;
+                        }
+                    }
+                }
+                if (signal) {
+                    i = 0;
+                    break;
+                }
+            }
+            if (!present)
+                res.add(RelationProfile.copyLoA(l1));
+        }
+
+        return res;
+    }
+
 
     public static List<List<Attribute>> copyCE(List<List<Attribute>> eset) {
         List<List<Attribute>> s = new LinkedList<>();
@@ -215,8 +262,8 @@ public final class RelationProfile implements Serializable {
         return ces;
     }
 
-    public void setCes(List<List<Attribute>> ces) {
-        this.ces = RelationProfile.copyCE(ces);
+    public void setCes(List<List<Attribute>> c) {
+        this.ces = RelationProfile.mergeSets(c);
     }
 
     public double getTotalDimension() {
@@ -232,8 +279,8 @@ public final class RelationProfile implements Serializable {
         return dim;
     }
 
-    public RelationProfile copyRelationProfile(){
-        RelationProfile res=new RelationProfile();
+    public RelationProfile copyRelationProfile() {
+        RelationProfile res = new RelationProfile();
 
         res.setRvp(RelationProfile.copyLoA(rvp));
         res.setRve(RelationProfile.copyLoA(rve));
@@ -306,12 +353,75 @@ public final class RelationProfile implements Serializable {
         return s;
     }
 
-    public static List<Attribute> copyLoA(List<Attribute> la){
+    public static List<Attribute> copyLoA(List<Attribute> la) {
         List<Attribute> l = new LinkedList<>();
-        for (Attribute a:la
-             ) {
+        for (Attribute a : la
+                ) {
             l.add(a.copyAttribute());
         }
         return l;
     }
+
+    /**
+     * DEFINITION 4.1 AUTHORIZED RELATION
+     */
+    public boolean isAuthorizedFor(Provider p) {
+        boolean f = true;
+
+        List<Attribute> plaintextset = p.getAplains();
+        List<Attribute> encryptedset = p.getAencs();
+        //RULE 1
+        //check for relation visible plaintext values
+        for (Attribute a : this.getRvp()
+                ) {
+            if (!RelationProfile.hasAttribute(plaintextset, a))
+                return false;
+        }
+        //check for relation implicit plaintext values
+        for (Attribute a : this.getRip()
+                ) {
+            if (!RelationProfile.hasAttribute(plaintextset, a))
+                return false;
+        }
+        //RULE 2
+        //check for relation visible encrypted values
+        List<Attribute> wholeproviderset = RelationProfile.union(plaintextset, encryptedset);
+        for (Attribute a : this.getRve()
+                ) {
+            if (!RelationProfile.hasAttribute(wholeproviderset, a))
+                return false;
+        }
+        //check for relation implicit encrypted values
+        for (Attribute a : this.getRie()
+                ) {
+            if (!RelationProfile.hasAttribute(wholeproviderset, a))
+                return false;
+        }
+        //RULE 3
+        //uniform visibility
+        for (List<Attribute> la : this.getCes()
+                ) {
+            for (int i = 0; i < la.size() - 1; i++) {
+                if (getVisibility(la.get(i)) != getVisibility(la.get(i + 1)))
+                    return false;
+            }
+        }
+        //case all rules satisfied
+        return f;
+    }
+
+    private Visibility getVisibility(Attribute a) {
+        if (RelationProfile.hasAttribute(this.rvp, a) || RelationProfile.hasAttribute(this.rip, a))
+            return Visibility.PLAINTEXT;
+        else
+            return Visibility.ENCRYPTED;
+    }
+}
+
+/**
+ * Visibility levels for uniform visibility rule
+ */
+enum Visibility {
+    ENCRYPTED,
+    PLAINTEXT
 }

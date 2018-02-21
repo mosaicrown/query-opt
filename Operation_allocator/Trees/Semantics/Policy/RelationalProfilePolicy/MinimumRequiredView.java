@@ -31,7 +31,6 @@ public final class MinimumRequiredView {
             if (state == AttributeState.PLAINTEXT)
                 if (RelationProfile.hasAttribute(la, attr))
                     moveToPlaintext(rp, attr);
-
         }
         return rp;
     }

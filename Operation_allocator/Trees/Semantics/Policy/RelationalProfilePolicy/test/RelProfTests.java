@@ -89,7 +89,9 @@ public class RelProfTests {
         List<List<Attribute>> ll = new LinkedList<>();
         ll.add(z1);
         ll.add(z2);
+        System.out.println("liste rp1: " + ll);
         rp1.setCes(ll);
+        System.out.println("rp1 ces: " + rp1.getCes());
         System.out.println(rp1);
 
         rp1.setCes(RelationProfile.unionCE(rp1.getCes(), z3));
@@ -100,7 +102,9 @@ public class RelProfTests {
 
         List<List<Attribute>> lt = new LinkedList<>();
         lt.add(z3);
+        System.out.println("liste rp2: " + lt);
         rp2.setCes(lt);
+        System.out.println("rp2 ces: " + rp2.getCes());
 
         List<List<Attribute>> lz = new LinkedList<>();
         List x1 = new LinkedList<Attribute>();
@@ -111,10 +115,9 @@ public class RelProfTests {
         x2.add(a4);
         lz.add(x1);
         lz.add(x2);
+        System.out.println("liste rp3: " + lz);
         rp3.setCes(lz);
-
-        System.out.println(rp2.getCes());
-        System.out.println(rp3.getCes());
+        System.out.println("rp3 ces: " + rp3.getCes());
 
         rp2.setCes(RelationProfile.unionCEsets(rp2.getCes(), rp3.getCes()));
         rp2.setCes(RelationProfile.unionCEsets(rp2.getCes(), lt));

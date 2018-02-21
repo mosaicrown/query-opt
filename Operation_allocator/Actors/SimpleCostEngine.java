@@ -2,7 +2,7 @@ package Actors;
 
 import Statistics.Metrics.CostMetric;
 
-public class SimpleCostEngine {
+public final class SimpleCostEngine {
 
     public SimpleCostEngine() {
 
