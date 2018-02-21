@@ -19,6 +19,12 @@ public class Attribute implements Serializable, Comparable<Attribute> {
         state = AttributeState.PLAINTEXT;
     }
 
+    public Attribute(String n, double dim, AttributeState s) {
+        name = n;
+        dimension = dim;
+        state = s;
+    }
+
     public String getName() {
         return name;
     }
@@ -56,5 +62,9 @@ public class Attribute implements Serializable, Comparable<Attribute> {
     @Override
     public String toString() {
         return name;
+    }
+
+    public Attribute copyAttribute(){
+        return new Attribute(this.name, this.dimension, this.state);
     }
 }

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * USEFUL NOTE: The result of static functions is the left parameter
  */
-public class RelationProfile implements Serializable {
+public final class RelationProfile implements Serializable {
 
     private List<Attribute> rvp;
     private List<Attribute> rip;
@@ -52,22 +52,21 @@ public class RelationProfile implements Serializable {
 
     public static void insertAttribute(List<Attribute> l, Attribute a) {
         if (!RelationProfile.hasAttribute(l, a))
-            l.add(a);
+            l.add(a.copyAttribute());
 
     }
 
     public static List<Attribute> union(List<Attribute> op1, List<Attribute> op2) {
         List<Attribute> res = new LinkedList<>();
         for (int i = 0; i < op2.size(); i++)
-            RelationProfile.insertAttribute(res, op2.get(i));
+            RelationProfile.insertAttribute(res, op2.get(i).copyAttribute());
         for (int i = 0; i < op1.size(); i++)
-            RelationProfile.insertAttribute(res, op1.get(i));
+            RelationProfile.insertAttribute(res, op1.get(i).copyAttribute());
         return res;
     }
 
     public static List<Attribute> subtraction(List<Attribute> base, List<Attribute> complement) {
-        List<Attribute> res = new LinkedList<>();
-        res = RelationProfile.union(res, base);
+        List<Attribute> res = RelationProfile.copyLoA(base);
         for (int i = 0; i < complement.size(); i++)
             RelationProfile.removeAttribute(res, complement.get(i));
         return res;
@@ -78,7 +77,7 @@ public class RelationProfile implements Serializable {
         if (complement.size() == 0) {
             return res;
         }
-        res = RelationProfile.union(res, base);
+        res = RelationProfile.copyLoA(base);
         for (int i = 0; i < res.size(); i++)
             if (!RelationProfile.hasAttribute(complement, res.get(i))) {
                 RelationProfile.removeAttribute(res, res.get(i));
@@ -103,7 +102,7 @@ public class RelationProfile implements Serializable {
             if (f && leset.size() == la.size())
                 return res;
         }
-        res.add(la);
+        res.add(RelationProfile.copyLoA(la));
         return res;
     }
 
@@ -122,7 +121,7 @@ public class RelationProfile implements Serializable {
             if (f && leset.size() == la.size())
                 return;
         }
-        eset.add(la);
+        eset.add(RelationProfile.copyLoA(la));
     }
 
     public static List<List<Attribute>> unionCEsets(List<List<Attribute>> eset1, List<List<Attribute>> eset2) {
@@ -140,7 +139,7 @@ public class RelationProfile implements Serializable {
             la = new LinkedList<>();
             for (Attribute a : li
                     ) {
-                la.add(a);
+                la.add(a.copyAttribute());
             }
             s.add(la);
         }
@@ -152,7 +151,7 @@ public class RelationProfile implements Serializable {
         removeAttribute(rve, a);
         //element insertion
         if (!hasAttribute(rvp, a))
-            rvp.add(a);
+            rvp.add(a.copyAttribute());
     }
 
     public void insertIP(List<Attribute> l, Attribute a) {
@@ -160,7 +159,7 @@ public class RelationProfile implements Serializable {
         removeAttribute(rie, a);
         //element insertion
         if (!hasAttribute(rip, a))
-            rip.add(a);
+            rip.add(a.copyAttribute());
     }
 
     public void insertVE(List<Attribute> l, Attribute a) {
@@ -168,7 +167,7 @@ public class RelationProfile implements Serializable {
         removeAttribute(rvp, a);
         //element insertion
         if (!hasAttribute(rve, a))
-            rve.add(a);
+            rve.add(a.copyAttribute());
     }
 
     public void insertIE(List<Attribute> l, Attribute a) {
@@ -176,7 +175,7 @@ public class RelationProfile implements Serializable {
         removeAttribute(rip, a);
         //element insertion
         if (!hasAttribute(rie, a))
-            rie.add(a);
+            rie.add(a.copyAttribute());
     }
 
     public List<Attribute> getRvp() {
@@ -230,6 +229,31 @@ public class RelationProfile implements Serializable {
             dim += a.getDimension();
         }
         return dim;
+    }
+
+    public RelationProfile copyRelationProfile(){
+        RelationProfile res=new RelationProfile();
+
+        for (Attribute a:rvp
+             ) {
+            RelationProfile.insertAttribute(rvp, a.copyAttribute());
+        }
+        for (Attribute a:rve
+                ) {
+            RelationProfile.insertAttribute(rve, a.copyAttribute());
+        }
+        for (Attribute a:rip
+                ) {
+            RelationProfile.insertAttribute(rip, a.copyAttribute());
+        }
+        for (Attribute a:rie
+                ) {
+            RelationProfile.insertAttribute(rie, a.copyAttribute());
+        }
+
+        res.setCes(RelationProfile.copyCE(ces));
+
+        return res;
     }
 
     public String toString() {
@@ -292,5 +316,14 @@ public class RelationProfile implements Serializable {
             s += ")";
         }
         return s;
+    }
+
+    public static List<Attribute> copyLoA(List<Attribute> la){
+        List<Attribute> l = new LinkedList<>();
+        for (Attribute a:la
+             ) {
+            l.add(a.copyAttribute());
+        }
+        return l;
     }
 }
