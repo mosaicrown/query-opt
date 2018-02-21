@@ -50,30 +50,64 @@ public class RelationProfile implements Serializable {
             }
     }
 
-    public static void union(List<Attribute> base, List<Attribute> complement) {
-        for (int i = 0; i < complement.size(); i++)
-            RelationProfile.insertAttribute(base, complement.get(i));
+    public static void insertAttribute(List<Attribute> l, Attribute a) {
+        if (!RelationProfile.hasAttribute(l, a))
+            l.add(a);
+
     }
 
-    public static void subtraction(List<Attribute> base, List<Attribute> complement) {
-        for (int i = 0; i < complement.size(); i++)
-            RelationProfile.removeAttribute(base, complement.get(i));
+    public static List<Attribute> union(List<Attribute> op1, List<Attribute> op2) {
+        List<Attribute> res = new LinkedList<>();
+        for (int i = 0; i < op2.size(); i++)
+            RelationProfile.insertAttribute(res, op2.get(i));
+        for (int i = 0; i < op1.size(); i++)
+            RelationProfile.insertAttribute(res, op1.get(i));
+        return res;
     }
 
-    public static void intersection(List<Attribute> base, List<Attribute> complement) {
+    public static List<Attribute> subtraction(List<Attribute> base, List<Attribute> complement) {
+        List<Attribute> res = new LinkedList<>();
+        res = RelationProfile.union(res, base);
+        for (int i = 0; i < complement.size(); i++)
+            RelationProfile.removeAttribute(res, complement.get(i));
+        return res;
+    }
+
+    public static List<Attribute> intersection(List<Attribute> base, List<Attribute> complement) {
+        List<Attribute> res = new LinkedList<>();
         if (complement.size() == 0) {
-            base.clear();
-            return;
+            return res;
         }
-        for (int i = 0; i < base.size(); i++)
-            if (!RelationProfile.hasAttribute(complement, base.get(i))) {
-                RelationProfile.removeAttribute(base, base.get(i));
+        res = RelationProfile.union(res, base);
+        for (int i = 0; i < res.size(); i++)
+            if (!RelationProfile.hasAttribute(complement, res.get(i))) {
+                RelationProfile.removeAttribute(res, res.get(i));
                 i--;
             }
-
+        return res;
     }
 
-    public static void unionCE(List<List<Attribute>> eset, List<Attribute> la) {
+    public static List<List<Attribute>> unionCE(List<List<Attribute>> eset, List<Attribute> la) {
+        boolean f;
+        List<List<Attribute>> res = RelationProfile.copyCE(eset);
+        Collections.sort(la);
+        for (int i = 0; i < res.size(); i++) {
+            f = true;
+            List<Attribute> leset = res.get(i);
+            Collections.sort(leset);
+            for (int j = 0; j < leset.size(); j++)
+                if (!leset.get(j).equals(la.get(j))) {
+                    f = false;
+                    break;
+                }
+            if (f && leset.size() == la.size())
+                return res;
+        }
+        res.add(la);
+        return res;
+    }
+
+    private static void unionCElink(List<List<Attribute>> eset, List<Attribute> la) {
         boolean f;
         Collections.sort(la);
         for (int i = 0; i < eset.size(); i++) {
@@ -91,15 +125,26 @@ public class RelationProfile implements Serializable {
         eset.add(la);
     }
 
-    public static void unionCEsets(List<List<Attribute>> eset1, List<List<Attribute>> eset2) {
+    public static List<List<Attribute>> unionCEsets(List<List<Attribute>> eset1, List<List<Attribute>> eset2) {
+        List<List<Attribute>> res = RelationProfile.copyCE(eset1);
         for (int i = 0; i < eset2.size(); i++)
-            RelationProfile.unionCE(eset1, eset2.get(i));
+            RelationProfile.unionCElink(res, eset2.get(i));
+        return res;
     }
 
-    public static void insertAttribute(List<Attribute> l, Attribute a) {
-        if (!RelationProfile.hasAttribute(l, a))
-            l.add(a);
-
+    public static List<List<Attribute>> copyCE(List<List<Attribute>> eset) {
+        List<List<Attribute>> s = new LinkedList<>();
+        List<Attribute> la;
+        for (List<Attribute> li : eset
+                ) {
+            la = new LinkedList<>();
+            for (Attribute a : li
+                    ) {
+                la.add(a);
+            }
+            s.add(la);
+        }
+        return s;
     }
 
     public void insertVP(List<Attribute> l, Attribute a) {
@@ -174,15 +219,15 @@ public class RelationProfile implements Serializable {
         this.ces = ces;
     }
 
-    public double getTotalDimension(){
-        double dim=0;
-        for (Attribute a:rvp
-             ) {
-            dim+=a.getDimension();
-        }
-        for (Attribute a:rve
+    public double getTotalDimension() {
+        double dim = 0;
+        for (Attribute a : rvp
                 ) {
-            dim+=a.getDimension();
+            dim += a.getDimension();
+        }
+        for (Attribute a : rve
+                ) {
+            dim += a.getDimension();
         }
         return dim;
     }

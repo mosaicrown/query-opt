@@ -36,11 +36,11 @@ public class RelProfTests {
         System.out.println(l1);
         List<Attribute> l2 = new LinkedList<>();
         l2.add(a3);
-        RelationProfile.union(l1, l2);
+        l2=RelationProfile.union(l1, l2);
         System.out.println(l1);
-        RelationProfile.intersection(l2, l1);
+        l2=RelationProfile.intersection(l2, l1);
         System.out.println(l2);
-        RelationProfile.subtraction(l2, l1);
+        l2=RelationProfile.subtraction(l2, l1);
         System.out.println(l2);
         /**
          * Insertion, deletion
@@ -79,9 +79,9 @@ public class RelProfTests {
         System.out.println(rp2);
         System.out.println(rp3);
 
-        RelationProfile.union(rp1.getRip(), rp2.getRie());
+        rp1.setRip(RelationProfile.union(rp1.getRip(), rp2.getRie()));
         System.out.println(rp1);
-        RelationProfile.intersection(rp1.getRip(), rp2.getRie());
+        rp1.setRip(RelationProfile.intersection(rp1.getRip(), rp2.getRie()));
         System.out.println(rp1);
         /**
          * Some operation with the closure of equivalence set
@@ -92,10 +92,10 @@ public class RelProfTests {
         rp1.setCes(ll);
         System.out.println(rp1);
 
-        RelationProfile.unionCE(rp1.getCes(), z3);
+        rp1.setCes(RelationProfile.unionCE(rp1.getCes(), z3));
         System.out.println(rp1);
 
-        RelationProfile.unionCE(rp1.getCes(), z2);
+        rp1.setCes(RelationProfile.unionCE(rp1.getCes(), z2));
         System.out.println(rp1);
 
         List<List<Attribute>> lt = new LinkedList<>();
@@ -116,8 +116,8 @@ public class RelProfTests {
         System.out.println(rp2.getCes());
         System.out.println(rp3.getCes());
 
-        RelationProfile.unionCEsets(rp2.getCes(), rp3.getCes());
-        RelationProfile.unionCEsets(rp2.getCes(), lt);
+        rp2.setCes(RelationProfile.unionCEsets(rp2.getCes(), rp3.getCes()));
+        rp2.setCes(RelationProfile.unionCEsets(rp2.getCes(), lt));
         System.out.println(rp2.getCes());
 
     }

@@ -1,24 +1,23 @@
 package Trees;
 
 import Actors.Operation;
-import Trees.Semantics.Features;
 import Trees.Semantics.MetaChoke;
 
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TreeNode<E extends Operation> implements Serializable {
+public class TreeNode<T extends Operation> implements Serializable {
 
-    private TreeNode<E> parent;
+    private TreeNode<T> parent;
+    private List<TreeNode<T>> sons;
+    private TreeNode<T> oracle;
 
-    private List<TreeNode<E>> sons;
 
-    private E element;
-
+    private T element;
     private MetaChoke info;
 
-    private TreeNode<E> oracle;
+
 
     public TreeNode() {
         parent = null;
@@ -28,7 +27,7 @@ public class TreeNode<E extends Operation> implements Serializable {
         oracle = null;
     }
 
-    public TreeNode(E elem) {
+    public TreeNode(T elem) {
         parent = null;
         sons = new LinkedList<>();
         element = elem;
@@ -36,11 +35,11 @@ public class TreeNode<E extends Operation> implements Serializable {
         oracle = null;
     }
 
-    public TreeNode<E> getOracle() {
+    public TreeNode<T> getOracle() {
         return oracle;
     }
 
-    public void setOracle(TreeNode<E> oracle) {
+    public void setOracle(TreeNode<T> oracle) {
         this.oracle = oracle;
     }
 
@@ -52,31 +51,31 @@ public class TreeNode<E extends Operation> implements Serializable {
         this.info = info;
     }
 
-    public TreeNode<E> getParent() {
+    public TreeNode<T> getParent() {
         return parent;
     }
 
-    public void setParent(TreeNode<E> parent) {
+    public void setParent(TreeNode<T> parent) {
         this.parent = parent;
     }
 
-    public List<TreeNode<E>> getSons() {
+    public List<TreeNode<T>> getSons() {
         return sons;
     }
 
-    public void setSons(List<TreeNode<E>> sons) {
+    public void setSons(List<TreeNode<T>> sons) {
         this.sons = sons;
-        for (TreeNode<E> tn : sons
+        for (TreeNode<T> tn : sons
                 ) {
             tn.setParent(this);
         }
     }
 
-    public E getElement() {
+    public T getElement() {
         return element;
     }
 
-    public void setElement(E element) {
+    public void setElement(T element) {
         this.element = element;
     }
 
@@ -92,14 +91,14 @@ public class TreeNode<E extends Operation> implements Serializable {
         return false;
     }
 
-    public TreeNode<E> deepClone() {
+    public TreeNode<T> deepClone() {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(baos);
             oos.writeObject(this);
             ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
             ObjectInputStream ois = new ObjectInputStream(bais);
-            return (TreeNode<E>) ois.readObject();
+            return (TreeNode<T>) ois.readObject();
         } catch (IOException e) {
             return null;
         } catch (ClassNotFoundException e) {
@@ -128,7 +127,7 @@ public class TreeNode<E extends Operation> implements Serializable {
         }
         s += "\n";
 
-        for (TreeNode<E> tns : this.getSons()
+        for (TreeNode<T> tns : this.getSons()
                 ) {
             for (int i = 0; i < j; i++)
                 s += "\t";
@@ -147,7 +146,7 @@ public class TreeNode<E extends Operation> implements Serializable {
             s += "-->" + oracle.hashCode();
         s += "\n";
 
-        for (TreeNode<E> tns : this.getSons()
+        for (TreeNode<T> tns : this.getSons()
                 ) {
             for (int i = 0; i < j; i++)
                 s += "\t";
