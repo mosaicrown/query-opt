@@ -44,8 +44,10 @@ public class RelationProfile implements Serializable {
 
     public static void removeAttribute(List<Attribute> l, Attribute a) {
         for (int i = 0; i < l.size(); i++)
-            if (l.get(i).equals(a))
+            if (l.get(i).equals(a)) {
                 l.remove(i);
+                i--;
+            }
     }
 
     public static void union(List<Attribute> base, List<Attribute> complement) {
@@ -170,6 +172,19 @@ public class RelationProfile implements Serializable {
 
     public void setCes(List<List<Attribute>> ces) {
         this.ces = ces;
+    }
+
+    public double getTotalDimension(){
+        double dim=0;
+        for (Attribute a:rvp
+             ) {
+            dim+=a.getDimension();
+        }
+        for (Attribute a:rve
+                ) {
+            dim+=a.getDimension();
+        }
+        return dim;
     }
 
     public String toString() {

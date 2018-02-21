@@ -41,28 +41,28 @@ public class TreeNodeCostEngine {
             if (tns.getInfo().hasFeature(Features.NOTENCRYPTED)) {
                 //case symmetric
                 if (f == Features.ENCRYPTEDSYM) {
-                    m.Cc += tns.getElement().getOp_metric().outputSize * tns.getElement().getExecutor().getMetrics().Kc1;
+                    m.Cc += tns.getElement().getOp_metric().outputSize * tns.getElement().getExecutor().getMetrics().Kc_dse;//TODO CORRECTION
                 }
                 //case homomorphic
                 else if (f == Features.ENCRYPTEDHOM) {
-                    m.Cc += tns.getElement().getOp_metric().outputSize * tns.getElement().getExecutor().getMetrics().Kc2;
+                    m.Cc += tns.getElement().getOp_metric().outputSize * tns.getElement().getExecutor().getMetrics().Kc_dse;//TODO CORRECTION
                 }
             }
             //case encrypted -> no encryption
             else if (f == Features.NOTENCRYPTED) {
                 //case decrypt asymmetric
                 if (tns.getInfo().hasFeature(Features.ENCRYPTEDSYM)) {
-                    m.Cc += tns.getElement().getOp_metric().outputSize * candidate.getMetrics().Kc1;
+                    m.Cc += tns.getElement().getOp_metric().outputSize * candidate.getMetrics().Kc_dse;//TODO CORRECTION
                 }
                 //case decrypt homomorphic
                 else if (tns.getInfo().hasFeature(Features.ENCRYPTEDHOM)) {
-                    m.Cc += tns.getElement().getOp_metric().outputSize * candidate.getMetrics().Kc2;
+                    m.Cc += tns.getElement().getOp_metric().outputSize * candidate.getMetrics().Kc_dse;//TODO CORRECTION
                 }
             }
             //case wrong encryption double cost
             else {
-                m.Cc += tns.getElement().getOp_metric().outputSize * (candidate.getMetrics().Kc2
-                        + candidate.getMetrics().Kc1);
+                m.Cc += tns.getElement().getOp_metric().outputSize * (candidate.getMetrics().Kc_dse//TODO CORRECTION
+                        + candidate.getMetrics().Kc_dse);//TODO CORRECTION
             }
 
             /**
@@ -88,11 +88,11 @@ public class TreeNodeCostEngine {
         if (tn.isLeaf()) {
             //case symmetric
             if (f == Features.ENCRYPTEDSYM) {
-                m.Cc += tn.getElement().getOp_metric().outputSize * home.getMetrics().Kc1;
+                m.Cc += tn.getElement().getOp_metric().outputSize * home.getMetrics().Kc_dse;//TODO CORRECTION
             }
             //case homomorphic
             else if (f == Features.ENCRYPTEDHOM) {
-                m.Cc += tn.getElement().getOp_metric().outputSize * home.getMetrics().Kc2;
+                m.Cc += tn.getElement().getOp_metric().outputSize * home.getMetrics().Kc_dse;//TODO CORRECTION
             }
         }
         /**
@@ -106,9 +106,9 @@ public class TreeNodeCostEngine {
          */
         if (tn.isRoot()) {
             if (f == Features.ENCRYPTEDSYM)
-                m.Cc += tn.getElement().getOp_metric().outputSize * tn.getElement().getExecutor().getMetrics().Kc1;
+                m.Cc += tn.getElement().getOp_metric().outputSize * tn.getElement().getExecutor().getMetrics().Kc_dse;//TODO CORRECTION
             else if (f == Features.ENCRYPTEDHOM)
-                m.Cc += tn.getElement().getOp_metric().outputSize * tn.getElement().getExecutor().getMetrics().Kc2;
+                m.Cc += tn.getElement().getOp_metric().outputSize * tn.getElement().getExecutor().getMetrics().Kc_dse;//TODO CORRECTION
         }
         /**
          * Compute execution cost
@@ -145,9 +145,9 @@ public class TreeNodeCostEngine {
                 m2.Cm = op.outputSize * pm.Km;
             //encryption cost
             if (tn.getInfo().hasFeature(Features.ENCRYPTEDSYM))
-                m2.Cc = op.outputSize * tn.getOracle().getElement().getExecutor().getMetrics().Kc1;
+                m2.Cc = op.outputSize * tn.getOracle().getElement().getExecutor().getMetrics().Kc_dse;//TODO CORRECTION
             else if (tn.getInfo().hasFeature(Features.ENCRYPTEDHOM))
-                m2.Cc = op.outputSize * tn.getOracle().getElement().getExecutor().getMetrics().Kc2;
+                m2.Cc = op.outputSize * tn.getOracle().getElement().getExecutor().getMetrics().Kc_dse;//TODO CORRECTION
             //cost comparison
             if (m1.getIncrCost() > m2.getIncrCost())
                 return true;

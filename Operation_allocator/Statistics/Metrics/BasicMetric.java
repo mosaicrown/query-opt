@@ -57,4 +57,51 @@ public class BasicMetric implements Serializable {
         }
     }
 
+    public double getInputSize() {
+        return inputSize;
+    }
+
+    public void setInputSize(double inputSize) {
+        this.inputSize = inputSize;
+    }
+
+    public double getInputTupleSize() {
+        return inputTupleSize;
+    }
+
+    public void setInputTupleSize(double inputTupleSize) {
+        this.inputTupleSize = inputTupleSize;
+    }
+
+    public double getOutputSize() {
+        return outputSize;
+    }
+
+    public void setOutputSize(double outputSize) {
+        this.outputSize = outputSize;
+    }
+
+    public double getOutputTupleSize() {
+        return outputTupleSize;
+    }
+
+    public void setOutputTupleSize(double outputTupleSize) {
+        this.outputTupleSize = outputTupleSize;
+    }
+
+    public double getCPU_time() {
+        return CPU_time;
+    }
+
+    public void setCPU_time(double CPU_time) {
+        this.CPU_time = CPU_time;
+    }
+
+    public double getIO_time() {
+        return IO_time;
+    }
+
+    public void setIO_time(double IO_time) {
+        this.IO_time = IO_time;
+    }
 }

@@ -9,16 +9,14 @@ import java.io.Serializable;
 public class Attribute implements Serializable, Comparable<Attribute> {
 
 
-    private String name;
-    private double dimension;
+    private String name;                //unique attribute(column) name
+    private double dimension;           //dimension of attribute in KB
+    private AttributeState state;
 
     public Attribute(String n, double dim) {
         name = n;
         dimension = dim;
-    }
-
-    public boolean equals(Attribute attr) {
-        return name.equals(attr.getName());
+        state = AttributeState.PLAINTEXT;
     }
 
     public String getName() {
@@ -35,6 +33,20 @@ public class Attribute implements Serializable, Comparable<Attribute> {
 
     public void setDimension(double dimension) {
         this.dimension = dimension;
+    }
+
+    public AttributeState getState() {
+        return state;
+    }
+
+    public void setState(AttributeState state) {
+        this.state = state;
+    }
+
+    //standard java methods
+
+    public boolean equals(Attribute attr) {
+        return name.equals(attr.getName());
     }
 
     public int compareTo(Attribute a) {

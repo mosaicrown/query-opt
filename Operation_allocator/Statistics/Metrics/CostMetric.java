@@ -8,14 +8,14 @@ import java.io.*;
 
 public class CostMetric implements Serializable {
 
-    //estimated cost of motion as dollars per program
+    //estimated cost of motion as dollars per operation
     public double Cm;
-    //estimated cost of execution as dollars per program
+    //estimated cost of execution as dollars per operation
     public double Ce;
-    //etimated ciphering cost as dollars per program
+    //etimated ciphering cost as dollars per operation
     public double Cc;
 
-    //estimated total cost
+    //estimated total cost of a sub-tree
     public double Ct;
 
     public void setAllZero() {
