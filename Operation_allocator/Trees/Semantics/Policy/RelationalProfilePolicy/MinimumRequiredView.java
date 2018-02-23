@@ -49,8 +49,8 @@ public final class MinimumRequiredView {
 
     private static void moveToPlaintext(RelationProfile r, Attribute a) {
         RelationProfile.insertAttribute(r.getRvp(), a);
-        RelationProfile.insertAttribute(r.getRip(), a);
+        //RelationProfile.insertAttribute(r.getRip(), a);
         RelationProfile.removeAttribute(r.getRve(), a);
-        RelationProfile.removeAttribute(r.getRie(), a);
+        //RelationProfile.removeAttribute(r.getRie(), a);
     }
 }

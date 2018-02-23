@@ -1,5 +1,6 @@
 package Actors;
 
+import Data.Attribute;
 import Data.AttributeConstraint;
 import Statistics.Metrics.BasicMetric;
 import Statistics.Metrics.CostMetric;
@@ -12,35 +13,41 @@ import java.util.List;
 
 public class Operation implements Serializable {
 
+    /**
+     * TODO find a solution to prevent corruption of information caused by modification of attribute' shadow copies
+     * precisely to toString, outputRelationProfile and cost update after corrections
+     */
     private String name;
 
-    private CostMetric cost;
-    private BasicMetric op_metric;
-    private Provider executor;
+    protected CostMetric cost;
+    protected BasicMetric op_metric;
+    protected Provider executor;
 
-    private RelationProfile input_rp;
-    private RelationProfile output_rp;
-    private RelationProfile minimumReqView;
+    protected RelationProfile output_rp;
+    protected RelationProfile minimumReqView;
 
-    private List<AttributeConstraint> constraints;
+    protected List<Attribute> inputAttributes;
+    protected List<AttributeConstraint> constraints;
 
-    private Policy policy;
+    protected EncOperation postEncryption;
+    protected EncOperation preDecryption;
+
 
     public Operation() {
-        policy = new Policy();
-        input_rp = new RelationProfile();
         output_rp = new RelationProfile();
         minimumReqView = new RelationProfile();
         constraints = new LinkedList<>();
+        postEncryption = new Encryption();
+        preDecryption = new Decryption();
     }
 
-    public Policy getPolicy() {
-        return policy;
+    /**
+     * Method to override
+     */
+    public void computeOutRelProf() {
     }
 
-    public void setPolicy(Policy policy) {
-        this.policy = policy;
-    }
+    ;
 
     public Operation(String n) {
         name = n;
@@ -90,13 +97,6 @@ public class Operation implements Serializable {
         return cost;
     }
 
-    public RelationProfile getInput_rp() {
-        return input_rp;
-    }
-
-    public void setInput_rp(RelationProfile input_rp) {
-        this.input_rp = input_rp;
-    }
 
     public RelationProfile getOutput_rp() {
         return output_rp;
@@ -112,6 +112,42 @@ public class Operation implements Serializable {
 
     public void setMinimunReqView(RelationProfile minimunReqView) {
         this.minimumReqView = minimunReqView;
+    }
+
+    public EncOperation getPostEncryption() {
+        return postEncryption;
+    }
+
+    public void setPostEncryption(EncOperation postEncryption) {
+        this.postEncryption = postEncryption;
+    }
+
+    public EncOperation getPreDecryption() {
+        return preDecryption;
+    }
+
+    public void setPreDecryption(EncOperation preDecryption) {
+        this.preDecryption = preDecryption;
+    }
+
+    public RelationProfile getMinimumReqView() {
+        return minimumReqView;
+    }
+
+    public void setMinimumReqView(RelationProfile minimumReqView) {
+        this.minimumReqView = minimumReqView;
+    }
+
+    public List<Attribute> getInputAttributes() {
+        return inputAttributes;
+    }
+
+    public void setInputAttributes(List<Attribute> inputAttributes) {
+        this.inputAttributes = inputAttributes;
+    }
+
+    public void addInputAttributes(List<Attribute> li) {
+        inputAttributes = RelationProfile.union(inputAttributes, li);
     }
 
     public Operation deepClone() {

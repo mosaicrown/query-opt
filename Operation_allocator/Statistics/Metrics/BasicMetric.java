@@ -104,4 +104,12 @@ public class BasicMetric implements Serializable {
     public void setIO_time(double IO_time) {
         this.IO_time = IO_time;
     }
+
+    public double getOutNofTuples(){
+        return (outputSize/outputTupleSize);
+    }
+
+    public double getInNofTuples(){
+        return (inputSize/inputTupleSize);
+    }
 }
