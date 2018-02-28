@@ -4,7 +4,6 @@ import Data.Attribute;
 import Data.AttributeConstraint;
 import Statistics.Metrics.BasicMetric;
 import Statistics.Metrics.CostMetric;
-import Trees.Semantics.Policy.Policy;
 import Trees.Semantics.Policy.RelationalProfilePolicy.RelationProfile;
 
 import java.io.*;
@@ -17,41 +16,51 @@ public class Operation implements Serializable {
      * TODO find a solution to prevent corruption of information caused by modification of attribute' shadow copies
      * precisely to toString, outputRelationProfile and cost update after corrections
      */
-    private String name;
-
+    //operation descriptor
+    protected String name;
+    //operation family
+    protected String familyname;
+    //basic statistics
     protected CostMetric cost;
     protected BasicMetric op_metric;
     protected Provider executor;
-
+    //security policy artifacts
     protected RelationProfile output_rp;
     protected RelationProfile minimumReqView;
-
+    //additional policy specifiers
     protected List<Attribute> inputAttributes;
     protected List<AttributeConstraint> constraints;
 
-    protected EncOperation postEncryption;
-    protected EncOperation preDecryption;
+    public Operation(String n) {
 
+        output_rp = new RelationProfile();
+        minimumReqView = new RelationProfile();
+
+        inputAttributes = new LinkedList<>();
+        constraints = new LinkedList<>();
+
+        name = n;
+        familyname = "Generic op";
+    }
 
     public Operation() {
         output_rp = new RelationProfile();
         minimumReqView = new RelationProfile();
+
+        inputAttributes = new LinkedList<>();
         constraints = new LinkedList<>();
-        postEncryption = new Encryption();
-        preDecryption = new Decryption();
+
+        name = "No op name";
+        familyname = "Generic op";
     }
 
     /**
-     * Method to override
+     * Method to override to produce output relation profile
+     * typical of particular operation
      */
-    public void computeOutRelProf() {
+    public void computeOutRelProf(List<RelationProfile> lrp) {
     }
 
-    ;
-
-    public Operation(String n) {
-        name = n;
-    }
 
     public String toString() {
         return name;
@@ -59,6 +68,14 @@ public class Operation implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getFamilyname() {
+        return familyname;
+    }
+
+    public void setFamilyname(String familyname) {
+        this.familyname = familyname;
     }
 
     public void setOp_metric(BasicMetric op_metric) {
@@ -104,30 +121,6 @@ public class Operation implements Serializable {
 
     public void setOutput_rp(RelationProfile output_rp) {
         this.output_rp = output_rp;
-    }
-
-    public RelationProfile getMinimunReqView() {
-        return minimumReqView;
-    }
-
-    public void setMinimunReqView(RelationProfile minimunReqView) {
-        this.minimumReqView = minimunReqView;
-    }
-
-    public EncOperation getPostEncryption() {
-        return postEncryption;
-    }
-
-    public void setPostEncryption(EncOperation postEncryption) {
-        this.postEncryption = postEncryption;
-    }
-
-    public EncOperation getPreDecryption() {
-        return preDecryption;
-    }
-
-    public void setPreDecryption(EncOperation preDecryption) {
-        this.preDecryption = preDecryption;
     }
 
     public RelationProfile getMinimumReqView() {

@@ -9,9 +9,11 @@ import java.util.List;
 
 public class Provider implements Serializable {
 
+    //provider descriptor
     private String name;
-
+    //provider cost metrics
     private ProviderMetric metrics;
+    //sets of attributes to specify policy visibility
     private List<Attribute> aplains;
     private List<Attribute> aencs;
 

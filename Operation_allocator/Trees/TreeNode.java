@@ -1,30 +1,37 @@
 package Trees;
 
+import Trees.Semantics.SemanticOperations.EncOperation;
+import Trees.Semantics.SemanticOperations.Encryption;
 import Actors.Operation;
+import Data.Attribute;
+import Data.AttributeConstraint;
 import Trees.Semantics.MetaChoke;
 
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TreeNode<T extends Operation> implements Serializable {
+public final class TreeNode<T extends Operation> implements Serializable {
 
     private TreeNode<T> parent;
     private List<TreeNode<T>> sons;
     private TreeNode<T> oracle;
 
-
     private T element;
     private MetaChoke info;
 
-
+    //fictitious operation added to the plan
+    private EncOperation encryption;
 
     public TreeNode() {
         parent = null;
         sons = new LinkedList<>();
+        oracle = null;
+
         element = null;
         info = new MetaChoke<Object>();
-        oracle = null;
+
+        encryption = new EncOperation();
     }
 
     public TreeNode(T elem) {
@@ -91,6 +98,14 @@ public class TreeNode<T extends Operation> implements Serializable {
         return false;
     }
 
+    public EncOperation getEncryption() {
+        return encryption;
+    }
+
+    public void setEncryption(EncOperation encryption) {
+        this.encryption = encryption;
+    }
+
     public TreeNode<T> deepClone() {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -106,32 +121,79 @@ public class TreeNode<T extends Operation> implements Serializable {
         }
     }
 
+    /**
+     * Complete toString to make easy to see all the content of an operation
+     * @return
+     */
     public String printTree() {
         return printTreeWithLevel(1);
     }
 
     public String printTreeWithLevel(int j) {
+        String tabs = "";
+        for (int i = 0; i < j; i++)
+            tabs += "\t";
         String s = this.getElement().toString()
-                + "\t Ct:" + this.getElement().getCost().Ct
+                + "\t Fam.name: " + this.getElement().getFamilyname()
+                + "\n";
+        s += tabs;
+        if (this.getElement().getExecutor() != null)
+            s += "\t Executor:" + this.getElement().getExecutor().selfDescription();
+        s += "\t Ct:" + this.getElement().getCost().Ct
                 + "\t Ce:" + this.getElement().getCost().Ce
                 + "\t Cm:" + this.getElement().getCost().Cm
-                + "\t Cc:" + this.getElement().getCost().Cc;
-        if(this.getElement().getExecutor()!=null)
-            s+="\t-/-Executor:"+this.getElement().getExecutor().selfDescription();
-        if (this.getElement().getPolicy() != null)
-            s += "  -/-Policy:" + this.getElement().getPolicy().printPolicy();
-        s += "  -/-Features:";
+                + "\t Cc:" + this.getElement().getCost().Cc
+                + "\n";
+        if (this.getElement().getOp_metric() != null) {
+            s += tabs;
+            s += "\t Op. metrics:" + this.getElement().getOp_metric().toString()
+                    + "\n";
+        }
+
+        s+=tabs;
+        s += "\t Features:";
         for (Object f : this.getInfo().getFeatures()
                 ) {
             s += "*" + f.toString();
         }
         s += "\n";
 
+        if (this.getElement().getMinimumReqView() != null) {
+            s += tabs;
+            s += "\t Minimum required view:" + this.getElement().getMinimumReqView().toString()
+                    + "\n";
+        }
+        if (this.getElement().getOutput_rp() != null) {
+            s += tabs;
+            s += "\t Output Relation Profile:" + this.getElement().getOutput_rp().toString()
+                    + "\n";
+        }
+        if(this.getElement().getInputAttributes().size()>0){
+            s += tabs;
+            s+="\t Input attributes: | ";
+            for (Attribute a: this.getElement().getInputAttributes()
+                 ) {
+                s+=a.longToString()+" | ";
+            }
+            s+="\n";
+        }
+        if(this.getElement().getConstraints().size()>0){
+            s += tabs;
+            s+="\t Attribute constraints: | ";
+            for (AttributeConstraint a: this.getElement().getConstraints()
+                    ) {
+                s+=a.longToString()+" | ";
+            }
+            s+="\n";
+        }
+
+        s+=tabs;
+        s+="\t Applied encryption: "+this.getEncryption().toString();
+        s+="\n";
+
         for (TreeNode<T> tns : this.getSons()
                 ) {
-            for (int i = 0; i < j; i++)
-                s += "\t";
-            s += "|__" + tns.printTreeWithLevel(j + 1);
+            s += tabs + "|____" + tns.printTreeWithLevel(j + 1);
         }
         return s;
     }

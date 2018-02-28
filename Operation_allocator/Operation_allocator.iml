@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Actors/test" />
+      <excludeFolder url="file://$MODULE_DIR$/Allocator" />
       <excludeFolder url="file://$MODULE_DIR$/Allocator/AllocatorTest" />
       <excludeFolder url="file://$MODULE_DIR$/Trees/Semantics/Policy/PolicyTest" />
       <excludeFolder url="file://$MODULE_DIR$/Trees/Semantics/SemanticTests" />

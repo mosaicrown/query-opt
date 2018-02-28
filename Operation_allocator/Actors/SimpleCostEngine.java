@@ -13,8 +13,8 @@ public final class SimpleCostEngine {
         m.setAllZero();
         //Compute execution cost, hour conversion
         m.Ce = op.getOp_metric().CPU_time * exec.getMetrics().Kcpu / 3600 + op.getOp_metric().IO_time * exec.getMetrics().Kio / 3600;
-        //Compute motion cost
-        m.Cm = op.getOp_metric().outputSize * exec.getMetrics().Km;
+        //Compute motion cost(inbound + outbound)
+        m.Cm = 2 * op.getOp_metric().outputSize * exec.getMetrics().Km;
         return m;
     }
 

@@ -1,8 +1,12 @@
 package Data;
 
-import java.io.Serializable;
+import Trees.Semantics.Policy.RelationalProfilePolicy.RelationProfile;
 
-public class AttributeConstraint implements Serializable {
+import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
+
+public final class AttributeConstraint implements Serializable {
 
     private Attribute attr;
     private AttributeState state;
@@ -29,5 +33,9 @@ public class AttributeConstraint implements Serializable {
 
     public void setState(AttributeState state) {
         this.state = state;
+    }
+
+    public String longToString() {
+        return new String("n: " + attr.toString() + " s: " + state);
     }
 }

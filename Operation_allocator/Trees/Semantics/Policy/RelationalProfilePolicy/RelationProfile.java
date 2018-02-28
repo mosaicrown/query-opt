@@ -2,11 +2,13 @@ package Trees.Semantics.Policy.RelationalProfilePolicy;
 
 import Actors.Provider;
 import Data.Attribute;
+import Data.AttributeState;
 
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * This class represents    RELATION PROFILE
@@ -157,7 +159,7 @@ public final class RelationProfile implements Serializable {
                 for (int j = 0; j < res.size(); j++) {
                     lres = res.get(j);
                     if (RelationProfile.hasAttribute(lres, a)) {
-                        present=true;
+                        present = true;
                         if (RelationProfile.subtraction(l1, lres).size() != 0) {
                             res.remove(j);
                             res.add(j, RelationProfile.union(lres, l1));
@@ -415,6 +417,38 @@ public final class RelationProfile implements Serializable {
             return Visibility.PLAINTEXT;
         else
             return Visibility.ENCRYPTED;
+    }
+
+    public static List<Attribute> getVisPlaint(List<Attribute> la) {
+        List<Attribute> lm = new LinkedList<>();
+        for (Attribute a : la
+                ) {
+            if (a.getState() == AttributeState.PLAINTEXT)
+                RelationProfile.insertAttribute(lm, a);
+        }
+        return lm;
+    }
+
+    public static List<Attribute> getVisEnc(List<Attribute> la) {
+        List<Attribute> lm = new LinkedList<>();
+        for (Attribute a : la
+                ) {
+            if (a.getState() != AttributeState.PLAINTEXT)
+                RelationProfile.insertAttribute(lm, a);
+        }
+        return lm;
+    }
+
+    public static RelationProfile copyRP(RelationProfile inrp) {
+        RelationProfile res = new RelationProfile();
+
+        res.setRvp(RelationProfile.copyLoA(inrp.getRvp()));
+        res.setRve(RelationProfile.copyLoA(inrp.getRve()));
+        res.setRip(RelationProfile.copyLoA(inrp.getRip()));
+        res.setRie(RelationProfile.copyLoA(inrp.getRie()));
+        res.setCes(RelationProfile.copyCE(inrp.getCes()));
+
+        return res;
     }
 }
 

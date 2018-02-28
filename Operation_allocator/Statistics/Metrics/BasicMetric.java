@@ -1,6 +1,9 @@
 package Statistics.Metrics;
 
+import Data.Attribute;
+
 import java.io.*;
+import java.util.List;
 
 public class BasicMetric implements Serializable {
     /**
@@ -20,7 +23,12 @@ public class BasicMetric implements Serializable {
     public double IO_time;                  //estimated io execution time
 
     public BasicMetric() {
-
+        inputSize = 0;
+        inputTupleSize = 0;
+        outputSize = 0;
+        outputTupleSize = 0;
+        CPU_time = 0;
+        IO_time = 0;
     }
 
     public BasicMetric(double m1, double m2, double m3, double m4, double m5, double m6) {
@@ -105,11 +113,11 @@ public class BasicMetric implements Serializable {
         this.IO_time = IO_time;
     }
 
-    public double getOutNofTuples(){
-        return (outputSize/outputTupleSize);
+    public double getOutNofTuples() {
+        return (outputSize / outputTupleSize);
     }
 
-    public double getInNofTuples(){
-        return (inputSize/inputTupleSize);
+    public double getInNofTuples() {
+        return (inputSize / inputTupleSize);
     }
 }
