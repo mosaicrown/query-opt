@@ -29,7 +29,7 @@ public class Operation implements Serializable {
     protected RelationProfile minimumReqView;
     //additional policy specifiers
     protected List<Attribute> inputAttributes;
-    protected List<AttributeConstraint> constraints;
+    protected List<AttributeConstraint> constraints;    //this in particular specifies the eventual encryption type
 
     public Operation(String n) {
 
@@ -61,6 +61,9 @@ public class Operation implements Serializable {
     public void computeOutRelProf(List<RelationProfile> lrp) {
     }
 
+    public List<Attribute> getHomogeneousSet(){
+        return new LinkedList<>();
+    }
 
     public String toString() {
         return name;

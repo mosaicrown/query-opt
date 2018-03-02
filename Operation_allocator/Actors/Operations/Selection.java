@@ -51,4 +51,11 @@ public final class Selection extends Operation implements Serializable {
             super.output_rp.setCes(RelationProfile.unionCE(rp.getCes(), selectionSet));
         }
     }
+
+    @Override
+    public List<Attribute> getHomogeneousSet(){
+        if (selectionSet.size()==1)
+            return new LinkedList<>();
+        return RelationProfile.copyLoA(selectionSet);
+    }
 }

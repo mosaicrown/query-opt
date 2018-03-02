@@ -50,6 +50,10 @@ public class BasicMetric implements Serializable {
                         "\t IO_time:\t" + IO_time;
     }
 
+    public BasicMetric copyBasicMetric() {
+        return new BasicMetric(inputSize, inputTupleSize, outputSize, outputTupleSize, CPU_time, IO_time);
+    }
+
     public BasicMetric deepClone() {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();

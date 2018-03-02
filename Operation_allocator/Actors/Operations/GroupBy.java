@@ -56,4 +56,9 @@ public final class GroupBy extends Operation implements Serializable {
         super.output_rp.setRie(RelationProfile.union(rp.getRie(), RelationProfile.intersection(ve, projectedSet)));
         super.output_rp.setCes(RelationProfile.copyCE(rp.getCes()));
     }
+
+    @Override
+    public List<Attribute> getHomogeneousSet(){
+        return RelationProfile.copyLoA(functionSet);
+    }
 }

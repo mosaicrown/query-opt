@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * This class represents    RELATION PROFILE
@@ -450,12 +449,18 @@ public final class RelationProfile implements Serializable {
 
         return res;
     }
+
+    public static boolean isAllowedToSeePlaintext(Provider p, Attribute a) {
+        if (RelationProfile.hasAttribute(p.getAplains(), a))
+            return true;
+        return false;
+    }
+
+    public static boolean isAllowedToSeeEncrypted(Provider p, Attribute a) {
+        List<Attribute> wholeset = RelationProfile.union(p.getAencs(), p.getAplains());
+        if (RelationProfile.hasAttribute(wholeset, a))
+            return true;
+        return false;
+    }
 }
 
-/**
- * Visibility levels for uniform visibility rule
- */
-enum Visibility {
-    ENCRYPTED,
-    PLAINTEXT
-}

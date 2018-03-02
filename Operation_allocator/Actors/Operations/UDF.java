@@ -75,4 +75,9 @@ public final class UDF extends Operation implements Serializable {
         super.output_rp.setRie(RelationProfile.union(ie, RelationProfile.subtraction(functionSet, RelationProfile.intersection(functionSet, ie))));
         super.output_rp.setCes(RelationProfile.copyCE(RelationProfile.unionCE(eset, functionSet)));
     }
+
+    @Override
+    public List<Attribute> getHomogeneousSet(){
+        return RelationProfile.copyLoA(functionSet);
+    }
 }

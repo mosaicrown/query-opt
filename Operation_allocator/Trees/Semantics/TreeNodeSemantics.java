@@ -6,6 +6,7 @@ import Actors.Provider;
 import Actors.SimpleCostEngine;
 import Data.Attribute;
 import Data.AttributeConstraint;
+import Misc.Triple;
 import Statistics.Metrics.BasicMetric;
 import Statistics.Metrics.CostMetric;
 import Statistics.Metrics.UDFMetric;
@@ -19,9 +20,12 @@ import java.util.List;
 
 public class TreeNodeSemantics {
 
-    /**
-     * TODO for both the two subsequent methods: Do CPU_time and IO_time changes after data expansion/contraction?
-     */
+    private static Provider home = null;
+
+    //first thing to set before to use methods
+    private static void setHomeProvider(Provider p) {
+        home = p;
+    }
 
     public static <T extends Operation> void deriveCostBarriers(TreeNode<T> tn, Provider p) {
         CostMetric m = SimpleCostEngine.computeExecutionVsMotionCost(tn.getElement(), p);
@@ -200,6 +204,65 @@ public class TreeNodeSemantics {
             lrp.add(RelationProfile.copyRP(tns.getElement().getOutput_rp()));
         }
         tn.getElement().computeOutRelProf(lrp);
+    }
+
+    /**
+     * This method receives attribute encryption/decryption directives, then integrates information about tree structure,
+     * applies encryption to attributes, updates operation metrics and flushes updates in output
+     * A simple model helps to infer new time metrics
+     * NB Requires home provider to be configured
+     *
+     * @param tn  Operation node that needs encryption enforcement
+     * @param la  List of attribute constraints to be applied
+     * @param <T> Generic operation
+     */
+    public static <T extends Operation> void applyEncryptionAndPropagateEffects(TreeNode<T> tn, List<AttributeConstraint> la, Provider endp) {
+        if (tn.isLeaf()) {
+            //First create a fake relation profile
+            RelationProfile inrp = new RelationProfile();
+            //new artificial relation profile made by attributes' list deep copy
+            inrp.setRvp(RelationProfile.copyLoA(tn.getOracle().getElement().getInputAttributes()));
+            //new artificial metric with output custom stats
+            BasicMetric bm = tn.getOracle().getElement().getOp_metric().copyBasicMetric();
+            bm.outputTupleSize = bm.inputTupleSize;
+            bm.outputSize = bm.inputSize;
+            //completion of the set of inputs
+            Triple<RelationProfile, BasicMetric, Provider> t = new Triple<>(inrp, bm, home);
+            List<Triple<RelationProfile, BasicMetric, Provider>> sonTable = new LinkedList<>();
+            sonTable.add(t);
+            //perform encryption
+            tn.getEncryption().performOperation(sonTable, la, endp);
+        } else {//case non leaf node
+            BasicMetric bm = null;
+            Triple<RelationProfile, BasicMetric, Provider> temp = null;
+            List<Triple<RelationProfile, BasicMetric, Provider>> sonsTable = new LinkedList<>();
+            for (TreeNode<T> tns : tn.getOracle().getSons()
+                    ) {
+                sonsTable.add(new Triple<>(tns.getElement().getOutput_rp(), tns.getElement().getOp_metric(), tns.getElement().getExecutor()));
+            }
+            //perform encryption
+            tn.getEncryption().performOperation(sonsTable, la, endp);
+        }
+
+        //now set new attributes, infer stats and propagate effects
+        //new input attributes
+        tn.getElement().setInputAttributes(tn.getEncryption().getA());
+        //new input metrics
+        tn.getElement().getOp_metric().inputSize = tn.getEncryption().getInputBasicMetric().inputSize;
+        tn.getElement().getOp_metric().inputTupleSize = tn.getEncryption().getInputBasicMetric().inputTupleSize;
+        //new time metrics
+        double oldAttributeVolume = tn.getOracle().getElement().getOp_metric().inputSize;
+        double newAttributeVolume = tn.getElement().getOp_metric().inputSize;
+        //new CPU_time (logarithmic model)
+        double oldTime = tn.getOracle().getElement().getOp_metric().CPU_time;
+        tn.getElement().getOp_metric().CPU_time = oldTime * (1 + Math.log10(newAttributeVolume / oldAttributeVolume) / Math.log10(2));
+        //new IO_time (linear model)
+        oldTime = tn.getOracle().getElement().getOp_metric().IO_time;
+        tn.getElement().getOp_metric().IO_time = oldTime * (1 + newAttributeVolume / oldAttributeVolume);
+
+        //now compute new output relation profile
+        TreeNodeSemantics.computeOperationOutputRelProf(tn);
+        //note that input attributes dimension are flushed into output
     }
 
 

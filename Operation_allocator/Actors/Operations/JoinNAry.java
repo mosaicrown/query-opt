@@ -57,4 +57,9 @@ public final class JoinNAry extends Operation implements Serializable {
         super.output_rp.setRie(ie);
         super.output_rp.setCes(eset);
     }
+
+    @Override
+    public List<Attribute> getHomogeneousSet(){
+        return RelationProfile.copyLoA(equivalentSet);
+    }
 }
