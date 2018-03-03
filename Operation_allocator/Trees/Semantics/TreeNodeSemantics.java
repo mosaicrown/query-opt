@@ -8,6 +8,7 @@ import Data.Attribute;
 import Data.AttributeConstraint;
 import Misc.Triple;
 import Statistics.Metrics.BasicMetric;
+import Statistics.Metrics.BasicMetricUpdater;
 import Statistics.Metrics.CostMetric;
 import Statistics.Metrics.UDFMetric;
 import Trees.Semantics.Policy.RelationalProfilePolicy.MinimumRequiredView;
@@ -253,12 +254,12 @@ public class TreeNodeSemantics {
         //new time metrics
         double oldAttributeVolume = tn.getOracle().getElement().getOp_metric().inputSize;
         double newAttributeVolume = tn.getElement().getOp_metric().inputSize;
-        //new CPU_time (logarithmic model)
+
         double oldTime = tn.getOracle().getElement().getOp_metric().CPU_time;
-        tn.getElement().getOp_metric().CPU_time = oldTime * (1 + Math.log10(newAttributeVolume / oldAttributeVolume) / Math.log10(2));
-        //new IO_time (linear model)
+        tn.getElement().getOp_metric().CPU_time = BasicMetricUpdater.updateCPUtime(oldTime, oldAttributeVolume, newAttributeVolume);
+
         oldTime = tn.getOracle().getElement().getOp_metric().IO_time;
-        tn.getElement().getOp_metric().IO_time = oldTime * (newAttributeVolume / oldAttributeVolume);
+        tn.getElement().getOp_metric().IO_time = BasicMetricUpdater.updateIOtime(oldTime, oldAttributeVolume, newAttributeVolume);
 
         //now compute new output relation profile
         TreeNodeSemantics.computeOperationOutputRelProf(tn);

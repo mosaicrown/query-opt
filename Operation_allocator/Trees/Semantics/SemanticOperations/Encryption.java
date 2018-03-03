@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public final class Encryption {
-                                            //TODO COMPLETE 2 ENCRYPTION PROFILES
+    //TODO correct PAL and OPE new attributes dimensions
 
     public static Triple<CostMetric, BasicMetric, List<Attribute>> applyEncryption
             (List<Triple<RelationProfile, BasicMetric, Provider>> sonTable, List<AttributeConstraint> attrConstr, Provider end) {
@@ -41,6 +41,10 @@ public final class Encryption {
 
             for (Attribute a : rpattributes
                     ) {
+                //incorporation of motion before encryption applied, this helps cost computation
+                //NB the motion of data does not happens if it has to be encrypted
+                cm.Cm += noftuples * a.getDimension() * (start.getMetrics().Km + end.getMetrics().Km);
+
                 for (AttributeConstraint ac : attrConstr
                         ) {
                     Attribute acattr = ac.getAttr();
@@ -93,10 +97,38 @@ public final class Encryption {
                                     a.setState(AttributeState.DETSYMENC);
                                     break;
                                 case PALCRYPTENC:
+                                    /**
+                                     * Correction needed, approximate cost and data expansion
+                                     */
+                                    //1) compute encryption cost
+                                    cm.Cc += (noftuples * oldAttributeDim) * start.getMetrics().Kc_pal;
 
+                                    //2) set new attribute dimension
+                                    a.setDimension(a.getOriginal_size() * 32);
+                                    newAttributeDim = a.getDimension();
+
+                                    //3) compute motion cost
+                                    cm.Cm += noftuples * (newAttributeDim - oldAttributeDim) * (start.getMetrics().Km + end.getMetrics().Km);
+
+                                    //4) set new attribute state
+                                    a.setState(AttributeState.PALCRYPTENC);
                                     break;
                                 case OPESCHENC:
+                                    /**
+                                     * Correction needed, approximate cost and data expansion
+                                     */
+                                    //1) compute encryption cost
+                                    cm.Cc += (noftuples * oldAttributeDim) * start.getMetrics().Kc_ope;
 
+                                    //2) set new attribute dimension
+                                    a.setDimension(a.getOriginal_size() * 32);
+                                    newAttributeDim = a.getDimension();
+
+                                    //3) compute motion cost
+                                    cm.Cm += noftuples * (newAttributeDim - oldAttributeDim) * (start.getMetrics().Km + end.getMetrics().Km);
+
+                                    //4) set new attribute state
+                                    a.setState(AttributeState.OPESCHENC);
                                     break;
 
                                 default:
@@ -138,6 +170,7 @@ public final class Encryption {
                                     break;
                                 case OPESCHENC:
                                     oldAttributeDim = a.getDimension();
+                                    //insert attribute inside list of attributes
                                     //1) compute decryption cost
                                     cm.Cc += (noftuples * oldAttributeDim) * start.getMetrics().Kc_ope;
                                     //2) set new attribute dimension
@@ -160,7 +193,6 @@ public final class Encryption {
 
                 //new tuple dimension update
                 newtupledim += a.getDimension();
-                //insert attribute inside list of attributes
                 RelationProfile.insertAttribute(la, a);
 
             }//end foreach 2
