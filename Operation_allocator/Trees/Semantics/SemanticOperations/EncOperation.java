@@ -15,7 +15,6 @@ import java.util.List;
 public class EncOperation implements Serializable {
 
     /**
-     * Each element of the list is an attribute plus a directive of state to be applied
      * At the end of the computation of encryption/decryption this will collect all attributes after alteration
      */
     private List<Attribute> A;

@@ -66,7 +66,7 @@ public class RelationProfilesGenerator {
          * CONSTRAINTS EXPLANATION
          * The meaning of operation constraints is this:
          * Everything could work plaintext, but if a provider needs the encryption to see, then someone is
-         * constrained to apply that specific kind of encryption to make the operation possible
+         * constrained to apply that specific kind of encryption(or decryption) to make the operation possible
          */
         /**
          * ENCRYPTION-DECRYPTION MOVES
@@ -106,8 +106,8 @@ public class RelationProfilesGenerator {
         /**
          * 3)   check for incoherence of intents
          */
-        List<Attribute> incompatibility = RelationProfile.intersection(hasToBeEncrypted, hasToBePlaintext);
-        if (incompatibility.size() != 0)
+        List<Attribute> incompatibilities = RelationProfile.intersection(hasToBeEncrypted, hasToBePlaintext);
+        if (incompatibilities.size() != 0)
             return res;
 
         /**
@@ -137,7 +137,7 @@ public class RelationProfilesGenerator {
                 ) {
             RelationProfile.insertAttribute(constrainedAttributes, ac.getAttr());
         }
-        //intercept all attributes that have to be encrypted and are subjected to constrains
+        //intercept all attributes that have to be encrypted and are subjected to constraints
         List<Attribute> encryptedConstrained = RelationProfile.intersection(hasToBeEncrypted, constrainedAttributes);
         AttributeState commonTarget = AttributeState.PLAINTEXT;
 
@@ -215,6 +215,10 @@ public class RelationProfilesGenerator {
                     }
                 }
             }
+            //all attributes to be encrypted
+            List<Attribute> encset = new LinkedList<>();
+            //union (built in duplicate check)
+            encset = RelationProfile.union(hasToBeEncrypted, lopes);
             //2 cases:
             // -an encryption constraint and compatible list of states
             // -no encryption constraint and homogeneous list of states
@@ -223,7 +227,7 @@ public class RelationProfilesGenerator {
                     //assign encryption taking care of no double encryption
                     for (Attribute na : newAttrSet
                             ) {
-                        for (Attribute nb : lopes
+                        for (Attribute nb : encset
                                 ) {
                             if (na.equals(nb))
                                 if (na.getState() == AttributeState.PLAINTEXT || na.getState() == commonTarget)
@@ -242,7 +246,7 @@ public class RelationProfilesGenerator {
                     //assign encryption taking care of no double encryption
                     for (Attribute na : newAttrSet
                             ) {
-                        for (Attribute nb : lopes
+                        for (Attribute nb : encset
                                 ) {
                             if (na.equals(nb))
                                 if (na.getState() == AttributeState.PLAINTEXT || na.getState() == commonTarget)
@@ -259,7 +263,7 @@ public class RelationProfilesGenerator {
          * on provider end, so the compliant list of moves to transform data has to be extracted
          */
 
-        //generate encryption moves
+        //generation encryption moves
         AttributeConstraint tac = new AttributeConstraint();
         List<AttributeConstraint> ltac = new LinkedList<>();
 
@@ -273,6 +277,7 @@ public class RelationProfilesGenerator {
                         tac = new AttributeConstraint(tb.copyAttribute(), ta.getState());
                         ltac.add(tac);
                     }
+                    break;
                 }
             }
         }

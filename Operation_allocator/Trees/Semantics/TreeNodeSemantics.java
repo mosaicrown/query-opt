@@ -236,7 +236,7 @@ public class TreeNodeSemantics {
             BasicMetric bm = null;
             Triple<RelationProfile, BasicMetric, Provider> temp = null;
             List<Triple<RelationProfile, BasicMetric, Provider>> sonsTable = new LinkedList<>();
-            for (TreeNode<T> tns : tn.getOracle().getSons()
+            for (TreeNode<T> tns : tn.getSons()
                     ) {
                 sonsTable.add(new Triple<>(tns.getElement().getOutput_rp(), tns.getElement().getOp_metric(), tns.getElement().getExecutor()));
             }
@@ -258,7 +258,7 @@ public class TreeNodeSemantics {
         tn.getElement().getOp_metric().CPU_time = oldTime * (1 + Math.log10(newAttributeVolume / oldAttributeVolume) / Math.log10(2));
         //new IO_time (linear model)
         oldTime = tn.getOracle().getElement().getOp_metric().IO_time;
-        tn.getElement().getOp_metric().IO_time = oldTime * (1 + newAttributeVolume / oldAttributeVolume);
+        tn.getElement().getOp_metric().IO_time = oldTime * (newAttributeVolume / oldAttributeVolume);
 
         //now compute new output relation profile
         TreeNodeSemantics.computeOperationOutputRelProf(tn);
