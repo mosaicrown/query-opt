@@ -11,14 +11,14 @@ import Trees.TreeNode;
 import java.util.LinkedList;
 import java.util.List;
 
-public class RelationProfilesGenerator {
+public class PolicyMovesGenerator {
 
 
     private Provider p1;
     private Provider p2;
     private Provider p3;
 
-    public RelationProfilesGenerator() {
+    public PolicyMovesGenerator() {
 
     }
 

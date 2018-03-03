@@ -19,7 +19,7 @@ public class TreeNodeVolatileCostEngine {
     private static Provider home = null;
 
     //first thing to set before to use methods
-    private static void setHomeProvider(Provider p) {
+    public static void setHomeProvider(Provider p) {
         home = p;
     }
 

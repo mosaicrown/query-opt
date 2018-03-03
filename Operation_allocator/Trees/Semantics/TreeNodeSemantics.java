@@ -24,7 +24,7 @@ public class TreeNodeSemantics {
     private static Provider home = null;
 
     //first thing to set before to use methods
-    private static void setHomeProvider(Provider p) {
+    public static void setHomeProvider(Provider p) {
         home = p;
     }
 
@@ -261,7 +261,10 @@ public class TreeNodeSemantics {
         oldTime = tn.getOracle().getElement().getOp_metric().IO_time;
         tn.getElement().getOp_metric().IO_time = BasicMetricUpdater.updateIOtime(oldTime, oldAttributeVolume, newAttributeVolume);
 
-        //now compute new output relation profile
+        //update output metrics
+        TreeNodeSemantics.updateOperationOutputMetrics(tn);
+
+        //compute new output relation profile
         TreeNodeSemantics.computeOperationOutputRelProf(tn);
         //note that input attributes dimension are flushed into output
     }
