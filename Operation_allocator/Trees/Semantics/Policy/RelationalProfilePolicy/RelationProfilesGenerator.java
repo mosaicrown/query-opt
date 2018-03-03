@@ -308,4 +308,33 @@ public class RelationProfilesGenerator {
         return f;
     }
 
+    //NB requires home to be configured
+    public <T extends Operation> List<Pair<List<AttributeConstraint>, Provider>> decryptionMovesToHome(TreeNode<T> tn) {
+        //result list
+        List<Pair<List<AttributeConstraint>, Provider>> res = new LinkedList<>();
+
+        //retrieve operation input list of attributes
+        List<Attribute> inla = tn.getElement().getInputAttributes();
+
+        //generation of decryption moves
+        AttributeConstraint tac = null;
+        List<AttributeConstraint> ltac = new LinkedList<>();
+
+        for (Attribute ta : inla
+                ) {
+            if (ta.getState() != AttributeState.PLAINTEXT) {
+                //retrieve old data and new target state (encryption operation will enforce that attribute)
+                tac = new AttributeConstraint(ta.copyAttribute(), AttributeState.PLAINTEXT);
+                ltac.add(tac);
+            }
+        }
+
+        //building results
+        //at the moment only one transformation inserted
+        Pair<List<AttributeConstraint>, Provider> pair = new Pair<>(ltac, p1);
+        res.add(pair);
+
+        return res;
+    }
+
 }

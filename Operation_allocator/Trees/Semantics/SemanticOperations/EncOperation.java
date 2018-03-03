@@ -19,8 +19,8 @@ public class EncOperation implements Serializable {
      */
     private List<Attribute> A;
     /**
-     * This field contains the additional cost(in dollars) due to the application of encryption
-     * It means that it synthesize the additional cost of motion and encryption
+     * This field contains the cost of motion and the additional cost(in dollars) due to the application of encryption
+     * It means that it synthesize the cost of motion and encryption
      */
     protected CostMetric deltaMetric;
 

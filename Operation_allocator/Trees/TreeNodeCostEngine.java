@@ -9,10 +9,6 @@ import Trees.Semantics.Features;
 
 public class TreeNodeCostEngine {
 
-
-    /**
-     * NB the cost engine does not apply/correct operations features status
-     */
     public static Provider home;
 
     public static Provider getHome() {
@@ -23,7 +19,10 @@ public class TreeNodeCostEngine {
         TreeNodeCostEngine.home = home;
     }
 
-    public static <T extends Operation> CostMetric computeCost(TreeNode<T> tn, Provider candidate, Features f) {
+    /**
+     * NB TreeNodeCostEngine applies cost metric to TreeNode tn
+     */
+    public static <T extends Operation> CostMetric computeAndSetCost(TreeNode<T> tn, Provider candidate) {
         CostMetric m = new CostMetric();
         m.setAllZero();
 
@@ -34,91 +33,24 @@ public class TreeNodeCostEngine {
              */
             m.Ct += tns.getElement().getCost().Ct;
 
-            /**
-             * Compute encryption cost
-             */
-            //case no encrypted data -> encryption
-            if (tns.getInfo().hasFeature(Features.NOTENCRYPTED)) {
-                //case symmetric
-                if (f == Features.ENCRYPTEDSYM) {
-                    m.Cc += tns.getElement().getOp_metric().outputSize * tns.getElement().getExecutor().getMetrics().Kc_dse;//TODO CORRECTION
-                }
-                //case homomorphic
-                else if (f == Features.ENCRYPTEDHOM) {
-                    m.Cc += tns.getElement().getOp_metric().outputSize * tns.getElement().getExecutor().getMetrics().Kc_dse;//TODO CORRECTION
-                }
-            }
-            //case encrypted -> no encryption
-            else if (f == Features.NOTENCRYPTED) {
-                //case decrypt asymmetric
-                if (tns.getInfo().hasFeature(Features.ENCRYPTEDSYM)) {
-                    m.Cc += tns.getElement().getOp_metric().outputSize * candidate.getMetrics().Kc_dse;//TODO CORRECTION
-                }
-                //case decrypt homomorphic
-                else if (tns.getInfo().hasFeature(Features.ENCRYPTEDHOM)) {
-                    m.Cc += tns.getElement().getOp_metric().outputSize * candidate.getMetrics().Kc_dse;//TODO CORRECTION
-                }
-            }
-            //case wrong encryption double cost
-            else {
-                m.Cc += tns.getElement().getOp_metric().outputSize * (candidate.getMetrics().Kc_dse//TODO CORRECTION
-                        + candidate.getMetrics().Kc_dse);//TODO CORRECTION
-            }
-
-            /**
-             * Compute motion cost
-             */
-            if (!tns.getElement().getExecutor().selfDescription().equals(candidate.selfDescription())) {
-                m.Cm += tns.getElement().getOp_metric().outputSize * (tns.getElement().getExecutor().getMetrics().Km + candidate.getMetrics().Km);
-            }
-
-        }//end foreach son
-
-        /**
-         * Compute leaf motion cost
-         */
-        if (tn.isLeaf()) {
-            if (!candidate.selfDescription().equals(home.selfDescription())) {
-                m.Cm += tn.getElement().getOp_metric().inputSize * (tn.getElement().getExecutor().getMetrics().Km + candidate.getMetrics().Km);
-            }
-        }
-        /**
-         * Compute leaf encryption cost
-         */
-        if (tn.isLeaf()) {
-            //case symmetric
-            if (f == Features.ENCRYPTEDSYM) {
-                m.Cc += tn.getElement().getOp_metric().outputSize * home.getMetrics().Kc_dse;//TODO CORRECTION
-            }
-            //case homomorphic
-            else if (f == Features.ENCRYPTEDHOM) {
-                m.Cc += tn.getElement().getOp_metric().outputSize * home.getMetrics().Kc_dse;//TODO CORRECTION
-            }
-        }
-        /**
-         * Compute root motion cost
-         */
-        if (tn.isRoot() && !candidate.selfDescription().equals(home.selfDescription())) {
-            m.Cm += tn.getElement().getOp_metric().outputSize * (candidate.getMetrics().Km + home.getMetrics().Km);
-        }
-        /**
-         * Compute root decryption cost
-         */
-        if (tn.isRoot()) {
-            if (f == Features.ENCRYPTEDSYM)
-                m.Cc += tn.getElement().getOp_metric().outputSize * tn.getElement().getExecutor().getMetrics().Kc_dse;//TODO CORRECTION
-            else if (f == Features.ENCRYPTEDHOM)
-                m.Cc += tn.getElement().getOp_metric().outputSize * tn.getElement().getExecutor().getMetrics().Kc_dse;//TODO CORRECTION
         }
         /**
          * Compute execution cost
          */
         m.Ce += tn.getElement().getOp_metric().CPU_time * candidate.getMetrics().Kcpu / 3600 + tn.getElement().getOp_metric().IO_time * candidate.getMetrics().Kio / 3600;
-
+        /**
+         * Retrieve motion and encryption costs
+         */
+        m.Cc += tn.getEncryption().getDeltaMetric().Cc;
+        m.Cm += tn.getEncryption().getDeltaMetric().Cm;
         /**
          * Cost summation
          */
         m.Ct += m.Ce + m.Cc + m.Cm;
+        /**
+         * Set up new cost
+         */
+        tn.getElement().setCost(m);
 
         return m;
     }
