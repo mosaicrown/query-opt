@@ -32,7 +32,17 @@ public class CostMetric implements Serializable {
                 "\t Cc:" + Cc;
     }
 
-    public double getIncrCost(){
+    public CostMetric copy() {
+        CostMetric temp = new CostMetric();
+        temp.setAllZero();
+        temp.Ct = this.Ct;
+        temp.Ce = this.Ce;
+        temp.Cc = this.Cc;
+        temp.Cm = this.Cm;
+        return temp;
+    }
+
+    public double getIncrCost() {
         return this.Ce + this.Cc + this.Cm;
     }
 

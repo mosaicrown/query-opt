@@ -156,8 +156,6 @@ public class OperationAllocator<T extends Operation> {
                  */
                 System.out.print("CASE 3 Allocating of:" + tn.getElement().toString() + "\tto:" + p1.selfDescription());
                 System.out.println("\t" + tn.getElement().getCost().toString());
-                //set new executor
-                tn.getElement().setExecutor(p1);
                 /**
                  * Validation step
                  */
@@ -180,8 +178,6 @@ public class OperationAllocator<T extends Operation> {
              */
             System.out.print("CASE 4 Allocating of:" + tn.getElement().toString() + "\tto:" + p1.selfDescription());
             System.out.println("\t" + tn.getElement().getCost().toString());
-            //set new executor
-            tn.getElement().setExecutor(p1);
             /**
              * Check the total incremental cost and if it is greater than oracle cost launch validation/correction algorithm
              */
@@ -200,7 +196,6 @@ public class OperationAllocator<T extends Operation> {
 
     private void validateDecision(TreeNode<T> tn) {
         /**
-         * TODO
          * When the validation/correction algorithm is thrown on a TreeNode tn only his offspring is validated
          * tn is forced to provider 1 without check of alternatives
          */
@@ -225,14 +220,9 @@ public class OperationAllocator<T extends Operation> {
 
     private void correctDecision(TreeNode<T> tn) {
         //compute new cost metric with new fixed assignment
-        CostMetric cmp1 = TreeNodeCostEngine.computeCost(tn, p1, Features.NOTENCRYPTED);
-        //assign operation
-        tn.getElement().setCost(cmp1);
-        //delete old data feature if exists
-        tn.getInfo().removeFeature(Features.ENCRYPTEDSYM);
-        tn.getInfo().removeFeature(Features.ENCRYPTEDHOM);
-        //set new data feature
-        tn.getInfo().addFeature(Features.NOTENCRYPTED);
+        List<Pair<List<AttributeConstraint>, Provider>> tpair = generator.decryptionMovesToHome(tn);
+        TreeNodeSemantics.applyEncryptionAndPropagateEffects(tn, tpair.get(0).getFirst(), p1);
+        TreeNodeCostEngine.computeAndSetCost(tn, p1);
         //set new executor
         tn.getElement().setExecutor(p1);
         //validate assignment
@@ -246,16 +236,11 @@ public class OperationAllocator<T extends Operation> {
     }
 
     private void correctCost(TreeNode<T> tn) {
-        Features f = null;
-        MetaChoke mt = tn.getInfo();
-        if (mt.hasFeature(Features.ENCRYPTEDSYM))
-            f = Features.ENCRYPTEDSYM;
-        else if (mt.hasFeature(Features.ENCRYPTEDHOM))
-            f = Features.ENCRYPTEDHOM;
-        else
-            f = Features.NOTENCRYPTED;
-        CostMetric cm = TreeNodeCostEngine.computeCost(tn, tn.getElement().getExecutor(), f);
-        tn.getElement().setCost(cm);
+        //at this point there may have been multiple subsequent corrections (parent-son), this means that the previous
+        //decision correction has to be corrected again, enforcing data distribution and updating decryption cost to zero
+        List<Pair<List<AttributeConstraint>, Provider>> tpair = generator.decryptionMovesToHome(tn);
+        TreeNodeSemantics.applyEncryptionAndPropagateEffects(tn, tpair.get(0).getFirst(), p1);
+        TreeNodeCostEngine.computeAndSetCost(tn, p1);
     }
 
     public Provider getP1() {
