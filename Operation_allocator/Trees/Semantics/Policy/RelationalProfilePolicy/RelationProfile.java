@@ -98,7 +98,7 @@ public final class RelationProfile implements Serializable {
             List<Attribute> leset = res.get(i);
             Collections.sort(leset);
             for (int j = 0; j < leset.size(); j++)
-                if (!leset.get(j).equals(la.get(j))) {
+                if (!RelationProfile.hasAttribute(la, leset.get(j))) {
                     f = false;
                     break;
                 }

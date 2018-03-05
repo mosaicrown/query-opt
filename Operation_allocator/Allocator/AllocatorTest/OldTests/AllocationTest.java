@@ -1,4 +1,4 @@
-package Allocator.AllocatorTest;
+package Allocator.AllocatorTest.OldTests;
 
 import Actors.Operation;
 import Actors.Provider;

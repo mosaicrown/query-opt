@@ -12,10 +12,6 @@ import java.util.List;
 
 public class Operation implements Serializable {
 
-    /**
-     * TODO find a solution to prevent corruption of information caused by modification of attribute' shadow copies
-     * precisely to toString, outputRelationProfile and cost update after corrections
-     */
     //operation descriptor
     protected String name;
     //operation family

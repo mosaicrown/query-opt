@@ -61,7 +61,7 @@ public class SimplePolicyGenerator extends PolicyGenerator {
             //add new visibility feature
             tn.getInfo().addFeature(visLev);
             //set new policy
-            tn.getElement().setPolicy(p);
+            //V2 INCOMPATIBLE  tn.getElement().setPolicy(p);
         }
     }
 
@@ -86,7 +86,7 @@ public class SimplePolicyGenerator extends PolicyGenerator {
             //IN CASE NO FEATURE WAS PROVIDED TO LEAF SET IT TO PUBLIC
             f.addFeature(Features.PUBLIC);
         }
-        tn.getElement().setPolicy(opp);
+        //V2 INCOMPATIBLE tn.getElement().setPolicy(opp);
     }
 
     private Policy applyPublicVF() {

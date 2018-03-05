@@ -37,9 +37,12 @@ public final class TreeNode<T extends Operation> implements Serializable {
     public TreeNode(T elem) {
         parent = null;
         sons = new LinkedList<>();
+        oracle = null;
+
         element = elem;
         info = new MetaChoke<Object>();
-        oracle = null;
+
+        encryption = new EncOperation();
     }
 
     public TreeNode<T> getOracle() {
@@ -123,6 +126,7 @@ public final class TreeNode<T extends Operation> implements Serializable {
 
     /**
      * Complete toString to make easy to see all the content of an operation
+     *
      * @return
      */
     public String printTree() {
@@ -134,11 +138,11 @@ public final class TreeNode<T extends Operation> implements Serializable {
         for (int i = 0; i < j; i++)
             tabs += "\t";
         String s = this.getElement().toString()
-                + "\t Fam.name: " + this.getElement().getFamilyname()
+                + "\t Fam.name:  " + this.getElement().getFamilyname()
                 + "\n";
         s += tabs;
         if (this.getElement().getExecutor() != null)
-            s += "\t Executor:" + this.getElement().getExecutor().selfDescription();
+            s += "\t Executor:  " + this.getElement().getExecutor().selfDescription();
         s += "\t Ct:" + this.getElement().getCost().Ct
                 + "\t Ce:" + this.getElement().getCost().Ce
                 + "\t Cm:" + this.getElement().getCost().Cm
@@ -146,12 +150,12 @@ public final class TreeNode<T extends Operation> implements Serializable {
                 + "\n";
         if (this.getElement().getOp_metric() != null) {
             s += tabs;
-            s += "\t Op. metrics:" + this.getElement().getOp_metric().toString()
+            s += "\t Op. metrics:  " + this.getElement().getOp_metric().toString()
                     + "\n";
         }
 
-        s+=tabs;
-        s += "\t Features:";
+        s += tabs;
+        s += "\t Features:  ";
         for (Object f : this.getInfo().getFeatures()
                 ) {
             s += "*" + f.toString();
@@ -160,36 +164,36 @@ public final class TreeNode<T extends Operation> implements Serializable {
 
         if (this.getElement().getMinimumReqView() != null) {
             s += tabs;
-            s += "\t Minimum required view:" + this.getElement().getMinimumReqView().toString()
+            s += "\t Minimum required view:  " + this.getElement().getMinimumReqView().toString()
                     + "\n";
         }
         if (this.getElement().getOutput_rp() != null) {
             s += tabs;
-            s += "\t Output Relation Profile:" + this.getElement().getOutput_rp().toString()
+            s += "\t Output Relation Profile:  " + this.getElement().getOutput_rp().toString()
                     + "\n";
         }
-        if(this.getElement().getInputAttributes().size()>0){
+        if (this.getElement().getInputAttributes().size() > 0) {
             s += tabs;
-            s+="\t Input attributes: | ";
-            for (Attribute a: this.getElement().getInputAttributes()
-                 ) {
-                s+=a.longToString()+" | ";
-            }
-            s+="\n";
-        }
-        if(this.getElement().getConstraints().size()>0){
-            s += tabs;
-            s+="\t Attribute constraints: | ";
-            for (AttributeConstraint a: this.getElement().getConstraints()
+            s += "\t Input attributes:  | ";
+            for (Attribute a : this.getElement().getInputAttributes()
                     ) {
-                s+=a.longToString()+" | ";
+                s += a.longToString() + " | ";
             }
-            s+="\n";
+            s += "\n";
+        }
+        if (this.getElement().getConstraints().size() > 0) {
+            s += tabs;
+            s += "\t Attribute constraints:  | ";
+            for (AttributeConstraint a : this.getElement().getConstraints()
+                    ) {
+                s += a.longToString() + " | ";
+            }
+            s += "\n";
         }
 
-        s+=tabs;
-        s+="\t Applied encryption: "+this.getEncryption().toString();
-        s+="\n";
+        s += tabs;
+        s += "\t Applied encryption:  " + this.getEncryption().toString();
+        s += "\n";
 
         for (TreeNode<T> tns : this.getSons()
                 ) {
@@ -202,7 +206,7 @@ public final class TreeNode<T extends Operation> implements Serializable {
         return printTreeReferencesWithLevel(1);
     }
 
-    public String printTreeReferencesWithLevel(int j) {
+    private String printTreeReferencesWithLevel(int j) {
         String s = "" + this.hashCode();
         if (oracle != null)
             s += "-->" + oracle.hashCode();
@@ -213,6 +217,25 @@ public final class TreeNode<T extends Operation> implements Serializable {
             for (int i = 0; i < j; i++)
                 s += "\t";
             s += "|__" + tns.printTreeReferencesWithLevel(j + 1);
+        }
+        return s;
+    }
+
+    public String printTreeAssignments() {
+        return printTreeAssignmentslev(1);
+    }
+
+    private String printTreeAssignmentslev(int j) {
+        String s = this.getElement().toString() + "-->";
+        s += this.getElement().getExecutor().selfDescription();
+        s += " (cost: " + this.getElement().getCost().Ct + ")";
+        s += "\n";
+
+        for (TreeNode<T> tns : this.getSons()
+                ) {
+            for (int i = 0; i < j; i++)
+                s += "\t";
+            s += "|__" + tns.printTreeAssignmentslev(j + 1);
         }
         return s;
     }

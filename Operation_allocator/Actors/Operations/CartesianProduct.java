@@ -10,7 +10,15 @@ import java.util.List;
 
 public final class CartesianProduct extends Operation implements Serializable {
 
+    private List<Attribute> equivalentSet;
+
     public CartesianProduct() {
+        equivalentSet = new LinkedList<>();
+        super.familyname = "Cartesian product";
+    }
+
+    public CartesianProduct(List<Attribute> es) {
+        equivalentSet = es;
         super.familyname = "Cartesian product";
     }
 
@@ -28,6 +36,8 @@ public final class CartesianProduct extends Operation implements Serializable {
             ie = RelationProfile.union(ie, rp.getRie());
             eset = RelationProfile.unionCEsets(eset, rp.getCes());
         }
+        //completion of new equivalence set
+        eset = RelationProfile.unionCE(eset, equivalentSet);
         //add visible plaintext data
         List<Attribute> vp = RelationProfile.getVisPlaint(super.inputAttributes);
         //add visible ecnrypted data

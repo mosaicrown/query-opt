@@ -6,7 +6,6 @@ import Data.AttributeConstraint;
 import Misc.Pair;
 import Statistics.Metrics.CostMetric;
 import Trees.Semantics.Features;
-import Trees.Semantics.MetaChoke;
 import Trees.Semantics.Policy.PolicyPair;
 import Trees.Semantics.Policy.RelationalProfilePolicy.PolicyMovesGenerator;
 import Trees.Semantics.TreeNodeSemantics;
@@ -126,8 +125,6 @@ public class OperationAllocator<T extends Operation> {
                 TreeNodeSemantics.applyEncryptionAndPropagateEffects(tn, bestpair.get(0).getFirst(), bestpair.get(0).getSecond());
                 //2) compute new tn's cost and hook it
                 TreeNodeCostEngine.computeAndSetCost(tn, bestpair.get(0).getSecond());
-                //set new executor
-                tn.getElement().setExecutor(bestpair.get(0).getSecond());
                 /**
                  * Debug info
                  */
@@ -137,7 +134,6 @@ public class OperationAllocator<T extends Operation> {
                 //assign operation to external provider
                 TreeNodeSemantics.applyEncryptionAndPropagateEffects(tn, bestpair.get(0).getFirst(), bestpair.get(0).getSecond());
                 TreeNodeCostEngine.computeAndSetCost(tn, bestpair.get(0).getSecond());
-                tn.getElement().setExecutor(bestpair.get(0).getSecond());
                 /**
                  * Debug info
                  */
@@ -149,8 +145,6 @@ public class OperationAllocator<T extends Operation> {
                 TreeNodeSemantics.applyEncryptionAndPropagateEffects(tn, p1pairs.get(0).getFirst(), p1);
                 //2) compute new tn's cost and hook it
                 TreeNodeCostEngine.computeAndSetCost(tn, p1);
-                //set new executor
-                tn.getElement().setExecutor(p1);
                 /**
                  * Debug info
                  */
@@ -161,8 +155,6 @@ public class OperationAllocator<T extends Operation> {
                  */
                 //launch validation/correction algorithm
                 validateDecision(tn);
-                //need to correct synthesized cost (may have been corrections)
-                correctCost(tn);
             }
         } else { //implies no execution alternative to provider 1 found
             /**
@@ -171,8 +163,6 @@ public class OperationAllocator<T extends Operation> {
             TreeNodeSemantics.applyEncryptionAndPropagateEffects(tn, p1pairs.get(0).getFirst(), p1);
             //2) compute new tn's cost and hook it
             TreeNodeCostEngine.computeAndSetCost(tn, p1);
-            //set new executor
-            tn.getElement().setExecutor(p1);
             /**
              * Debug info
              */
@@ -187,8 +177,6 @@ public class OperationAllocator<T extends Operation> {
                  */
                 //launch validation/correction algorithm, else continue
                 validateDecision(tn);
-                //need to correct synthesized cost (may have been corrections)
-                correctCost(tn);
             }
         }
 
@@ -199,6 +187,7 @@ public class OperationAllocator<T extends Operation> {
          * When the validation/correction algorithm is thrown on a TreeNode tn only his offspring is validated
          * tn is forced to provider 1 without check of alternatives
          */
+        System.out.println("jumped to son");
         for (TreeNode<T> tns : tn.getSons()
                 ) {
             if (!TreeNodeCostEngine.validateCost(tns)) {
@@ -210,28 +199,25 @@ public class OperationAllocator<T extends Operation> {
         /**
          * Debug info
          */
-        System.out.println("\tBefore correction: " + tn.getElement().getCost().toString());
+        System.out.println("\tBefore correction of : " +tn.getElement().toString()+" cost: "+ tn.getElement().getCost().toString());
         correctCost(tn);
         /**
          * Debug info
          */
-        System.out.println("\tAfter correction: " + tn.getElement().getCost().toString());
+        System.out.println("\tAfter correction of : " +tn.getElement().toString()+" cost: " + tn.getElement().getCost().toString());
     }
 
     private void correctDecision(TreeNode<T> tn) {
         //compute new cost metric with new fixed assignment
         List<Pair<List<AttributeConstraint>, Provider>> tpair = generator.decryptionMovesToHome(tn);
         TreeNodeSemantics.applyEncryptionAndPropagateEffects(tn, tpair.get(0).getFirst(), p1);
-        TreeNodeCostEngine.computeAndSetCost(tn, p1);
-        //set new executor
-        tn.getElement().setExecutor(p1);
-        //validate assignment
-        validateDecision(tn);
         /**
          * Debug info
          */
         System.out.print("Correction of:" + tn.getElement().toString() + "\tto:" + p1.selfDescription());
         System.out.println("\t" + tn.getElement().getCost().toString());
+        //validate assignment
+        validateDecision(tn);
 
     }
 

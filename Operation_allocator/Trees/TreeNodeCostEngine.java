@@ -50,6 +50,7 @@ public class TreeNodeCostEngine {
          * Compute execution cost
          */
         m.Ce += tn.getElement().getOp_metric().CPU_time * candidate.getMetrics().Kcpu / 3600 + tn.getElement().getOp_metric().IO_time * candidate.getMetrics().Kio / 3600;
+        //System.out.println("m.Ce: "+m.Ce);
         /**
          * Retrieve motion and encryption costs
          */

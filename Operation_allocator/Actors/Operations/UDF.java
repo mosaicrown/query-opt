@@ -53,7 +53,7 @@ public final class UDF extends Operation implements Serializable {
     public void computeOutRelProf(List<RelationProfile> lrp) {
         //get visible plaintext data
         List<Attribute> vp = RelationProfile.getVisPlaint(super.inputAttributes);
-        //get visible ecnrypted data
+        //get visible encrypted data
         List<Attribute> ve = RelationProfile.getVisEnc(super.inputAttributes);
         //implicit attributes
         List<Attribute> ip = new LinkedList<>();

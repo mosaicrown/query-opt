@@ -73,9 +73,9 @@ public class EncOperation implements Serializable {
             List<Triple<RelationProfile, BasicMetric, Provider>> sonTable, List<AttributeConstraint> attrConstr, Provider end
     ) {
         Triple<CostMetric, BasicMetric, List<Attribute>> t = Encryption.applyEncryption(sonTable, attrConstr, end);
-        A = t.getThird();
-        inputBasicMetric = t.getSecond();
-        deltaMetric = t.getFirst();
+        A = RelationProfile.copyLoA(t.getThird());
+        inputBasicMetric = t.getSecond().copyBasicMetric();
+        deltaMetric = t.getFirst().copy();
 
     }
 

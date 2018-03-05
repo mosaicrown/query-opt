@@ -5,10 +5,6 @@ import java.io.Serializable;
 public enum Features implements Serializable{
 
     /**
-     * TODO
-     * New feature to indicate that operation works  only with certain kind of encryption
-     */
-    /**
      * Cost features
      */
     EXPDATADOMCOST,     //the price of moving is greater than compunting

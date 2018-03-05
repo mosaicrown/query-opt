@@ -1,4 +1,4 @@
-package Allocator.AllocatorTest;
+package Allocator.AllocatorTest.OldTests;
 
 import Actors.Operation;
 import Actors.Provider;
@@ -7,8 +7,8 @@ import Statistics.Metrics.BasicMetric;
 import Statistics.Metrics.CostMetric;
 import Statistics.Metrics.ProviderMetric;
 import Statistics.Metrics.UDFMetric;
+import Statistics.UDFprofilers.CubicProfile;
 import Statistics.UDFprofilers.Profiler;
-import Statistics.UDFprofilers.PseudolinearProfile;
 import Trees.Semantics.Features;
 import Trees.Semantics.Policy.Policy;
 import Trees.Semantics.Policy.SimplePolicyGenerator;
@@ -19,10 +19,10 @@ import Trees.TreeNodeCostEngine;
 import java.util.LinkedList;
 import java.util.List;
 
-public class UDFTest1 {
+public class UDFTest3 {
     /**
      * This test allocates operations of complex hybrid query plan that uses 2 UDF special functions
-     * with pseudo-linear CPU & IO profile
+     * with cubic CPU & IO profile
      * NB Computational paradigm is still relational, UDF computation is done inside a VM
      * Average instruction complexity is used do describe code execution
      */
@@ -31,7 +31,7 @@ public class UDFTest1 {
          * Operation Metrics
          */
         BasicMetric m1 = new BasicMetric(2300, 0.04, 120.0, 0.04, 0.09, 0.35);
-        BasicMetric m2 = new BasicMetric(120, 0.04, 3.5, 0.04, 0.98, 0.0001);
+        BasicMetric m2 = new BasicMetric(120, 0.04, 35, 0.04, 0.98, 0.0001);
         BasicMetric m3 = new BasicMetric(600, 0.014, 300.0, 0.014, 0.06, 0.28);
         BasicMetric m4 = new BasicMetric(3.5, 0.012, 3.5, 0.012, 0.00023, 0.007);
         BasicMetric m5 = new BasicMetric(230, 0.03, 230.0, 0.03, 0.079, 0.263);
@@ -40,13 +40,13 @@ public class UDFTest1 {
         BasicMetric m8 = new BasicMetric(94, 0.024, 8.9, 0.038, 0.34, 0.07);
         BasicMetric m9 = new BasicMetric(8.0, 0.038, 8.9, 0.038, 0.0004, 0.07);
 
-        UDFMetric udfm1 = new UDFMetric<PseudolinearProfile>(15, 0.25e-9, 400e3, (m3.outputSize + m2.outputSize),
-                (m3.outputTupleSize + m2.outputTupleSize) / 2, 28, 0.074);
+        UDFMetric udfm1 = new UDFMetric<CubicProfile>(15, 0.25e-9, 400e3, (m3.outputSize + m2.outputSize),
+                (m3.outputTupleSize + m2.outputTupleSize) / 2, 2.8, 0.074);
 
-        Profiler profiler = new PseudolinearProfile(100, 3.2, 4.5);
+        Profiler profiler = new CubicProfile(100, 32, 4.5, 2.7);
         udfm1.setProfiler(profiler);
 
-        UDFMetric udfm2 = new UDFMetric<PseudolinearProfile>(15, 0.25e-9, 400e3, udfm1.outputSize,
+        UDFMetric udfm2 = new UDFMetric<CubicProfile>(15, 0.25e-9, 400e3, udfm1.outputSize,
                 udfm1.outputTupleSize, 34, 0.074);
         udfm2.setProfiler(profiler);
 
@@ -95,8 +95,8 @@ public class UDFTest1 {
         Operation o8 = new Operation("ComputeScalar8");
         Operation o9 = new Operation("Select");
 
-        Operation udfo1 = new Operation("udf pseudolinear1");
-        Operation udfo2 = new Operation("udf pseudolinear2");
+        Operation udfo1 = new Operation("udf cubic 1");
+        Operation udfo2 = new Operation("udf cubic 2");
 
         //set operation metrics
         o1.setOp_metric(m1);

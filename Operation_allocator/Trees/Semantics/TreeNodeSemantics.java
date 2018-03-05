@@ -112,20 +112,50 @@ public class TreeNodeSemantics {
         }
         if (tn.isLeaf()) {
             List<RelationProfile> lrp = new LinkedList<>();
+            //need to create fake relation profile
+            RelationProfile inrp = new RelationProfile();
+            //new artificial relation profile made by attributes' list deep copy
+            inrp.setRvp(RelationProfile.copyLoA(tn.getElement().getInputAttributes()));
+            lrp.add(inrp);
+            //now compute output relation profile
             tn.getElement().computeOutRelProf(lrp);
+            //new udf metrics
+            BasicMetric bm = tn.getElement().getOp_metric();
+            if (bm instanceof UDFMetric)
+                ((UDFMetric) bm).computeMetrics();
+            //update operation output metrics
+            TreeNodeSemantics.updateOperationOutputMetrics(tn);
         } else {
             List<Attribute> la = new LinkedList<>();
-            //retrieve sons's attributes
+            //retrieve sons's attributes and metrics
+            double temp = 0;
+            double newInputTuple = 0;
+            //delete old data
+            tn.getElement().getOp_metric().inputSize = 0;
             for (TreeNode<T> tns : tn.getSons()
                     ) {
-                la = RelationProfile.union(tns.getElement().getOutput_rp().getRvp(), tns.getElement().getOutput_rp().getRve());
+                temp = 0;
+                la = RelationProfile.union(RelationProfile.union(la, tns.getElement().getOutput_rp().getRvp()), tns.getElement().getOutput_rp().getRve());
+                for (Attribute aaa : la
+                        ) {
+                    newInputTuple += aaa.getDimension();
+                    temp += aaa.getDimension();
+                }
+                tn.getElement().getOp_metric().inputSize += tns.getElement().getOp_metric().getOutNofTuples() * temp;
             }
             //la is a list deep copied
             tn.getElement().setInputAttributes(la);
+            tn.getElement().getOp_metric().setInputTupleSize(newInputTuple);
+            //new udf metrics
+            BasicMetric bm = tn.getElement().getOp_metric();
+            if (bm instanceof UDFMetric)
+                ((UDFMetric) bm).computeMetrics();
             //NB    1) here operation custom sets have already been set
             //      2) at first definition operations' basic metrics have to be inserted manually
             //now compute output relation profile
             TreeNodeSemantics.computeOperationOutputRelProf(tn);
+            //update operation output metrics
+            TreeNodeSemantics.updateOperationOutputMetrics(tn);
 
         }
     }
@@ -204,6 +234,13 @@ public class TreeNodeSemantics {
                 ) {
             lrp.add(RelationProfile.copyRP(tns.getElement().getOutput_rp()));
         }
+        if (tn.isLeaf()) {
+            //need to create fake relation profile
+            RelationProfile inrp = new RelationProfile();
+            //new artificial relation profile made by attributes' list deep copy
+            inrp.setRvp(RelationProfile.copyLoA(tn.getElement().getInputAttributes()));
+            lrp.add(inrp);
+        }
         tn.getElement().computeOutRelProf(lrp);
     }
 
@@ -248,6 +285,8 @@ public class TreeNodeSemantics {
         //now set new attributes, infer stats and propagate effects
         //new input attributes
         tn.getElement().setInputAttributes(tn.getEncryption().getA());
+        //new executor
+        tn.getElement().setExecutor(endp);
         //new input metrics
         tn.getElement().getOp_metric().inputSize = tn.getEncryption().getInputBasicMetric().inputSize;
         tn.getElement().getOp_metric().inputTupleSize = tn.getEncryption().getInputBasicMetric().inputTupleSize;
