@@ -44,15 +44,15 @@ public class AllocatorV2Test {
         /**
          * Operation Metrics
          */
-        BasicMetric m1 = new BasicMetric(2300, 0.04, 120.0, 0.04, 0.09, 0.35);
-        BasicMetric m2 = new BasicMetric(120, 0.04, 3.5, 0.04, 0.98, 0.0001);
-        BasicMetric m3 = new BasicMetric(600, 0.014, 300.0, 0.014, 0.06, 0.28);
+        BasicMetric m1 = new BasicMetric(2300, 0.04, 90.0, 0.03, 0.09, 0.35);
+        BasicMetric m2 = new BasicMetric(120, 0.04, 0.875, 0.01, 0.98, 0.0001);
+        BasicMetric m3 = new BasicMetric(93.5, 0.07, 857.14, 0.04, 0.06, 0.28);
         BasicMetric m4 = new BasicMetric(3.5, 0.012, 3.5, 0.012, 0.00023, 0.007);
         BasicMetric m5 = new BasicMetric(230, 0.03, 230.0, 0.03, 0.079, 0.263);
-        BasicMetric m6 = new BasicMetric(3.5, 0.012, 0.42, 0.12, 0.007, 0.0003);
+        BasicMetric m6 = new BasicMetric(3.5, 0.012, 0.042, 0.12, 0.007, 0.0003);
         BasicMetric m7 = new BasicMetric(230, 0.03, 60, 0.03, 0.11, 0.001);
-        BasicMetric m8 = new BasicMetric(94, 0.024, 8.9, 0.038, 0.34, 0.07);
-        BasicMetric m9 = new BasicMetric(8.0, 0.038, 8.9, 0.038, 0.0004, 0.07);
+        BasicMetric m8 = new BasicMetric(87.82, 0.01612, 16.863, 0.072, 0.34, 0.07);
+        BasicMetric m9 = new BasicMetric(16.836, 0.072, 16.836, 0.072, 0.0004, 0.07);
 
         UDFMetric udfm1 = new UDFMetric<PseudolinearProfile>(15, 0.25e-9, 400e3, (m3.outputSize + m2.outputSize),
                 (m3.outputTupleSize + m2.outputTupleSize) / 2, 28, 0.074);
