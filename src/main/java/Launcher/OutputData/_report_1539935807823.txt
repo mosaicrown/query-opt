@@ -1,0 +1,6 @@
+***Processor***
+->GENERAL_INFO
+\tDEBUG_MODE:" + debug_mode + "  U.V.R.:" + removeUniformVis + "  MAX_DEPTH:" + maximumDepthStrategy-----------------------------------------------------------------------------------------------------------
+***Processor***
+->GENERAL_INFO
+[Query_finance.xml, DB_finance.xml, ProviderSet_finance.xml, debug_mode]-----------------------------------------------------------------------------------------------------------

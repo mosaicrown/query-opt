@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Operation_allocator/lib/jdom-2.0.6/lib/jaxen-1.1.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Operation_allocator/lib/jdom-2.0.6/lib/xml-apis.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Operation_allocator/lib/jdom-2.0.6/lib/xercesImpl.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

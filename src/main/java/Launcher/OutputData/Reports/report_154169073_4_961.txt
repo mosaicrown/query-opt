@@ -1,0 +1,552 @@
+***Processor***
+	->STEP_COMPLETION
+	QUERY AFTER ATTRIBUTES SYNTHESIZING
+
+	createstablerelations	 Fam.name:  UDF
+		 Executor:  Proprietary	 Ct:0.0	 Ce:0.0	 Cm:0.0	 Cc:0.0
+		 Op. metrics:  InputSize: 63200.00000000001	 InputTupleSize: 0.6320000000000001	 OutputSize: 2400.0	 OutputTupleSize: 0.08	 CPU_time: 375.012	 IO_time: 23810.285714285714	 CPI:	150.0	 CT:	2.5E-10	 IOPS:	100000.0	 Not:	100000.0
+		 Features:  
+		 Minimum required view:  Rvp:		Rve:		Rip:		Rie:		Rces:	
+		 Output Relation Profile:  Rvp:	t2.d4,t1.a1	Rve:		Rip:	t1.b2,t2.e5,t2.f6,t1.c3	Rie:	t1.b2,t2.e5	Rces:	(t1.b2,t2.e5)
+		 Input attributes:  | n: t2.d4 d: 0.04 s: PLAINTEXT od: 0.04 | n: t2.e5 d: 0.05 s: PLAINTEXT od: 0.05 | n: t2.f6 d: 0.001 s: PLAINTEXT od: 0.001 | n: t1.a1 d: 0.04 s: PLAINTEXT od: 0.04 | n: t1.b2 d: 0.5 s: PLAINTEXT od: 0.5 | n: t1.c3 d: 0.001 s: PLAINTEXT od: 0.001 | 
+		 Homogeneous set:  | n: t1.b2 od: 0.5 | n: t2.e5 od: 0.05 | 
+		 Projected set:  | n: t1.a1 od: 0.04 | n: t2.d4 od: 0.04 | 
+		 Attribute constraints:  | n: t1.b2 s: DETSYMENC | n: t2.e5 s: DETSYMENC | 
+		 Applied encryption:   | 
+	|____selection2	 Fam.name:  Selection
+			 Executor:  Proprietary	 Ct:0.0	 Ce:0.0	 Cm:0.0	 Cc:0.0
+			 Op. metrics:  InputSize: 162300.0	 InputTupleSize: 0.541	 OutputSize: 54100.00000000001	 OutputTupleSize: 0.541	 CPU_time: 0.94	 IO_time: 0.02
+			 Features:  
+			 Minimum required view:  Rvp:		Rve:		Rip:		Rie:		Rces:	
+			 Output Relation Profile:  Rvp:	t1.a1,t1.b2,t1.c3	Rve:		Rip:	t1.c3	Rie:		Rces:	
+			 Input attributes:  | n: t1.a1 d: 0.04 s: PLAINTEXT od: 0.04 | n: t1.b2 d: 0.5 s: PLAINTEXT od: 0.5 | n: t1.c3 d: 0.001 s: PLAINTEXT od: 0.001 | 
+			 Homogeneous set:  | n: t1.c3 od: 0.001 | 
+			 Attribute constraints:  | n: t1.c3 s: DETSYMENC | 
+			 Applied encryption:   | 
+		|____indexseek1	 Fam.name:  Projection
+				 Executor:  Proprietary	 Ct:0.0	 Ce:0.0	 Cm:0.0	 Cc:0.0
+				 Op. metrics:  InputSize: 162300.0	 InputTupleSize: 0.541	 OutputSize: 162300.0	 OutputTupleSize: 0.541	 CPU_time: 0.01	 IO_time: 0.991
+				 Features:  
+				 Minimum required view:  Rvp:		Rve:		Rip:		Rie:		Rces:	
+				 Output Relation Profile:  Rvp:	t1.a1,t1.b2,t1.c3	Rve:		Rip:		Rie:		Rces:	
+				 Input attributes:  | n: t1.a1 d: 0.04 s: PLAINTEXT od: 0.04 | n: t1.b2 d: 0.5 s: PLAINTEXT od: 0.5 | n: t1.c3 d: 0.001 s: PLAINTEXT od: 0.001 | 
+				 Projected set:  | n: t1.a1 od: 0.04 | n: t1.b2 od: 0.5 | n: t1.c3 od: 0.001 | 
+				 Attribute constraints:  | 
+				 Applied encryption:   | 
+	|____selection4	 Fam.name:  Selection
+			 Executor:  Proprietary	 Ct:0.0	 Ce:0.0	 Cm:0.0	 Cc:0.0
+			 Op. metrics:  InputSize: 27300.0	 InputTupleSize: 0.091	 OutputSize: 9100.0	 OutputTupleSize: 0.091	 CPU_time: 0.87	 IO_time: 0.03
+			 Features:  
+			 Minimum required view:  Rvp:		Rve:		Rip:		Rie:		Rces:	
+			 Output Relation Profile:  Rvp:	t2.d4,t2.e5,t2.f6	Rve:		Rip:	t2.f6	Rie:		Rces:	
+			 Input attributes:  | n: t2.d4 d: 0.04 s: PLAINTEXT od: 0.04 | n: t2.e5 d: 0.05 s: PLAINTEXT od: 0.05 | n: t2.f6 d: 0.001 s: PLAINTEXT od: 0.001 | 
+			 Homogeneous set:  | n: t2.f6 od: 0.001 | 
+			 Attribute constraints:  | n: t2.f6 s: DETSYMENC | 
+			 Applied encryption:   | 
+		|____indexseek3	 Fam.name:  Projection
+				 Executor:  Proprietary	 Ct:0.0	 Ce:0.0	 Cm:0.0	 Cc:0.0
+				 Op. metrics:  InputSize: 162300.0	 InputTupleSize: 0.541	 OutputSize: 27300.0	 OutputTupleSize: 0.091	 CPU_time: 0.09	 IO_time: 0.921
+				 Features:  
+				 Minimum required view:  Rvp:		Rve:		Rip:		Rie:		Rces:	
+				 Output Relation Profile:  Rvp:	t2.d4,t2.e5,t2.f6	Rve:		Rip:		Rie:		Rces:	
+				 Input attributes:  | n: t2.d4 d: 0.04 s: PLAINTEXT od: 0.04 | n: t2.e5 d: 0.05 s: PLAINTEXT od: 0.05 | n: t2.f6 d: 0.001 s: PLAINTEXT od: 0.001 | 
+				 Projected set:  | n: t2.d4 od: 0.04 | n: t2.e5 od: 0.05 | n: t2.f6 od: 0.001 | 
+				 Attribute constraints:  | 
+				 Applied encryption:   | 
+
+-------------------------------------------------------------------------------------------------------
+***Processor***
+	->STEP_COMPLETION
+	QUERY AFTER SEMANTIC ENRICHMENT
+
+	createstablerelations	 Fam.name:  UDF
+		 Executor:  Proprietary	 Ct:3.4650570711111115	 Ce:3.464578455555556	 Cm:0.0	 Cc:0.0
+		 Op. metrics:  InputSize: 63200.00000000001	 InputTupleSize: 0.6320000000000001	 OutputSize: 2400.0	 OutputTupleSize: 0.08	 CPU_time: 375.012	 IO_time: 23810.285714285714	 CPI:	150.0	 CT:	2.5E-10	 IOPS:	100000.0	 Not:	100000.0
+		 Features:  *EXPDATADOMCOST
+		 Minimum required view:  Rvp:		Rve:		Rip:		Rie:		Rces:	
+		 Output Relation Profile:  Rvp:	t2.d4,t1.a1	Rve:		Rip:	t1.b2,t2.e5,t2.f6,t1.c3	Rie:	t1.b2,t2.e5	Rces:	(t1.b2,t2.e5)
+		 Input attributes:  | n: t2.d4 d: 0.04 s: PLAINTEXT od: 0.04 | n: t2.e5 d: 0.05 s: PLAINTEXT od: 0.05 | n: t2.f6 d: 0.001 s: PLAINTEXT od: 0.001 | n: t1.a1 d: 0.04 s: PLAINTEXT od: 0.04 | n: t1.b2 d: 0.5 s: PLAINTEXT od: 0.5 | n: t1.c3 d: 0.001 s: PLAINTEXT od: 0.001 | 
+		 Homogeneous set:  | n: t1.b2 od: 0.5 | n: t2.e5 od: 0.05 | 
+		 Projected set:  | n: t1.a1 od: 0.04 | n: t2.d4 od: 0.04 | 
+		 Attribute constraints:  | n: t1.b2 s: DETSYMENC | n: t2.e5 s: DETSYMENC | 
+		 Applied encryption:   | 
+	|____selection2	 Fam.name:  Selection
+			 Executor:  Proprietary	 Ct:2.4311055555555555E-4	 Ce:9.94888888888889E-5	 Cm:0.0	 Cc:0.0
+			 Op. metrics:  InputSize: 162300.0	 InputTupleSize: 0.541	 OutputSize: 54100.00000000001	 OutputTupleSize: 0.541	 CPU_time: 0.94	 IO_time: 0.02
+			 Features:  *EXPDATADOMCOST
+			 Minimum required view:  Rvp:		Rve:		Rip:		Rie:		Rces:	
+			 Output Relation Profile:  Rvp:	t1.a1,t1.b2,t1.c3	Rve:		Rip:	t1.c3	Rie:		Rces:	
+			 Input attributes:  | n: t1.a1 d: 0.04 s: PLAINTEXT od: 0.04 | n: t1.b2 d: 0.5 s: PLAINTEXT od: 0.5 | n: t1.c3 d: 0.001 s: PLAINTEXT od: 0.001 | 
+			 Homogeneous set:  | n: t1.c3 od: 0.001 | 
+			 Attribute constraints:  | n: t1.c3 s: DETSYMENC | 
+			 Applied encryption:   | 
+		|____indexseek1	 Fam.name:  Projection
+				 Executor:  Proprietary	 Ct:1.4362166666666664E-4	 Ce:1.4362166666666664E-4	 Cm:0.0	 Cc:0.0
+				 Op. metrics:  InputSize: 162300.0	 InputTupleSize: 0.541	 OutputSize: 162300.0	 OutputTupleSize: 0.541	 CPU_time: 0.01	 IO_time: 0.991
+				 Features:  *EXPDATADOMCOST
+				 Minimum required view:  Rvp:		Rve:		Rip:		Rie:		Rces:	
+				 Output Relation Profile:  Rvp:	t1.a1,t1.b2,t1.c3	Rve:		Rip:		Rie:		Rces:	
+				 Input attributes:  | n: t1.a1 d: 0.04 s: PLAINTEXT od: 0.04 | n: t1.b2 d: 0.5 s: PLAINTEXT od: 0.5 | n: t1.c3 d: 0.001 s: PLAINTEXT od: 0.001 | 
+				 Projected set:  | n: t1.a1 od: 0.04 | n: t1.b2 od: 0.5 | n: t1.c3 od: 0.001 | 
+				 Attribute constraints:  | 
+				 Applied encryption:   | 
+	|____selection4	 Fam.name:  Selection
+			 Executor:  Proprietary	 Ct:2.3550500000000006E-4	 Ce:9.373333333333334E-5	 Cm:0.0	 Cc:0.0
+			 Op. metrics:  InputSize: 27300.0	 InputTupleSize: 0.091	 OutputSize: 9100.0	 OutputTupleSize: 0.091	 CPU_time: 0.87	 IO_time: 0.03
+			 Features:  *EXPDATADOMCOST
+			 Minimum required view:  Rvp:		Rve:		Rip:		Rie:		Rces:	
+			 Output Relation Profile:  Rvp:	t2.d4,t2.e5,t2.f6	Rve:		Rip:	t2.f6	Rie:		Rces:	
+			 Input attributes:  | n: t2.d4 d: 0.04 s: PLAINTEXT od: 0.04 | n: t2.e5 d: 0.05 s: PLAINTEXT od: 0.05 | n: t2.f6 d: 0.001 s: PLAINTEXT od: 0.001 | 
+			 Homogeneous set:  | n: t2.f6 od: 0.001 | 
+			 Attribute constraints:  | n: t2.f6 s: DETSYMENC | 
+			 Applied encryption:   | 
+		|____indexseek3	 Fam.name:  Projection
+				 Executor:  Proprietary	 Ct:1.417716666666667E-4	 Ce:1.417716666666667E-4	 Cm:0.0	 Cc:0.0
+				 Op. metrics:  InputSize: 162300.0	 InputTupleSize: 0.541	 OutputSize: 27300.0	 OutputTupleSize: 0.091	 CPU_time: 0.09	 IO_time: 0.921
+				 Features:  *EXPDATADOMCOST
+				 Minimum required view:  Rvp:		Rve:		Rip:		Rie:		Rces:	
+				 Output Relation Profile:  Rvp:	t2.d4,t2.e5,t2.f6	Rve:		Rip:		Rie:		Rces:	
+				 Input attributes:  | n: t2.d4 d: 0.04 s: PLAINTEXT od: 0.04 | n: t2.e5 d: 0.05 s: PLAINTEXT od: 0.05 | n: t2.f6 d: 0.001 s: PLAINTEXT od: 0.001 | 
+				 Projected set:  | n: t2.d4 od: 0.04 | n: t2.e5 od: 0.05 | n: t2.f6 od: 0.001 | 
+				 Attribute constraints:  | 
+				 Applied encryption:   | 
+
+-------------------------------------------------------------------------------------------------------
+***Processor***
+	->STEP_COMPLETION
+	QUERY AFTER MINIMUM REQUIRED VIEW DERIVATION
+
+	createstablerelations	 Fam.name:  UDF
+		 Executor:  Proprietary	 Ct:3.4650570711111115	 Ce:3.464578455555556	 Cm:0.0	 Cc:0.0
+		 Op. metrics:  InputSize: 63200.00000000001	 InputTupleSize: 0.6320000000000001	 OutputSize: 2400.0	 OutputTupleSize: 0.08	 CPU_time: 375.012	 IO_time: 23810.285714285714	 CPI:	150.0	 CT:	2.5E-10	 IOPS:	100000.0	 Not:	100000.0
+		 Features:  *EXPDATADOMCOST
+		 Minimum required view:  Rvp:		Rve:		Rip:		Rie:		Rces:	
+		 Output Relation Profile:  Rvp:	t2.d4,t1.a1	Rve:		Rip:	t1.b2,t2.e5,t2.f6,t1.c3	Rie:	t1.b2,t2.e5	Rces:	(t1.b2,t2.e5)
+		 Input attributes:  | n: t2.d4 d: 0.04 s: PLAINTEXT od: 0.04 | n: t2.e5 d: 0.05 s: PLAINTEXT od: 0.05 | n: t2.f6 d: 0.001 s: PLAINTEXT od: 0.001 | n: t1.a1 d: 0.04 s: PLAINTEXT od: 0.04 | n: t1.b2 d: 0.5 s: PLAINTEXT od: 0.5 | n: t1.c3 d: 0.001 s: PLAINTEXT od: 0.001 | 
+		 Homogeneous set:  | n: t1.b2 od: 0.5 | n: t2.e5 od: 0.05 | 
+		 Projected set:  | n: t1.a1 od: 0.04 | n: t2.d4 od: 0.04 | 
+		 Attribute constraints:  | n: t1.b2 s: DETSYMENC | n: t2.e5 s: DETSYMENC | 
+		 Applied encryption:   | 
+	|____selection2	 Fam.name:  Selection
+			 Executor:  Proprietary	 Ct:2.4311055555555555E-4	 Ce:9.94888888888889E-5	 Cm:0.0	 Cc:0.0
+			 Op. metrics:  InputSize: 162300.0	 InputTupleSize: 0.541	 OutputSize: 54100.00000000001	 OutputTupleSize: 0.541	 CPU_time: 0.94	 IO_time: 0.02
+			 Features:  *EXPDATADOMCOST
+			 Minimum required view:  Rvp:		Rve:	t1.a1,t1.b2,t1.c3	Rip:	t1.c3	Rie:		Rces:	
+			 Output Relation Profile:  Rvp:	t1.a1,t1.b2,t1.c3	Rve:		Rip:	t1.c3	Rie:		Rces:	
+			 Input attributes:  | n: t1.a1 d: 0.04 s: PLAINTEXT od: 0.04 | n: t1.b2 d: 0.5 s: PLAINTEXT od: 0.5 | n: t1.c3 d: 0.001 s: PLAINTEXT od: 0.001 | 
+			 Homogeneous set:  | n: t1.c3 od: 0.001 | 
+			 Attribute constraints:  | n: t1.c3 s: DETSYMENC | 
+			 Applied encryption:   | 
+		|____indexseek1	 Fam.name:  Projection
+				 Executor:  Proprietary	 Ct:1.4362166666666664E-4	 Ce:1.4362166666666664E-4	 Cm:0.0	 Cc:0.0
+				 Op. metrics:  InputSize: 162300.0	 InputTupleSize: 0.541	 OutputSize: 162300.0	 OutputTupleSize: 0.541	 CPU_time: 0.01	 IO_time: 0.991
+				 Features:  *EXPDATADOMCOST
+				 Minimum required view:  Rvp:		Rve:	t1.a1,t1.b2,t1.c3	Rip:		Rie:		Rces:	
+				 Output Relation Profile:  Rvp:	t1.a1,t1.b2,t1.c3	Rve:		Rip:		Rie:		Rces:	
+				 Input attributes:  | n: t1.a1 d: 0.04 s: PLAINTEXT od: 0.04 | n: t1.b2 d: 0.5 s: PLAINTEXT od: 0.5 | n: t1.c3 d: 0.001 s: PLAINTEXT od: 0.001 | 
+				 Projected set:  | n: t1.a1 od: 0.04 | n: t1.b2 od: 0.5 | n: t1.c3 od: 0.001 | 
+				 Attribute constraints:  | 
+				 Applied encryption:   | 
+	|____selection4	 Fam.name:  Selection
+			 Executor:  Proprietary	 Ct:2.3550500000000006E-4	 Ce:9.373333333333334E-5	 Cm:0.0	 Cc:0.0
+			 Op. metrics:  InputSize: 27300.0	 InputTupleSize: 0.091	 OutputSize: 9100.0	 OutputTupleSize: 0.091	 CPU_time: 0.87	 IO_time: 0.03
+			 Features:  *EXPDATADOMCOST
+			 Minimum required view:  Rvp:		Rve:	t2.d4,t2.e5,t2.f6	Rip:	t2.f6	Rie:		Rces:	
+			 Output Relation Profile:  Rvp:	t2.d4,t2.e5,t2.f6	Rve:		Rip:	t2.f6	Rie:		Rces:	
+			 Input attributes:  | n: t2.d4 d: 0.04 s: PLAINTEXT od: 0.04 | n: t2.e5 d: 0.05 s: PLAINTEXT od: 0.05 | n: t2.f6 d: 0.001 s: PLAINTEXT od: 0.001 | 
+			 Homogeneous set:  | n: t2.f6 od: 0.001 | 
+			 Attribute constraints:  | n: t2.f6 s: DETSYMENC | 
+			 Applied encryption:   | 
+		|____indexseek3	 Fam.name:  Projection
+				 Executor:  Proprietary	 Ct:1.417716666666667E-4	 Ce:1.417716666666667E-4	 Cm:0.0	 Cc:0.0
+				 Op. metrics:  InputSize: 162300.0	 InputTupleSize: 0.541	 OutputSize: 27300.0	 OutputTupleSize: 0.091	 CPU_time: 0.09	 IO_time: 0.921
+				 Features:  *EXPDATADOMCOST
+				 Minimum required view:  Rvp:		Rve:	t2.d4,t2.e5,t2.f6	Rip:		Rie:		Rces:	
+				 Output Relation Profile:  Rvp:	t2.d4,t2.e5,t2.f6	Rve:		Rip:		Rie:		Rces:	
+				 Input attributes:  | n: t2.d4 d: 0.04 s: PLAINTEXT od: 0.04 | n: t2.e5 d: 0.05 s: PLAINTEXT od: 0.05 | n: t2.f6 d: 0.001 s: PLAINTEXT od: 0.001 | 
+				 Projected set:  | n: t2.d4 od: 0.04 | n: t2.e5 od: 0.05 | n: t2.f6 od: 0.001 | 
+				 Attribute constraints:  | 
+				 Applied encryption:   | 
+
+-------------------------------------------------------------------------------------------------------
+***Processor***
+	->STEP_COMPLETION
+	ORACLE CLONED
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->GENERAL_INFO
+	Asking moves to p3 for op: indexseek1	Asking moves to p2 for op: indexseek1	Asking moves to p1 for op: indexseek1
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p3 op: indexseek1	 cost: 	 Ct:Infinity	 Cm:Infinity	 Ce:Infinity	 Cc:0.014606999999999998
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p2 op: indexseek1	 cost: 	 Ct:0.0065124896944444444	 Cm:0.006492	 Ce:2.0489694444444444E-5	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p1 op: indexseek1	 cost: 	 Ct:1.4362166666666664E-4	 Cm:0.0	 Ce:1.4362166666666664E-4	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->ASSIGNMENT_CANDIDATES
+	Number of execution alternatives found for op:	indexseek1	:	dim3p: 1	dim2p: 1
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->OPERATION_ASSIGNMENT
+	CASE 4 Allocating of: indexseek1	to:Proprietary
+		 Ct:1.4362166666666664E-4	 Cm:0.0	 Ce:1.4362166666666664E-4	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->GENERAL_INFO
+	Asking moves to p3 for op: selection2	Asking moves to p2 for op: selection2	Asking moves to p1 for op: selection2
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p3 op: selection2	 cost: 	 Ct:Infinity	 Cm:Infinity	 Ce:Infinity	 Cc:0.014606999999999998
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p2 op: selection2	 cost: 	 Ct:0.006649818888888889	 Cm:0.006492	 Ce:1.4197222222222221E-5	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p1 op: selection2	 cost: 	 Ct:2.4311055555555555E-4	 Cm:0.0	 Ce:9.94888888888889E-5	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->ASSIGNMENT_CANDIDATES
+	Number of execution alternatives found for op:	selection2	:	dim3p: 1	dim2p: 1
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->GENERAL_INFO
+	Asking moves to p3 for op: indexseek3	Asking moves to p2 for op: indexseek3	Asking moves to p1 for op: indexseek3
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p3 op: indexseek3	 cost: 	 Ct:Infinity	 Cm:Infinity	 Ce:Infinity	 Cc:0.002457
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p2 op: indexseek3	 cost: 	 Ct:0.001093105505023966	 Cm:0.001092	 Ce:1.105505023966027E-6	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p1 op: indexseek3	 cost: 	 Ct:7.752941340879211E-6	 Cm:0.0	 Ce:7.752941340879211E-6	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->ASSIGNMENT_CANDIDATES
+	Number of execution alternatives found for op:	indexseek3	:	dim3p: 1	dim2p: 1
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->OPERATION_ASSIGNMENT
+	CASE 4 Allocating of: indexseek3	to:Proprietary
+		 Ct:7.752941340879211E-6	 Cm:0.0	 Ce:7.752941340879211E-6	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->GENERAL_INFO
+	Asking moves to p3 for op: selection4	Asking moves to p2 for op: selection4	Asking moves to p1 for op: selection4
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p3 op: selection4	 cost: 	 Ct:Infinity	 Cm:Infinity	 Ce:Infinity	 Cc:0.002457
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p2 op: selection4	 cost: 	 Ct:0.0011131287746742125	 Cm:0.001092	 Ce:1.3375833333333333E-5	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p1 op: selection4	 cost: 	 Ct:1.0148627467421254E-4	 Cm:0.0	 Ce:9.373333333333334E-5	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->ASSIGNMENT_CANDIDATES
+	Number of execution alternatives found for op:	selection4	:	dim3p: 1	dim2p: 1
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->GENERAL_INFO
+	Asking moves to p3 for op: createstablerelations	Asking moves to p2 for op: createstablerelations	Asking moves to p1 for op: createstablerelations
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p2 op: createstablerelations	 cost: 	 Ct:0.49727904552380947	 Cm:0.0025280000000000003	 Ce:0.49427242996825393	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p1 op: createstablerelations	 cost: 	 Ct:3.4650570711111115	 Cm:0.0	 Ce:3.464578455555556	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->ASSIGNMENT_CANDIDATES
+	Number of execution alternatives found for op:	createstablerelations	:	dim3p: 0	dim2p: 1
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->OPERATION_ASSIGNMENT
+	CASE 1 Allocating of: createstablerelations	to:EC2
+		 Ct:0.49727904552380947	 Cm:0.0025280000000000003	 Ce:0.49427242996825393	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->PLAN_ALTERNATIVE
+	REGISTERED ALTERNATIVE with cost: 0.49727904552380947
+-------------------------------------------------------------------------------------------------------
+***Processor***
+	->STEP_COMPLETION
+	QUERY ASSIGNMENT COMPUTED
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->GENERAL_INFO
+	Asking moves to p3 for op: indexseek1	Asking moves to p2 for op: indexseek1	Asking moves to p1 for op: indexseek1
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p3 op: indexseek1	 cost: 	 Ct:Infinity	 Cm:Infinity	 Ce:Infinity	 Cc:0.014606999999999998
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p2 op: indexseek1	 cost: 	 Ct:0.0065124896944444444	 Cm:0.006492	 Ce:2.0489694444444444E-5	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p1 op: indexseek1	 cost: 	 Ct:1.4362166666666664E-4	 Cm:0.0	 Ce:1.4362166666666664E-4	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->ASSIGNMENT_CANDIDATES
+	Number of execution alternatives found for op:	indexseek1	:	dim3p: 1	dim2p: 1
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->OPERATION_ASSIGNMENT
+	CASE 4 Allocating of: indexseek1	to:Proprietary
+		 Ct:1.4362166666666664E-4	 Cm:0.0	 Ce:1.4362166666666664E-4	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->GENERAL_INFO
+	Asking moves to p3 for op: selection2	Asking moves to p2 for op: selection2	Asking moves to p1 for op: selection2
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p3 op: selection2	 cost: 	 Ct:Infinity	 Cm:Infinity	 Ce:Infinity	 Cc:0.014606999999999998
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p2 op: selection2	 cost: 	 Ct:0.006649818888888889	 Cm:0.006492	 Ce:1.4197222222222221E-5	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p1 op: selection2	 cost: 	 Ct:2.4311055555555555E-4	 Cm:0.0	 Ce:9.94888888888889E-5	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->ASSIGNMENT_CANDIDATES
+	Number of execution alternatives found for op:	selection2	:	dim3p: 1	dim2p: 1
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->GENERAL_INFO
+	Asking moves to p3 for op: indexseek3	Asking moves to p2 for op: indexseek3	Asking moves to p1 for op: indexseek3
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p3 op: indexseek3	 cost: 	 Ct:Infinity	 Cm:Infinity	 Ce:Infinity	 Cc:0.002457
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p2 op: indexseek3	 cost: 	 Ct:0.001093105505023966	 Cm:0.001092	 Ce:1.105505023966027E-6	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p1 op: indexseek3	 cost: 	 Ct:7.752941340879211E-6	 Cm:0.0	 Ce:7.752941340879211E-6	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->ASSIGNMENT_CANDIDATES
+	Number of execution alternatives found for op:	indexseek3	:	dim3p: 1	dim2p: 1
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->OPERATION_ASSIGNMENT
+	CASE 4 Allocating of: indexseek3	to:Proprietary
+		 Ct:7.752941340879211E-6	 Cm:0.0	 Ce:7.752941340879211E-6	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->GENERAL_INFO
+	Asking moves to p3 for op: selection4	Asking moves to p2 for op: selection4	Asking moves to p1 for op: selection4
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p3 op: selection4	 cost: 	 Ct:Infinity	 Cm:Infinity	 Ce:Infinity	 Cc:0.002457
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p2 op: selection4	 cost: 	 Ct:0.0011131287746742125	 Cm:0.001092	 Ce:1.3375833333333333E-5	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p1 op: selection4	 cost: 	 Ct:1.0148627467421254E-4	 Cm:0.0	 Ce:9.373333333333334E-5	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->ASSIGNMENT_CANDIDATES
+	Number of execution alternatives found for op:	selection4	:	dim3p: 1	dim2p: 1
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->GENERAL_INFO
+	Asking moves to p3 for op: createstablerelations	Asking moves to p2 for op: createstablerelations	Asking moves to p1 for op: createstablerelations
+-------------------------------------------------------------------------------------------------------
+***RelationProfile***
+	->RELATION_PROFILE_FAILURE
+	Provider: Cheap	FAILED: RIP
+-------------------------------------------------------------------------------------------------------
+***TreeNodeSemantics***
+	->OPERATION_SIMULATION_FAILURE
+	CANDIDATE NOT COMPLIANT: Simulated to	Cheap OutRelProf:	Rvp:		Rve:	t1.a1,t2.d4	Rip:	t1.b2,t2.e5,t2.f6,t1.c3	Rie:	t1.b2,t2.e5	Rces:	(t1.b2,t2.e5)
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p2 op: createstablerelations	 cost: 	 Ct:0.49727904552380947	 Cm:0.0025280000000000003	 Ce:0.49427242996825393	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->DATA_TRACE
+	Cost of allocating to p1 op: createstablerelations	 cost: 	 Ct:3.4650570711111115	 Cm:0.0	 Ce:3.464578455555556	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->ASSIGNMENT_CANDIDATES
+	Number of execution alternatives found for op:	createstablerelations	:	dim3p: 0	dim2p: 1
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->OPERATION_ASSIGNMENT
+	CASE 1 Allocating of: createstablerelations	to:EC2
+		 Ct:0.49727904552380947	 Cm:0.0025280000000000003	 Ce:0.49427242996825393	 Cc:0.0
+-------------------------------------------------------------------------------------------------------
+***OperationAllocator***
+	->PLAN_ALTERNATIVE
+	REGISTERED ALTERNATIVE with cost: 0.49727904552380947
+-------------------------------------------------------------------------------------------------------
+***Processor***
+	->STEP_COMPLETION
+	BEST ASSIGNMENT FOUND
+-------------------------------------------------------------------------------------------------------
+***Processor***
+	->GENERAL_INFO
+	REMOVED UNIFORM VISIBILITY TO C.E.S.
+	OutRelProf: Rvp:	t1.a1,t2.d4	Rve:		Rip:	t1.b2,t2.e5,t2.f6,t1.c3	Rie:	t1.b2,t2.e5	Rces:	(t1.b2,t2.e5)
+-------------------------------------------------------------------------------------------------------
+***Processor***
+	->STEP_COMPLETION
+	ORACLE AFTER PROCESSING
+	createstablerelations	 Fam.name:  UDF
+		 Executor:  Proprietary	 Ct:3.4650570711111115	 Ce:3.464578455555556	 Cm:0.0	 Cc:0.0
+		 Op. metrics:  InputSize: 63200.00000000001	 InputTupleSize: 0.6320000000000001	 OutputSize: 2400.0	 OutputTupleSize: 0.08	 CPU_time: 375.012	 IO_time: 23810.285714285714	 CPI:	150.0	 CT:	2.5E-10	 IOPS:	100000.0	 Not:	100000.0
+		 Features:  *EXPDATADOMCOST
+		 Minimum required view:  Rvp:		Rve:		Rip:		Rie:		Rces:	
+		 Output Relation Profile:  Rvp:	t2.d4,t1.a1	Rve:		Rip:	t1.b2,t2.e5,t2.f6,t1.c3	Rie:	t1.b2,t2.e5	Rces:	(t1.b2,t2.e5)
+		 Input attributes:  | n: t2.d4 d: 0.04 s: PLAINTEXT od: 0.04 | n: t2.e5 d: 0.05 s: PLAINTEXT od: 0.05 | n: t2.f6 d: 0.001 s: PLAINTEXT od: 0.001 | n: t1.a1 d: 0.04 s: PLAINTEXT od: 0.04 | n: t1.b2 d: 0.5 s: PLAINTEXT od: 0.5 | n: t1.c3 d: 0.001 s: PLAINTEXT od: 0.001 | 
+		 Homogeneous set:  | n: t1.b2 od: 0.5 | n: t2.e5 od: 0.05 | 
+		 Projected set:  | n: t1.a1 od: 0.04 | n: t2.d4 od: 0.04 | 
+		 Attribute constraints:  | n: t1.b2 s: DETSYMENC | n: t2.e5 s: DETSYMENC | 
+		 Applied encryption:   | 
+	|____selection2	 Fam.name:  Selection
+			 Executor:  Proprietary	 Ct:2.4311055555555555E-4	 Ce:9.94888888888889E-5	 Cm:0.0	 Cc:0.0
+			 Op. metrics:  InputSize: 162300.0	 InputTupleSize: 0.541	 OutputSize: 54100.00000000001	 OutputTupleSize: 0.541	 CPU_time: 0.94	 IO_time: 0.02
+			 Features:  *EXPDATADOMCOST
+			 Minimum required view:  Rvp:		Rve:	t1.a1,t1.b2,t1.c3	Rip:	t1.c3	Rie:		Rces:	
+			 Output Relation Profile:  Rvp:	t1.a1,t1.b2,t1.c3	Rve:		Rip:	t1.c3	Rie:		Rces:	
+			 Input attributes:  | n: t1.a1 d: 0.04 s: PLAINTEXT od: 0.04 | n: t1.b2 d: 0.5 s: PLAINTEXT od: 0.5 | n: t1.c3 d: 0.001 s: PLAINTEXT od: 0.001 | 
+			 Homogeneous set:  | n: t1.c3 od: 0.001 | 
+			 Attribute constraints:  | n: t1.c3 s: DETSYMENC | 
+			 Applied encryption:   | 
+		|____indexseek1	 Fam.name:  Projection
+				 Executor:  Proprietary	 Ct:1.4362166666666664E-4	 Ce:1.4362166666666664E-4	 Cm:0.0	 Cc:0.0
+				 Op. metrics:  InputSize: 162300.0	 InputTupleSize: 0.541	 OutputSize: 162300.0	 OutputTupleSize: 0.541	 CPU_time: 0.01	 IO_time: 0.991
+				 Features:  *EXPDATADOMCOST
+				 Minimum required view:  Rvp:		Rve:	t1.a1,t1.b2,t1.c3	Rip:		Rie:		Rces:	
+				 Output Relation Profile:  Rvp:	t1.a1,t1.b2,t1.c3	Rve:		Rip:		Rie:		Rces:	
+				 Input attributes:  | n: t1.a1 d: 0.04 s: PLAINTEXT od: 0.04 | n: t1.b2 d: 0.5 s: PLAINTEXT od: 0.5 | n: t1.c3 d: 0.001 s: PLAINTEXT od: 0.001 | 
+				 Projected set:  | n: t1.a1 od: 0.04 | n: t1.b2 od: 0.5 | n: t1.c3 od: 0.001 | 
+				 Attribute constraints:  | 
+				 Applied encryption:   | 
+	|____selection4	 Fam.name:  Selection
+			 Executor:  Proprietary	 Ct:2.3550500000000006E-4	 Ce:9.373333333333334E-5	 Cm:0.0	 Cc:0.0
+			 Op. metrics:  InputSize: 27300.0	 InputTupleSize: 0.091	 OutputSize: 9100.0	 OutputTupleSize: 0.091	 CPU_time: 0.87	 IO_time: 0.03
+			 Features:  *EXPDATADOMCOST
+			 Minimum required view:  Rvp:		Rve:	t2.d4,t2.e5,t2.f6	Rip:	t2.f6	Rie:		Rces:	
+			 Output Relation Profile:  Rvp:	t2.d4,t2.e5,t2.f6	Rve:		Rip:	t2.f6	Rie:		Rces:	
+			 Input attributes:  | n: t2.d4 d: 0.04 s: PLAINTEXT od: 0.04 | n: t2.e5 d: 0.05 s: PLAINTEXT od: 0.05 | n: t2.f6 d: 0.001 s: PLAINTEXT od: 0.001 | 
+			 Homogeneous set:  | n: t2.f6 od: 0.001 | 
+			 Attribute constraints:  | n: t2.f6 s: DETSYMENC | 
+			 Applied encryption:   | 
+		|____indexseek3	 Fam.name:  Projection
+				 Executor:  Proprietary	 Ct:1.417716666666667E-4	 Ce:1.417716666666667E-4	 Cm:0.0	 Cc:0.0
+				 Op. metrics:  InputSize: 162300.0	 InputTupleSize: 0.541	 OutputSize: 27300.0	 OutputTupleSize: 0.091	 CPU_time: 0.09	 IO_time: 0.921
+				 Features:  *EXPDATADOMCOST
+				 Minimum required view:  Rvp:		Rve:	t2.d4,t2.e5,t2.f6	Rip:		Rie:		Rces:	
+				 Output Relation Profile:  Rvp:	t2.d4,t2.e5,t2.f6	Rve:		Rip:		Rie:		Rces:	
+				 Input attributes:  | n: t2.d4 d: 0.04 s: PLAINTEXT od: 0.04 | n: t2.e5 d: 0.05 s: PLAINTEXT od: 0.05 | n: t2.f6 d: 0.001 s: PLAINTEXT od: 0.001 | 
+				 Projected set:  | n: t2.d4 od: 0.04 | n: t2.e5 od: 0.05 | n: t2.f6 od: 0.001 | 
+				 Attribute constraints:  | 
+				 Applied encryption:   | 
+
+-------------------------------------------------------------------------------------------------------
+***Processor***
+	->STEP_COMPLETION
+	QUERY AFTER PROCESSING
+	createstablerelations	 Fam.name:  UDF
+		 Executor:  EC2	 Ct:0.49727904552380947	 Ce:0.49427242996825393	 Cm:0.0025280000000000003	 Cc:0.0
+		 Op. metrics:  InputSize: 63200.00000000001	 InputTupleSize: 0.632	 OutputSize: 2400.0	 OutputTupleSize: 0.08	 CPU_time: 375.012	 IO_time: 23810.285714285714	 CPI:	150.0	 CT:	2.5E-10	 IOPS:	100000.0	 Not:	100000.0
+		 Features:  *EXPDATADOMCOST
+		 Minimum required view:  Rvp:		Rve:		Rip:		Rie:		Rces:	
+		 Output Relation Profile:  Rvp:	t1.a1,t2.d4	Rve:		Rip:	t1.b2,t2.e5,t2.f6,t1.c3	Rie:	t1.b2,t2.e5	Rces:	(t1.b2,t2.e5)
+		 Input attributes:  | n: t1.a1 d: 0.04 s: PLAINTEXT od: 0.04 | n: t1.b2 d: 0.5 s: PLAINTEXT od: 0.5 | n: t1.c3 d: 0.001 s: PLAINTEXT od: 0.001 | n: t2.d4 d: 0.04 s: PLAINTEXT od: 0.04 | n: t2.e5 d: 0.05 s: PLAINTEXT od: 0.05 | n: t2.f6 d: 0.001 s: PLAINTEXT od: 0.001 | 
+		 Homogeneous set:  | n: t1.b2 od: 0.5 | n: t2.e5 od: 0.05 | 
+		 Projected set:  | n: t1.a1 od: 0.04 | n: t2.d4 od: 0.04 | 
+		 Attribute constraints:  | n: t1.b2 s: DETSYMENC | n: t2.e5 s: DETSYMENC | 
+		 Applied encryption:   | n: t1.a1 s:PLAINTEXT| n: t1.b2 s:PLAINTEXT| n: t1.c3 s:PLAINTEXT| n: t2.d4 s:PLAINTEXT| n: t2.e5 s:PLAINTEXT| n: t2.f6 s:PLAINTEXT| 
+	|____selection2	 Fam.name:  Selection
+			 Executor:  Proprietary	 Ct:2.4311055555555555E-4	 Ce:9.94888888888889E-5	 Cm:0.0	 Cc:0.0
+			 Op. metrics:  InputSize: 162300.0	 InputTupleSize: 0.541	 OutputSize: 54100.00000000001	 OutputTupleSize: 0.541	 CPU_time: 0.94	 IO_time: 0.02
+			 Features:  *EXPDATADOMCOST
+			 Minimum required view:  Rvp:		Rve:	t1.a1,t1.b2,t1.c3	Rip:	t1.c3	Rie:		Rces:	
+			 Output Relation Profile:  Rvp:	t1.a1,t1.b2,t1.c3	Rve:		Rip:	t1.c3	Rie:		Rces:	
+			 Input attributes:  | n: t1.a1 d: 0.04 s: PLAINTEXT od: 0.04 | n: t1.b2 d: 0.5 s: PLAINTEXT od: 0.5 | n: t1.c3 d: 0.001 s: PLAINTEXT od: 0.001 | 
+			 Homogeneous set:  | n: t1.c3 od: 0.001 | 
+			 Attribute constraints:  | n: t1.c3 s: DETSYMENC | 
+			 Applied encryption:   | 
+		|____indexseek1	 Fam.name:  Projection
+				 Executor:  Proprietary	 Ct:1.4362166666666664E-4	 Ce:1.4362166666666664E-4	 Cm:0.0	 Cc:0.0
+				 Op. metrics:  InputSize: 162300.0	 InputTupleSize: 0.541	 OutputSize: 162300.0	 OutputTupleSize: 0.541	 CPU_time: 0.01	 IO_time: 0.991
+				 Features:  *EXPDATADOMCOST
+				 Minimum required view:  Rvp:		Rve:	t1.a1,t1.b2,t1.c3	Rip:		Rie:		Rces:	
+				 Output Relation Profile:  Rvp:	t1.a1,t1.b2,t1.c3	Rve:		Rip:		Rie:		Rces:	
+				 Input attributes:  | n: t1.a1 d: 0.04 s: PLAINTEXT od: 0.04 | n: t1.b2 d: 0.5 s: PLAINTEXT od: 0.5 | n: t1.c3 d: 0.001 s: PLAINTEXT od: 0.001 | 
+				 Projected set:  | n: t1.a1 od: 0.04 | n: t1.b2 od: 0.5 | n: t1.c3 od: 0.001 | 
+				 Attribute constraints:  | 
+				 Applied encryption:   | n: t1.a1 s:PLAINTEXT| n: t1.b2 s:PLAINTEXT| n: t1.c3 s:PLAINTEXT| 
+	|____selection4	 Fam.name:  Selection
+			 Executor:  Proprietary	 Ct:2.3550500000000006E-4	 Ce:9.373333333333334E-5	 Cm:0.0	 Cc:0.0
+			 Op. metrics:  InputSize: 27300.0	 InputTupleSize: 0.091	 OutputSize: 9100.0	 OutputTupleSize: 0.091	 CPU_time: 0.87	 IO_time: 0.03
+			 Features:  *EXPDATADOMCOST
+			 Minimum required view:  Rvp:		Rve:	t2.d4,t2.e5,t2.f6	Rip:	t2.f6	Rie:		Rces:	
+			 Output Relation Profile:  Rvp:	t2.d4,t2.e5,t2.f6	Rve:		Rip:	t2.f6	Rie:		Rces:	
+			 Input attributes:  | n: t2.d4 d: 0.04 s: PLAINTEXT od: 0.04 | n: t2.e5 d: 0.05 s: PLAINTEXT od: 0.05 | n: t2.f6 d: 0.001 s: PLAINTEXT od: 0.001 | 
+			 Homogeneous set:  | n: t2.f6 od: 0.001 | 
+			 Attribute constraints:  | n: t2.f6 s: DETSYMENC | 
+			 Applied encryption:   | 
+		|____indexseek3	 Fam.name:  Projection
+				 Executor:  Proprietary	 Ct:7.752941340879211E-6	 Ce:7.752941340879211E-6	 Cm:0.0	 Cc:0.0
+				 Op. metrics:  InputSize: 27300.0	 InputTupleSize: 0.091	 OutputSize: 27300.0	 OutputTupleSize: 0.091	 CPU_time: -0.1414521129265307	 IO_time: 0.15491866913123845
+				 Features:  *EXPDATADOMCOST
+				 Minimum required view:  Rvp:		Rve:	t2.d4,t2.e5,t2.f6	Rip:		Rie:		Rces:	
+				 Output Relation Profile:  Rvp:	t2.d4,t2.e5,t2.f6	Rve:		Rip:		Rie:		Rces:	
+				 Input attributes:  | n: t2.d4 d: 0.04 s: PLAINTEXT od: 0.04 | n: t2.e5 d: 0.05 s: PLAINTEXT od: 0.05 | n: t2.f6 d: 0.001 s: PLAINTEXT od: 0.001 | 
+				 Projected set:  | n: t2.d4 od: 0.04 | n: t2.e5 od: 0.05 | n: t2.f6 od: 0.001 | 
+				 Attribute constraints:  | 
+				 Applied encryption:   | n: t2.d4 s:PLAINTEXT| n: t2.e5 s:PLAINTEXT| n: t2.f6 s:PLAINTEXT| 
+
+-------------------------------------------------------------------------------------------------------
+***Processor***
+	->GENERAL_INFO
+	STRATEGY SPACE
+	Lev-0(0)--> Ct: 0.49727904552380947
+
+-------------------------------------------------------------------------------------------------------
+***Processor***
+	->GENERAL_INFO
+	DEBUG_MODE:	true	  U.V.R.:	true	  MAX_DEPTH:	5
+-------------------------------------------------------------------------------------------------------
+***Processor***
+	->GENERAL_INFO
+	[Query_galeshapley.xml, DB_galeshapley.xml, ProviderSet_galeshapley.xml, debug_mode, no_uvr, depth=5]
+-------------------------------------------------------------------------------------------------------

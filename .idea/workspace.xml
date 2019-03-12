@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d467e416-66e2-464d-be03-f6f8541474f5" name="Default" comment="Porject management: clean V1 status.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Launcher/OutputData/Reports/report_154020270_9_703.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Launcher/OutputData/Reports/report_154020270_9_941.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Launcher/OutputData/Reports/report_154020271_0_190.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Launcher/OutputData/ResultExtended_Query_finance.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Launcher/OutputData/ResultExtended_Query_finance.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Launcher/OutputData/ResultExtended_Query_galeshapley.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Launcher/OutputData/ResultExtended_Query_galeshapley.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Launcher/OutputData/ResultExtended_Query_ssn.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Launcher/OutputData/ResultExtended_Query_ssn.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Launcher/OutputData/ResultShort_Query_finance.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Launcher/OutputData/ResultShort_Query_finance.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Launcher/OutputData/ResultShort_Query_galeshapley.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Launcher/OutputData/ResultShort_Query_galeshapley.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Launcher/soqd.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Launcher/soqd.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/guavaLib.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/jdom-2.0.6-contrib.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/jdom-2.0.6-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/jdom-2.0.6-junit.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/jdom-2.0.6-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/jdom-2.0.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/lib/jaxen-1.1.6.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/lib/jaxen-1.1.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/lib/xalan/serializer-2.7.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/lib/xalan/xalan-2.7.2.LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/lib/xalan/xalan-2.7.2.NOTICE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/lib/xalan/xalan-2.7.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/lib/xerces.2.11.LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/lib/xerces.2.11.NOTICE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/lib/xercesImpl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Operation_allocator/lib/lib/xml-apis.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Operation_allocator.Parsing.parser-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/SecureQueryOptimizationAndDistribution-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Secure_query_OeD-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1881506069">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="33" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.4" value="8" />
+          <entry key="project.open.time.5" value="21" />
+          <entry key="project.open.time.6" value="4" />
+          <entry key="project.opened" value="35" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="gitignore" value="2" />
+          <entry key="iml" value="4" />
+          <entry key="java" value="237" />
+          <entry key="xml" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="IDEA_MODULE" value="4" />
+          <entry key="JAVA" value="237" />
+          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="XML" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="gitignore" value="8" />
+          <entry key="java" value="16131" />
+          <entry key="txt" value="41" />
+          <entry key="xml" value="909" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="16131" />
+          <entry key="PLAIN_TEXT" value="49" />
+          <entry key="XML" value="909" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="666">
+              <caret line="40" column="38" lean-forward="true" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Processing/Processor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2664">
+              <caret line="148" column="21" selection-start-line="148" selection-start-column="21" selection-end-line="148" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Allocator/OperationAllocator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="50" column="18" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Enum" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>profiler</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/PolicyTest/PolicyDerivationTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Features.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/MetaChoke.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/MetaDecorator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/SimplePolicyGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/PolicyGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/Policy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/VisibilityLevel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/PolicyChecker.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/PolicyPair.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/RelationalProfilePolicy/Visibility.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Data/AttributeConstraint.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Data/Attribute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Data/AttributeState.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Misc/Pair.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Misc/Triple.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Processing/Reader/SimpleReader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Processing/Writer/SimpleWriter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/ExhaustiveSearch/BinaryDepthExplorer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/ExhaustiveSearch/BinaryTree.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/RelationalProfilePolicy/MinimumRequiredView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/RelationalProfilePolicy/PolicyMovesGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/SemanticExceptions/RelationalPlanConfigurationError.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/SemanticOperations/EncOperation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/SemanticOperations/Encryption.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/TreeNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/TreeNodeCostEngine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/RelationalProfilePolicy/test/MinReqViewTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/GroupBy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/SetOperations/Intersection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/SetOperations/Subtraction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/SetOperations/Union.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/CartesianProduct.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/JoinNAry.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/Projection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/Selection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/UDF.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Provider.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Processing/NamespaceEnforcer/NamesEnforcer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/RelationalProfilePolicy/test/RelProfTests.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/DebugManager/Debugger.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/TreeNodeVolatileCostEngine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/RelationalProfilePolicy/RelationProfile.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/DebugManager/LogType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/TreeNodeSemantics.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Processing/Processor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/DebugManager/Report.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Statistics/Metrics/tests/MetricTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operation_allocator/Allocator/OperationAllocator.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="Processing" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="Processing" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="4">
+    <option name="y" value="34" />
+    <option name="width" value="960" />
+    <option name="height" value="1046" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Secure_query_OeD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Secure_query_OeD" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Secure_query_OeD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Secure_query_OeD" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Secure_query_OeD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Secure_query_OeD" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Secure_query_OeD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Secure_query_OeD" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Secure_query_OeD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Secure_query_OeD" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Operation_allocator" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Secure_query_OeD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Secure_query_OeD" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Operation_allocator" type="462c0819:PsiDirectoryNode" />
+              <item name="Processing" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541686228739" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Operation_allocator/lib/guava.jar!/" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Colors" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d467e416-66e2-464d-be03-f6f8541474f5" name="Default" comment="" />
+      <created>1532093365428</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1532093365428</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Porject management: clean V1 status.">
+      <created>1535444712281</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1535444712281</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="34" width="960" height="1046" extended-state="4" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.06637168" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32893288" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32893288" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32893288" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32713348" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32893288" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32893288" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32893288" />
+      <window_info anchor="bottom" id="Dependency Viewer" order="11" weight="0.32932165" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="7" weight="0.2300885" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Porject management: clean V1 status." />
+    <option name="LAST_COMMIT_MESSAGE" value="Porject management: clean V1 status." />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Statistics/UDFprofilers/LogPolynomialProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Statistics/UDFprofilers/PolynomialProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Statistics/UDFprofilers/PseudolinearProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Statistics/UDFprofilers/QuadraticProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Statistics/UDFprofilers/UDF_typ1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/ExhaustiveSearch/BinaryDepthExplorer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="28" selection-start-column="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/ExhaustiveSearch/BinaryTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/RelationalProfilePolicy/MinimumRequiredView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/RelationalProfilePolicy/Visibility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/RelationalProfilePolicy/PolicyMovesGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-522">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/Policy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/PolicyChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/PolicyGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/PolicyPair.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/SimplePolicyGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/VisibilityLevel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/SemanticExceptions/RelationalPlanConfigurationError.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="28" selection-start-column="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/SemanticOperations/EncOperation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/SemanticOperations/Encryption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Features.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/MetaChoke.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/MetaDecorator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/TreeNodeCostEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/SetOperations/Intersection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/SetOperations/Subtraction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/SetOperations/Union.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/GroupBy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/CartesianProduct.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/JoinNAry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/Projection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/Selection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operations/UDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Provider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/SimpleCostEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Actors/Operation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/RelationalProfilePolicy/test/RelProfTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/RelationalProfilePolicy/test/MinReqViewTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Processing/Reader/SimpleReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1008">
+          <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/DebugManager/Debugger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="56" column="35" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/TreeNodeVolatileCostEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-894">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/Policy/RelationalProfilePolicy/RelationProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7686">
+          <caret line="449" column="30" lean-forward="true" selection-start-line="449" selection-start-column="30" selection-end-line="449" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/DebugManager/LogType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/Semantics/TreeNodeSemantics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="273" column="35" selection-start-line="273" selection-start-column="35" selection-end-line="273" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/DebugManager/Report.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Trees/TreeNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="109" selection-start-line="109" selection-end-line="110" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2368#2398#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Statistics/Metrics/tests/MetricTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Statistics/UDFprofilers/Profiler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Processing/NamespaceEnforcer/NamesEnforcer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="812">
+          <caret line="243" column="23" selection-start-line="243" selection-start-column="23" selection-end-line="243" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Processing/Processor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2664">
+          <caret line="148" column="21" selection-start-line="148" selection-start-column="21" selection-end-line="148" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operation_allocator/Allocator/OperationAllocator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="50" column="18" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="666">
+          <caret line="40" column="38" lean-forward="true" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Secure_query_OeD</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>guava</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

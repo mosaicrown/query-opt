@@ -1,0 +1,6 @@
+***Processor***
+->GENERAL_INFO
+\tDEBUG_MODE:" + debug_mode + "  U.V.R.:" + removeUniformVis + "  MAX_DEPTH:" + maximumDepthStrategy-----------------------------------------------------------------------------------------------------------
+***Processor***
+->GENERAL_INFO
+[Query_ssn.xml, DB_ssn.xml, ProviderSet_ssn.xml, debug_mode]-----------------------------------------------------------------------------------------------------------

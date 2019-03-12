@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<attributes>
+	<attribute>
+		<name>t1.a</name>	
+		<size>0.032</size>	
+	</attribute>
+	<attribute>
+		<name>t1.b</name>	
+		<size>1</size>	
+	</attribute>
+	<attribute>
+		<name>t2.c</name>	
+		<size>0.02</size>	
+	</attribute>
+	<attribute>
+		<name>t2.d</name>	
+		<size>1</size>	
+	</attribute>
+	<attribute>
+		<name>t2.e</name>	
+		<size>0.005</size>	
+	</attribute>
+	<attribute>
+		<name>t3.f</name>	
+		<size>0.02</size>	
+	</attribute>
+		<attribute>
+		<name>t3.g</name>	
+		<size>0.032</size>	
+	</attribute>
+	<attribute>
+		<name>t3.h</name>	
+		<size>0.005</size>	
+	</attribute>
+</attributes>

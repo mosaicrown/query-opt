@@ -1,0 +1,6 @@
+***Processor***
+->GENERAL_INFO
+\tDEBUG_MODE:" + debug_mode + "  U.V.R.:" + removeUniformVis + "  MAX_DEPTH:" + maximumDepthStrategy-----------------------------------------------------------------------------------------------------------
+***Processor***
+->GENERAL_INFO
+[Query_galeshapley.xml, DB_galeshapley.xml, ProviderSet_galeshapley.xml, debug_mode]-----------------------------------------------------------------------------------------------------------
