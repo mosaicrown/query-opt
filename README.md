@@ -1,4 +1,4 @@
-<img src="./Images/logo_unibg.jpg" width="150"></img> <img src="./Images/logo_seclab.png" width="150"></img>
+<img src="./Images/mosaico-logo.png" width="150"></img> <img src="./Images/logo_seclab.png" width="150"></img> <img src="./Images/unimi.jpg" width="150"></img>
 
 # Query cost optimization for secure distribution 
 
